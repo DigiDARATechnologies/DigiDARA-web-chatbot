@@ -1,0 +1,371 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digidara technologies</title>
+    <title>My Medium Blogs</title>
+    <link rel="stylesheet" href="../../static/Blog.css">
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+
+    <link rel="stylesheet"  href="{{url_for('static',filename='home.css')}}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{url_for('static', filename='chatbot.css')}}">
+    <script src="{{url_for('static', filename='chatbot.js')}}" defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .grid-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            width: 45%;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+        .card img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .card-title a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .card-date {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .card-summary {
+            color: #444;
+        }
+        .menu-icon {
+            font-size: 28px;
+            cursor: pointer;
+            display: none;
+        }
+        /* Navigation */
+        .nav {
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .nav-img {
+            width: 200px;
+            height: 80px;
+        }
+
+        .menu-icon {
+            font-size: 28px;
+            cursor: pointer;
+            display: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-menu li {
+            margin: 0 15px;
+            font-size: 16px;
+            color: #1010ad;
+            cursor: pointer;
+            padding: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-menu li:hover {
+            background-color: #f5f5f5;
+        }
+
+        .nav-menu li a {
+            color: #1010ad;
+            text-decoration: none;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            cursor: pointer;
+            display: inline-block;
+            padding-right: 15px;
+            position: relative;
+        }
+
+        .dropdown-toggle::after {
+            content: '▼';
+            font-size: 10px;
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #fff;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            min-width: 200px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .dropdown:hover .dropdown-menu,
+        .dropdown.active .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu li {
+            padding: 10px;
+            margin: 0;
+        }
+
+        .dropdown-menu li a {
+            color: #1010ad;
+            font-size: 14px;
+            display: block;
+        }
+
+        .dropdown-menu li a:hover {
+            background-color: #f0f0f0;
+        }
+          @media screen and (min-width: 601px) and (max-width: 900px) {
+            .nav-img {
+                width: 180px;
+                height: 70px;
+            }
+
+            .menu-icon {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: #fff;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-menu li {
+                width: 100%;
+                margin: 0;
+                border-bottom: 1px solid #e5e5e5;
+            }
+
+            .dropdown-toggle {
+                padding: 15px 20px;
+            }
+
+            .dropdown-menu {
+                position: static;
+                width: 100%;
+                background-color: #fafafa;
+            }
+          }
+           /* Responsive Design */
+        /* Mobile View (≤600px) */
+        @media screen and (max-width: 600px) {
+            .nav-img {
+                width: 150px;
+                height: 60px;
+            }
+
+            .menu-icon {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: #fff;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-menu li {
+                width: 100%;
+                margin: 0;
+                border-bottom: 1px solid #e5e5e5;
+                text-align: left;
+            }
+
+            .nav-menu li a {
+                padding: 15px 20px;
+                font-size: 14px;
+                display: block;
+            }
+
+            .dropdown-toggle {
+                padding: 15px 20px;
+            }
+
+            .dropdown-menu {
+                position: static;
+                width: 100%;
+                background-color: #fafafa;
+                border: none;
+                box-shadow: none;
+            }
+
+            .dropdown-menu li a {
+                padding: 10px 30px;
+            }
+          }
+        @media (max-width: 768px) {
+            .card {
+                width: 100%;
+            }
+        }
+        @media (max-width: 1000px) {
+            .menu-icon {
+                display: block;
+            }
+        }
+
+            
+
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="{{url_for('home')}}"><img class="nav-img" src="{{url_for('static',filename='image/log.jpeg')}}" alt="Logo"></a>
+        <div class="menu-icon" id="menu-icon">☰</div>
+        <ul class="nav-menu" id="nav-links">
+            
+            <li class="dropdown">
+                <span class="dropdown-toggle">Services</span>
+                <ul class="dropdown-menu">
+                    <li><a href="{{url_for('digital')}}">AI-Powered Digital Marketing</a></li>
+                    <li><a href="{{url_for('aichatbot')}}">AI-Powered Chatbot Integration</a></li>
+                    <li><a href="{{url_for('agent')}}">Agentic AI Project Development</a></li>
+                    <li><a href="{{url_for('consulting')}}">AI Business Consulting</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <span class="dropdown-toggle">Courses</span>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another Action</a></li>
+                    <li><a href="#">Something Else</a></li>
+                    <li><a href="#">Separated Link</a></li>
+                </ul>
+            </li>
+            <li><a href="#">AI-Powered Internship</a></li>
+            <li class="dropdown">
+                <span class="dropdown-toggle">Company</span>
+                <ul class="dropdown-menu">
+                    <li><a href="{{url_for('consulting')}}">About Us</a></li>
+                    <li><a href="{{url_for('Contact')}}">Contact Us</a></li>
+                </ul>
+            </li>
+            <li><a href="{{url_for('Blog')}}">AI Blogs & Insights</a></li>
+            <li class="dropdown">
+                <span class="dropdown-toggle">More</span>
+                <ul class="dropdown-menu">
+                    <li><a href="{{url_for('event')}}">Webinars & Events</a></li>
+                    <li><a href="{{url_for('Succss')}}">Success Stories</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <h1 style="margin-top: 100px;margin-bottom: 50px;">Latest Blog Posts</h1>
+    {% if posts %}
+        <div class="grid-container">
+            {% for post in posts %}
+                <div class="card">
+                    {% if post.image %}
+                        <img src="{{ post.image }}" alt="Blog Image">
+                    {% endif %}
+                    <div class="card-title">
+                        <a href="{{ post.link }}" target="_blank">{{ post.title }}</a>
+                    </div>
+                    <div class="card-date">{{ post.published }}</div>
+                    <div class="card-summary">{{ post.summary | safe }}</div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No blog posts found.</p>
+    {% endif %}
+<script>
+    
+        const menuIcon = document.getElementById('menu-icon');
+        const navLinks = document.getElementById('nav-links');
+        const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+
+        menuIcon.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        dropdownToggles.forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                if (window.innerWidth <= 900) {
+                    const parentDropdown = toggle.closest('.dropdown');
+                    dropdownToggles.forEach(item => {
+                        const otherDropdown = item.closest('.dropdown');
+                        if (otherDropdown !== parentDropdown) {
+                            otherDropdown.classList.remove('active');
+                        }
+                    });
+                    parentDropdown.classList.toggle('active');
+                }
+            });
+        });
+
+</script>
+{% include 'chatbot.html' %}
+</body>
+</html>
