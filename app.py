@@ -1,6 +1,6 @@
 import os
 import mysql.connector
-from flask import Flask, render_template, request, jsonify, url_for, redirect, flash
+from flask import Flask, render_template, request, jsonify, url_for, redirect, flash, session
 from datetime import datetime, timedelta
 from langchain_community.chat_message_histories import ChatMessageHistory
 from langchain_core.runnables.history import RunnableWithMessageHistory
@@ -18,12 +18,20 @@ import smtplib
 from dotenv import load_dotenv
 import feedparser
 from werkzeug.utils import secure_filename
+import re
+import uuid
+import json
 
 # Load environment variables
 load_dotenv()
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
-app.secret_key = 'your-secret-key'  # Needed for flash messages
+
+# Configure Flask secret key
+if not os.getenv("FLASK_SECRET_KEY"):
+    logger.error("FLASK_SECRET_KEY not found in environment variables.")
+    raise ValueError("FLASK_SECRET_KEY not found in environment variables.")
+app.secret_key = os.getenv("FLASK_SECRET_KEY")
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -55,13 +63,19 @@ db_config = {
 }
 
 # Qdrant Configuration
-QDRANT_URL = "https://bb433c34-ebbf-4efb-ac53-6299a6e83718.us-east4-0.gcp.cloud.qdrant.io"
-QDRANT_API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.tUOyyQ1XJ31AV9Dlv2DU-Vb4VnNJzEIrrC-rSjDgsGc"
+QDRANT_URL = os.getenv("QDRANT_URL")
+QDRANT_API_KEY = os.getenv("QDRANT_API_KEY")
+if not QDRANT_URL or not QDRANT_API_KEY:
+    logger.error("QDRANT_URL or QDRANT_API_KEY not found in environment variables.")
+    raise ValueError("QDRANT_URL or QDRANT_API_KEY not found in environment variables.")
 COLLECTION_NAME = "digidara_website_info"
 
 # Email Setup for SMTP
-EMAIL_ADDRESS = 'support@digidaratechnologies.com'
+EMAIL_ADDRESS = os.getenv("EMAIL_ADDRESS")
 EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
+if not EMAIL_ADDRESS or not EMAIL_PASSWORD:
+    logger.error("EMAIL_ADDRESS or EMAIL_PASSWORD not found in environment variables.")
+    raise ValueError("EMAIL_ADDRESS or EMAIL_PASSWORD not found in environment variables.")
 MAIL_SERVER = 'smtpout.secureserver.net'
 MAIL_PORT = 587  # Use 587 for TLS
 
@@ -80,25 +94,38 @@ if not os.path.exists(UPLOAD_FOLDER):
 # Initialize Qdrant Client
 qdrant_client = QdrantClient(url=QDRANT_URL, api_key=QDRANT_API_KEY)
 
-# Initialize Sentence Transformer for embeddings
-embedder = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
+# Initialize Sentence Transformer for embeddings (lazy-loaded)
+embedder = None
+
+def get_embedder():
+    global embedder
+    if embedder is None:
+        embedder = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
+    return embedder
 
 # Helper function to check allowed file extensions
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def fetch_medium_posts():
-    feed = feedparser.parse(MEDIUM_FEED)
-    posts = []
-    for entry in feed.entries:
-        post = {
-            "title": entry.title,
-            "link": entry.link,
-            "published": entry.published,
-            "summary": entry.summary
-        }
-        posts.append(post)
-    return posts
+    try:
+        feed = feedparser.parse(MEDIUM_FEED)
+        if feed.bozo:
+            logger.error(f"Error parsing Medium feed: {feed.bozo_exception}")
+            return []
+        posts = []
+        for entry in feed.entries:
+            post = {
+                "title": entry.title,
+                "link": entry.link,
+                "published": entry.published,
+                "summary": entry.summary
+            }
+            posts.append(post)
+        return posts
+    except Exception as e:
+        logger.error(f"Error fetching Medium posts: {e}")
+        return []
 
 posts = []  # List to store submitted data
 
@@ -204,6 +231,16 @@ def check_existing_user(email, phone):
 
 # Save or Update User Data in MySQL
 def save_user(name, email, phone, course, course_duration, message='', last_processed_time=None, llm=None):
+    # Basic validation
+    if not name or not isinstance(name, str):
+        raise ValueError("Name must be a non-empty string")
+    email_pattern = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
+    if not email or not re.match(email_pattern, email):
+        raise ValueError("Invalid email format")
+    phone_pattern = r'^\d{10}$'
+    if not phone or not re.match(phone_pattern, phone):
+        raise ValueError("Phone number must be a 10-digit number")
+
     conn = None
     cursor = None
     try:
@@ -250,6 +287,7 @@ def save_user(name, email, phone, course, course_duration, message='', last_proc
 # Retrieve relevant context from Qdrant for RAG
 def retrieve_from_qdrant(query):
     try:
+        embedder = get_embedder()
         query_embedding = embedder.encode(query).tolist()
         search_result = qdrant_client.search(
             collection_name=COLLECTION_NAME,
@@ -333,25 +371,35 @@ conversational_chain = RunnableWithMessageHistory(
 # Website Routes
 @app.route('/')
 def home():
-    conn = mysql.connector.connect(**db_config)
-    cursor = conn.cursor(dictionary=True)
+    try:
+        conn = mysql.connector.connect(**db_config)
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute("SELECT * FROM submissions")
+        submissions = cursor.fetchall()
+        return render_template('home.html', submissions=submissions)
+    except mysql.connector.Error as err:
+        logger.error(f"Error connecting to database: {err}")
+        flash("Error loading submissions. Please try again later.", "error")
+        return render_template('home.html', submissions=[])
+    finally:
+        if 'cursor' in locals():
+            cursor.close()
+        if 'conn' in locals():
+            conn.close()
 
-    cursor.execute("SELECT * FROM submissions")
-    submissions = cursor.fetchall()
-
-    cursor.close()
-    conn.close()
-    return render_template('home.html', submissions=submissions)
 @app.route('/Blog')
 def Blog():
     posts = fetch_medium_posts()
     return render_template('more/Blog.html', posts=posts)
+
 @app.route('/consulting')
 def consulting():
     return render_template('more/consulting.html')
+
 @app.route('/Contact')
 def Contact():
     return render_template('more/Contact.html')
+
 @app.route('/Succss')
 def Succss():
     return render_template('more/Succss.html')
@@ -359,6 +407,7 @@ def Succss():
 @app.route('/Services')
 def Services():
     return render_template('Services.html')
+
 @app.route('/form', methods=['GET', 'POST'])
 def form():
     conn = mysql.connector.connect(**db_config)
@@ -410,45 +459,51 @@ def delete_submission(submission_id):
     conn.close()
 
     return redirect(url_for('form'))
+
 @app.route('/aichatbot')
 def aichatbot():
     return render_template('Services/chatbot.html')
+
 @app.route('/digital')
 def digital():
     return render_template('Services/digital.html')
+
 @app.route('/agent')
 def agent():
     return render_template('Services/aiproject.html')
+
 @app.route('/train')
 def train():
     return render_template('Services/lms.html')
 
-
-
 @app.route('/course')
 def course():
     return render_template('courses/python2.html')
+
 @app.route('/aibeginner')
 def aibeginner():
     return render_template('courses/AI_beginner.html')
+
 @app.route('/aibusiness')
 def aiforbusiness():
     return render_template('courses/AI_for_business_leaders.html')
+
 @app.route('/aiagency')
 def aiforagency():
     return render_template('courses/AI_for_Agency.html')
+
 @app.route('/aicareer')
 def aiforcareer():
     return render_template('courses/AI_career.html')
 
-
-
 @app.route('/about')
 def about():
     return render_template('about.html')
+
 @app.route('/AI')
 def AI():
     return render_template('AI.html')
+
 @app.route('/event')
 def event():
     return render_template('event1.html')
@@ -457,7 +512,13 @@ def event():
 @app.route('/chat', methods=['POST'])
 def chat():
     data = request.json
-    user_id = request.remote_addr
+    if not data or 'prompt' not in data:
+        logger.error("Invalid request: No prompt provided")
+        return jsonify({'response': "Please provide a prompt.", 'quickReplies': None}), 400
+
+    if 'user_id' not in session:
+        session['user_id'] = str(uuid.uuid4())
+    user_id = session['user_id']
     prompt = data.get('prompt', '').strip()
     logger.info(f"Received request from {user_id} with prompt: '{prompt}'")
 
@@ -596,7 +657,7 @@ def chat():
                         response = response.replace("python-ai-foundations.txt Part 5", "")
                     except Exception as e:
                         logger.error(f"Error invoking conversational chain: {e}")
-                        response = "Sorry, I encountered an error. Please try again or contact support."
+                        response = "Sorry, I encountered an error. Please try again or contact support@digidaratechnologies.com."
                     quick_replies = ['Enquire Now', 'quit']
             elif state == 'collect_enquiry':
                 user_data['last_processed_time'] = save_user(user_data['name'], user_data['email'], user_data['phone'], user_data.get('course'), user_data.get('course_duration'), message=prompt, last_processed_time=user_data['last_processed_time'], llm=llm)
@@ -614,4 +675,5 @@ def chat():
     return jsonify({'response': response, 'quickReplies': quick_replies})
 
 if __name__ == "__main__":
+    logger.warning("Running in development mode. Use Gunicorn for production.")
     app.run(debug=True, host='0.0.0.0', port=5000)
