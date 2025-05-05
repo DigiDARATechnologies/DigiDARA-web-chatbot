@@ -80,12 +80,14 @@
         .nav-img {
             width: 200px;
             height: 80px;
+            padding: 5px;
         }
 
         .menu-icon {
             font-size: 28px;
             cursor: pointer;
             display: none;
+            padding: 5px;
         }
 
         .nav-menu {
@@ -93,17 +95,22 @@
             list-style: none;
             margin: 0;
             padding: 0;
+            font-size: larger;
         }
 
         .nav-menu li {
             margin: 0 15px;
-            font-size: 16px;
+            font-size: 30px;
             color: #1010ad;
             cursor: pointer;
             padding: 10px;
             transition: background-color 0.3s;
+            transition: transform 0.3s ease;
         }
-
+        .nav-menu li:hover {
+            
+            transform: scale(1.1);
+        }
         .nav-menu li:hover {
             background-color: #f5f5f5;
         }
@@ -112,6 +119,7 @@
             color: #1010ad;
             text-decoration: none;
             font-family: Arial, Helvetica, sans-serif;
+            font-size: 25px;
         }
 
         .dropdown {
@@ -123,13 +131,14 @@
             display: inline-block;
             padding-right: 15px;
             position: relative;
+            font-size: 25px;
         }
 
         .dropdown-toggle::after {
             content: '▼';
             font-size: 10px;
             position: absolute;
-            right: 5px;
+            right: 0;
             top: 50%;
             transform: translateY(-50%);
         }
@@ -143,14 +152,16 @@
             list-style: none;
             padding: 0;
             margin: 0;
-            min-width: 200px;
+            min-width: 400px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             z-index: 1000;
+            
         }
 
         .dropdown:hover .dropdown-menu,
         .dropdown.active .dropdown-menu {
             display: block;
+            
         }
 
         .dropdown-menu li {
@@ -160,13 +171,43 @@
 
         .dropdown-menu li a {
             color: #1010ad;
-            font-size: 14px;
+            font-size: 25px;
             display: block;
+            text-decoration: none;
+        }
+        .more-dropdown {
+            left: auto;
+            right: 0;
+        }
+        .more-dropdown li a{
+          left: -100px;
+
         }
 
         .dropdown-menu li a:hover {
-            background-color: #f0f0f0;
+            background-color: #ccc;
         }
+        footer h3 {
+            text-align: center;
+            margin-top: 30px;
+            padding-bottom: 50px;
+            font-size: 16px;
+            color: #555;
+        }
+        .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      padding: 10px;
+      background-color: #f0f0f0;
+      border-radius: 5px;
+      margin: 20px 0;
+    }
+
+    .social-icons img {
+      width: 30px;
+      height: 30px;
+    }
           @media screen and (min-width: 601px) and (max-width: 900px) {
             .nav-img {
                 width: 180px;
@@ -263,6 +304,10 @@
             .dropdown-menu li a {
                 padding: 10px 30px;
             }
+            footer h3 {
+                font-size: 14px;
+                padding-bottom: 30px;
+            }
           }
         @media (max-width: 768px) {
             .card {
@@ -284,7 +329,6 @@
         <a href="{{url_for('home')}}"><img class="nav-img" src="{{url_for('static',filename='image/log.jpeg')}}" alt="Logo"></a>
         <div class="menu-icon" id="menu-icon">☰</div>
         <ul class="nav-menu" id="nav-links">
-            
             <li class="dropdown">
                 <span class="dropdown-toggle">Services</span>
                 <ul class="dropdown-menu">
@@ -297,24 +341,25 @@
             <li class="dropdown">
                 <span class="dropdown-toggle">Courses</span>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another Action</a></li>
-                    <li><a href="#">Something Else</a></li>
-                    <li><a href="#">Separated Link</a></li>
+                  <li><a href="{{ url_for('course') }}">Python Course</a></li>
+                  <li><a href="{{ url_for('aibeginner') }}">AI for Beginners</a></li>
+                  <li><a href="{{ url_for('aiforbusiness') }}">AI for Business Leaders</a></li>
+                  <li><a href="{{ url_for('aiforagency') }}">AI for Agency</a></li>
+                  <li><a href="{{ url_for('aiforcareer') }}">AI for Career</a></li>
                 </ul>
-            </li>
-            <li><a href="#">AI-Powered Internship</a></li>
+              </li>
+            <li><a href="{{url_for('AI')}}">AI-Powered Internship</a></li>
             <li class="dropdown">
                 <span class="dropdown-toggle">Company</span>
                 <ul class="dropdown-menu">
-                    <li><a href="{{url_for('consulting')}}">About Us</a></li>
+                    <li><a href="{{url_for('about')}}">About Us</a></li>
                     <li><a href="{{url_for('Contact')}}">Contact Us</a></li>
                 </ul>
             </li>
             <li><a href="{{url_for('Blog')}}">AI Blogs & Insights</a></li>
             <li class="dropdown">
-                <span class="dropdown-toggle">More</span>
-                <ul class="dropdown-menu">
+                <span class="dropdown-toggle ">More</span>
+                <ul class="dropdown-menu more-dropdown">
                     <li><a href="{{url_for('event')}}">Webinars & Events</a></li>
                     <li><a href="{{url_for('Succss')}}">Success Stories</a></li>
                 </ul>
@@ -340,6 +385,19 @@
     {% else %}
         <p>No blog posts found.</p>
     {% endif %}
+
+
+    <div class="social-icons">
+        <a href="https://www.facebook.com/DigidaraTechnologies/"><img src="../static/icons/5.png" alt="Facebook"></a>
+        <a href="https://www.instagram.com/digidaratechnologies/"><img src="../static/icons/insta.png" alt="Instagram"></a>
+        <a href="https://www.linkedin.com/company/104865843/admin/dashboard/"><img src="../static/icons/7.webp" alt="LinkedIn"></a>
+        <a href="https://x.com/digiDARA_Tech"><img src="../static/icons/8.png" alt="Twitter"></a>
+        <a href="https://www.youtube.com/@DigiDARATechnologies"><img src="../static/icons/9.png" alt="YouTube"></a>
+      </div>
+      {% include 'chatbot.html' %}
+      <footer>
+        <h3>Copyright © 2025 DigiDARA Technologies Private Limited - All Rights Reserved.</h3>
+    </footer>
 <script>
     
         const menuIcon = document.getElementById('menu-icon');
@@ -366,6 +424,5 @@
         });
 
 </script>
-{% include 'chatbot.html' %}
 </body>
 </html>

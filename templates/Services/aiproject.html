@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Digidara technologies</title>
-        <link rel="stylesheet"  href="{{url_for('static',filename='consulting.css')}}">
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
-        <link rel="stylesheet" href="{{url_for('static', filename='chatbot.css')}}">
-        <script src="{{url_for('static', filename='chatbot.js')}}" defer></script>
-        <style>
-          * {
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digidara Technologies - Custom AI Agent Development</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="{{url_for('static', filename='chatbot.css')}}">
+    <script src="{{url_for('static', filename='chatbot.js')}}" defer></script>
+    <style>
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -38,12 +37,14 @@
         .nav-img {
             width: 200px;
             height: 80px;
+            padding: 5px;
         }
 
         .menu-icon {
             font-size: 28px;
             cursor: pointer;
             display: none;
+            padding: 5px;
         }
 
         .nav-menu {
@@ -51,17 +52,22 @@
             list-style: none;
             margin: 0;
             padding: 0;
+            font-size: larger;
         }
 
         .nav-menu li {
             margin: 0 15px;
-            font-size: 16px;
+            font-size: 30px;
             color: #1010ad;
             cursor: pointer;
             padding: 10px;
             transition: background-color 0.3s;
+            transition: transform 0.3s ease;
         }
-
+        .nav-menu li:hover {
+            
+            transform: scale(1.1);
+        }
         .nav-menu li:hover {
             background-color: #f5f5f5;
         }
@@ -69,6 +75,7 @@
         .nav-menu li a {
             color: #1010ad;
             text-decoration: none;
+            font-size: 25px;
             font-family: Arial, Helvetica, sans-serif;
         }
 
@@ -81,13 +88,14 @@
             display: inline-block;
             padding-right: 15px;
             position: relative;
+            font-size: 25px;
         }
 
         .dropdown-toggle::after {
             content: '▼';
             font-size: 10px;
             position: absolute;
-            right: 5px;
+            right: 0;
             top: 50%;
             transform: translateY(-50%);
         }
@@ -101,14 +109,16 @@
             list-style: none;
             padding: 0;
             margin: 0;
-            min-width: 200px;
+            min-width: 400px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             z-index: 1000;
+            
         }
 
         .dropdown:hover .dropdown-menu,
         .dropdown.active .dropdown-menu {
             display: block;
+            
         }
 
         .dropdown-menu li {
@@ -118,64 +128,147 @@
 
         .dropdown-menu li a {
             color: #1010ad;
-            font-size: 14px;
+            font-size: 25px;
             display: block;
+            text-decoration: none;
+        }
+        .more-dropdown {
+            left: auto;
+            right: 0;
+        }
+        .more-dropdown li a{
+          left: -100px;
+
         }
 
         .dropdown-menu li a:hover {
             background-color: #f0f0f0;
         }
-          @media screen and (min-width: 601px) and (max-width: 900px) {
-            .nav-img {
-                width: 180px;
-                height: 70px;
-            }
 
-            .menu-icon {
-                display: block;
-            }
 
-            .nav-menu {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                background-color: #fff;
-                position: absolute;
-                top: 80px;
-                left: 0;
-                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            }
+        /* Content Styling */
+        .section-title {
+            text-align: center;
+            margin-top: 120px;
+            margin-bottom: 40px;
+        }
 
-            .nav-menu.active {
-                display: flex;
-            }
+        .section-title .text {
+            font-size: 28px;
+            color: #1010ad;
+            font-weight: bold;
+            display: inline-block;
+            padding: 0 20px;
+            background-color: #f4f4f4;
+            position: relative;
+            top: -15px;
+        }
 
-            .nav-menu li {
-                width: 100%;
-                margin: 0;
-                border-bottom: 1px solid #e5e5e5;
-            }
+        .section-title .line {
+            border-top: 2px solid #1010ad;
+            margin: 0 auto;
+        }
 
-            .dropdown-toggle {
-                padding: 15px 20px;
-            }
+        .content-section img {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            margin: 20px auto;
+            display: block;
+        }
 
-            .dropdown-menu {
-                position: static;
-                width: 100%;
-                background-color: #fafafa;
-            }
-          }
-          /* Responsive Design */
-        /* Mobile View (≤600px) */
+        .content-section h1 {
+            font-size: 45px;
+            color: #1010ad;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .content-section h3 {
+            font-size: 30px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .content-section p {
+            font-size: 25px;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .content-section table {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        .content-section th, .content-section td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        .content-section th {
+            background-color: #1010ad;
+            color: white;
+        }
+
+        .content-section tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Social Icons and Footer */
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 50px 0;
+        }
+
+        .social-icons .bi {
+            width: 50px;
+            height: 50px;
+        }
+
+        footer h3 {
+            text-align: center;
+            margin-top: 30px;
+            padding-bottom: 50px;
+            font-size: 16px;
+            color: #555;
+        }
+        .content-section>img:hover{
+            transform: scale(1.1) ;
+        }
+        .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      padding: 10px;
+      background-color: #f0f0f0;
+      border-radius: 5px;
+      margin: 20px 0;
+    }
+
+    .social-icons img {
+      width: 30px;
+      height: 30px;
+    }
+
+
+        /* Responsive Design */
         @media screen and (max-width: 600px) {
             .nav-img {
                 width: 150px;
                 height: 60px;
+                padding: 10px;
             }
 
             .menu-icon {
                 display: block;
+                padding: 10px;
             }
 
             .nav-menu {
@@ -200,14 +293,11 @@
                 text-align: left;
             }
 
-            .nav-menu li a {
+            .nav-menu li a,
+            .dropdown-toggle {
                 padding: 15px 20px;
                 font-size: 14px;
                 display: block;
-            }
-
-            .dropdown-toggle {
-                padding: 15px 20px;
             }
 
             .dropdown-menu {
@@ -221,12 +311,116 @@
             .dropdown-menu li a {
                 padding: 10px 30px;
             }
-          }
-        </style>
-    
-    </head>
-    <body >
-      <div class="nav">
+
+            .section-title .text {
+                font-size: 20px;
+            }
+
+            .content-section h1 {
+                font-size: 24px;
+            }
+
+            .content-section h3 {
+                font-size: 18px;
+            }
+
+            .content-section p {
+                font-size: 14px;
+            }
+
+            .content-section img {
+                max-width: 100%;
+            }
+
+            .content-section th, .content-section td {
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            .social-icons .bi {
+                width: 40px;
+                height: 40px;
+            }
+
+            footer h3 {
+                font-size: 14px;
+                padding-bottom: 30px;
+            }
+        }
+
+        @media screen and (min-width: 601px) and (max-width: 1000px) {
+            .nav-img {
+                width: 180px;
+                height: 70px;
+                padding: 10px;
+            }
+
+            .menu-icon {
+                display: block;
+                padding: 10px;
+            }
+
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: #fff;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-menu li {
+                width: 100%;
+                margin: 0;
+                border-bottom: 1px solid #e5e5e5;
+            }
+
+            .nav-menu li a,
+            .dropdown-toggle {
+                padding: 15px 20px;
+            }
+
+            .dropdown-menu {
+                position: static;
+                width: 100%;
+                background-color: #fafafa;
+            }
+
+            .section-title .text {
+                font-size: 24px;
+            }
+
+            .content-section h1 {
+                font-size: 28px;
+            }
+
+            .content-section h3 {
+                font-size: 20px;
+            }
+
+            .content-section p {
+                font-size: 15px;
+            }
+
+            .content-section img {
+                max-width: 100%;
+            }
+
+            .content-section th, .content-section td {
+                padding: 12px;
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
         <a href="{{url_for('home')}}"><img class="nav-img" src="{{url_for('static',filename='image/log.jpeg')}}" alt="Logo"></a>
         <div class="menu-icon" id="menu-icon">☰</div>
         <ul class="nav-menu" id="nav-links">
@@ -243,132 +437,171 @@
             <li class="dropdown">
                 <span class="dropdown-toggle">Courses</span>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another Action</a></li>
-                    <li><a href="#">Something Else</a></li>
-                    <li><a href="#">Separated Link</a></li>
+                  <li><a href="{{ url_for('course') }}">Python Course</a></li>
+                  <li><a href="{{ url_for('aibeginner') }}">AI for Beginners</a></li>
+                  <li><a href="{{ url_for('aiforbusiness') }}">AI for Business Leaders</a></li>
+                  <li><a href="{{ url_for('aiforagency') }}">AI for Agency</a></li>
+                  <li><a href="{{ url_for('aiforcareer') }}">AI for Career</a></li>
                 </ul>
-            </li>
-            <li><a href="#">AI-Powered Internship</a></li>
+              </li>
+            <li><a href="{{url_for('AI')}}">AI-Powered Internship</a></li>
             <li class="dropdown">
                 <span class="dropdown-toggle">Company</span>
                 <ul class="dropdown-menu">
-                    <li><a href="{{url_for('consulting')}}">About Us</a></li>
+                    <li><a href="{{url_for('about')}}">About Us</a></li>
                     <li><a href="{{url_for('Contact')}}">Contact Us</a></li>
                 </ul>
             </li>
             <li><a href="{{url_for('Blog')}}">AI Blogs & Insights</a></li>
             <li class="dropdown">
-                <span class="dropdown-toggle">More</span>
-                <ul class="dropdown-menu">
+                <span class="dropdown-toggle ">More</span>
+                <ul class="dropdown-menu more-dropdown">
                     <li><a href="{{url_for('event')}}">Webinars & Events</a></li>
                     <li><a href="{{url_for('Succss')}}">Success Stories</a></li>
                 </ul>
             </li>
         </ul>
     </div>
-        <div class="section-title" style="margin-top: 100px;">
-            <hr class="line" style="margin-top: 100px;">
-            <span class="text" style="font-size: 25px;margin-top: 100px;">Agent AI Project</span>
-            <hr class="line" style="margin-top: 100px;">
-          </div>
-          <div>
-              <div class="card" style="width: 700px;margin-left: 200px;margin-top: 50px;display: inline-block;" >
-                  <img  src="../static/chatbot.jpg" class="card-img-top" alt="..."  width="700px">
-                  <div class="card-body">
-                    <h5 class="card-title">Chatbot</h5>
-                    <p class="card-text">An AI chatbot powered by RAG and the Mistral model with integrated Gmail and WhatsApp support for intelligent, multi-platform communication.</p>
-                    <a href="https://medium.com/@senthilsprd/the-ai-manager-era-how-generative-ai-agentic-ai-are-reshaping-leadership-project-management-9c700bdb0784" class="btn btn-primary">Continue to read</a>
-                  </div>
-              </div>
-              <div class="card" style="width: 700px;margin-left: 50px;margin-top: 50px;display: inline-block;">
-                  <img  src="../static/student.jpg" class="card-img-top" alt="..." width="700px" height="470px">
-                  <div class="card-body">
-  
-                    <h5 class="card-title">Student Mental Health</h5>
-                    <p class="card-text">A student mental health chatbot powered by LLaMA 3.2 and built as an AI agent to provide empathetic support and intelligent mental wellness guidance.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                  </div>
-              </div>
-              <div class="card" style="width: 700px;margin-left: 200px;margin-top: 50px;display: inline-block;">
-                  <img  src="../static/college.jpg" class="card-img-top" alt="..." width="700px" height="440px">
-                  <div class="card-body">
-  
-  
-  
-  
-                    <h5 class="card-title">College Community</h5>
-                    <p class="card-text">An AI agent project designed to enhance college community engagement through smart communication, event updates, and resource sharing.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                  </div>
-              </div>
-              <div class="card" style="width: 700px;margin-left: 50px;margin-top: 50px;display: inline-block;">
-                  <img  src="../static/personal.jpeg" class="card-img-top" alt="..." width="700px">
-                  <div class="card-body">
-  
-  
-  
-  
-                    <h5 class="card-title">Student personalized chatbot</h5>
-                    <p class="card-text">A personalized AI agent chatbot for students that offers tailored academic support, reminders, and mental wellness assistance.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                  </div>
-              </div>
-              <div class="card" style="width: 700px;margin-left: 200px;margin-top: 50px;display: inline-block;">
-                  <img  src="../static/staff.jpg" class="card-img-top" alt="..." width="700px" height="470px">
-                  <div class="card-body">
-  
-  
-  
-  
-                    <h5 class="card-title">Staff personalized chatbot</h5>
-                    <p class="card-text">A personalized agentic AI chatbot for staff that streamlines tasks, manages schedules, and enhances workplace communication.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                  </div>
-                  
-                </div>
-                <div class="card" style="width: 700px;margin-left: 50px;margin-top: 50px;display: inline-block;">
-                    <img src="../static/canteen.jpg" class="card-img-top" alt="..." width="700px">
-                    <div class="card-body">
-    
-    
-    
-    
-                      <h5 class="card-title">Canteen</h5>
-                      <p class="card-text">An AI agent project for canteen management that automates orders, tracks inventory, and enhances the food service experience.</p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
 
-        
+    <div class="container">
+        <div class="section-title">
+            <hr class="line">
+            <span class="text">Custom AI Agent Development</span>
+            <hr class="line">
+        </div>
 
-        
+        <div class="content-section">
+            <img src="../../static/agent/im1.png" alt="AI Agent">
+            <h1>Smart, Scalable, and Tailor-Made AI Assistants</h1>
+            <p>At DigiDARA Technologies, we specialize in building custom AI agents that are designed to solve specific problems, streamline processes, and elevate productivity. These are not just generic chatbots—our AI agents are built around your business logic, audience needs, and growth goals.</p>
+            <p>Whether you're looking to boost sales, support students, or manage internal knowledge, our AI-powered digital agents are crafted to work for you—seamlessly, intelligently, and 24/7.</p>
+        </div>
 
-                
+        <div class="content-section">
+            <h1>✅ Services Offered</h1>
+            <img src="../../static/agent/im2.png" alt="Services">
+            <h1>1. Internal Knowledge Agents</h1>
+            <p>Transform company documents, SOPs, and policies into a conversational knowledge base.</p>
+            <h3><b>What we deliver:</b></h3>
+            <p>
+                - AI agents trained on your internal manuals, PDFs, and help documents<br>
+                - 24/7 assistance for employees or support teams<br>
+                - Searchable, permission-controlled access for teams<br>
+                - Ideal for HR, IT support, and operations
+            </p>
+            <h1>2. AI Agents for Colleges & Educational Institutions</h1>
+            <p>Deliver personalized, real-time support for students, faculty, and alumni.</p>
+            <h3><b>What we deliver:</b></h3>
+            <p>
+                - AI Student Advisor: answers queries on courses, admissions, fees, exams<br>
+                - Alumni Interaction Bot: bridges alumni and students for career mentorship<br>
+                - Faculty Support Agent: helps with admin queries, timetable updates, etc.<br>
+                - LMS-integrated AI assistants for hybrid learning support
+            </p>
+            <h1>3. AI Agents for CRM, Sales & Lead Management</h1>
+            <p>Automate your lead qualification, follow-ups, and sales engagement.</p>
+            <h3><b>What we deliver:</b></h3>
+            <p>
+                - AI Sales Assistant for website/landing page chat<br>
+                - Lead capture and scoring integration<br>
+                - CRM sync for follow-up tracking and notifications<br>
+                - Customer support agent with conversational history
+            </p>
+            <h1>4. Productivity & Coaching Agents</h1>
+            <p>Personalized agents designed for students, employees, and professionals.</p>
+            <h3><b>What we deliver:</b></h3>
+            <p>
+                - Goal tracking and daily planning agents<br>
+                - Personalized nudges, learning tips, and reminders<br>
+                - Journaling, note-taking, and emotional check-in agents<br>
+                - Ideal for coaching centers, wellness programs, and corporate L&D
+            </p>
+            <h1>5. Website/Portal Integration Agents</h1>
+            <p>Turn your website into a powerful interactive hub with always-available AI assistance.</p>
+            <h3><b>What we deliver:</b></h3>
+            <p>
+                - AI Guide for admission, product, or service FAQs<br>
+                - Navigation assistant for large portals and course catalogs<br>
+                - Appointment booking and form-filling automation<br>
+                - Feedback collection and visitor data capture
+            </p>
+        </div>
 
+        <div class="content-section">
+            <h1>Industry Use Cases</h1>
+            <img src="../../static/agent/im3.png" alt="Use Cases">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Sector</th>
+                        <th>Custom Agent Applications</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>🏫 Education</td>
+                        <td>Student Advisor, LMS Assistant, Alumni Bot</td>
+                    </tr>
+                    <tr>
+                        <td>🏢 Enterprises</td>
+                        <td>HR Knowledge Agent, CRM LeadBot, Employee FAQs</td>
+                    </tr>
+                    <tr>
+                        <td>💼 Startups</td>
+                        <td>Product Discovery Agent, Sales Funnel Bot</td>
+                    </tr>
+                    <tr>
+                        <td>🧑‍🏫 Coaches & Trainers</td>
+                        <td>Goal Tracker Agent, Course Navigator</td>
+                    </tr>
+                    <tr>
+                        <td>🧑‍💻 Teams</td>
+                        <td>SOP Explainer, Onboarding Assistant, Daily Planner</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-            <div style="text-align: center; margin-top: 50px;">
-                <svg style="width: 50px;height:50px;"  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
-                  <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
-                </svg>
-                <svg style="margin-left:20px;width: 50px;height:50px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16">
-                  <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z"/>
-                </svg>
-                <svg style="margin-left:20px;width: 50px;height:50px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
-                  <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
-                </svg>
-                <svg style="margin-left:20px;width: 50px;height:50px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
-                  <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
-                </svg>
-        
-            </div>
-            {% include 'chatbot.html' %}
-            <footer>
+        <div class="content-section">
+            <h1>Why DigiDARA Technologies?</h1>
+            <p>
+                - <b>Fully Tailored Development:</b> Every agent is built with your business structure, tone, and content<br>
+                - <b>Powered by Your Data:</b> Agents are trained on your real documents, workflows, and user needs<br>
+                - <b>Omnichannel Ready:</b> Available on your website, LMS, app, WhatsApp, or internal portal<br>
+                - <b>Multilingual & Role-Based Access:</b> Serve global teams with custom rules<br>
+                - <b>Insight-Driven Optimization:</b> Dashboards to monitor usage, satisfaction, and response trends
+            </p>
+        </div>
 
-                <h3 style="text-align: center;margin-top: 50px;padding-bottom: 200px;">Copyright © 2025 DigiDARA Technologies Private Limited - All Rights Reserved.</h3>
-              </footer>
-<script>
-  const menuIcon = document.getElementById('menu-icon');
+        <div class="content-section">
+            <h1>📈 Sample Deliverables</h1>
+            <img src="../../static/agent/im4.png" alt="Deliverables">
+            <p>
+                - AI-powered Student Guide Bot for a college portal<br>
+                - Custom CRM AI Agent for capturing & qualifying leads<br>
+                - Productivity Coach Bot for employee self-management<br>
+                - AI FAQ Assistant trained on company policies<br>
+                - Community Agent to facilitate alumni and student mentorship
+            </p>
+        </div>
+    </div>
+
+    <div class="social-icons">
+        <a href="https://www.facebook.com/DigidaraTechnologies/"><img src="../static/icons/5.png" alt="Facebook"></a>
+        <a href="https://www.instagram.com/digidaratechnologies/"><img src="../static/icons/insta.png" alt="Instagram"></a>
+        <a href="https://www.linkedin.com/company/104865843/admin/dashboard/"><img src="../static/icons/7.webp" alt="LinkedIn"></a>
+        <a href="https://x.com/digiDARA_Tech"><img src="../static/icons/8.png" alt="Twitter"></a>
+        <a href="https://www.youtube.com/@DigiDARATechnologies"><img src="../static/icons/9.png" alt="YouTube"></a>
+      </div>
+      {% include 'chatbot.html' %}
+
+    <footer>
+        <h3>Copyright © 2025 DigiDARA Technologies Private Limited - All Rights Reserved.</h3>
+    </footer>
+
+    <script>
+        // Navigation Menu
+        const menuIcon = document.getElementById('menu-icon');
         const navLinks = document.getElementById('nav-links');
         const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
 
@@ -377,8 +610,8 @@
         });
 
         dropdownToggles.forEach(toggle => {
-            toggle.addEventListener('click', (e) => {
-                if (window.innerWidth <= 900) {
+            toggle.addEventListener('click', () => {
+                if (window.innerWidth <= 1000) {
                     const parentDropdown = toggle.closest('.dropdown');
                     dropdownToggles.forEach(item => {
                         const otherDropdown = item.closest('.dropdown');
@@ -390,8 +623,7 @@
                 }
             });
         });
-</script>
-            
-            
+    </script>
+    <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'939dade379b053fc',t:'MTc0NjI1MzUwNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
 </body>
 </html>

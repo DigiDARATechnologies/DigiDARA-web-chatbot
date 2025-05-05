@@ -46,7 +46,7 @@ MYSQL_CONFIG = {
     'raise_on_warnings': True
 }
 
-DB_CONFIG = {
+db_config = {
     'user': os.getenv("MYSQL_USER"),
     'password': os.getenv("MYSQL_PASSWORD"),
     'host': os.getenv("MYSQL_HOST"),
@@ -87,7 +87,6 @@ embedder = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-# Fetch Medium posts
 def fetch_medium_posts():
     feed = feedparser.parse(MEDIUM_FEED)
     posts = []
@@ -100,6 +99,8 @@ def fetch_medium_posts():
         }
         posts.append(post)
     return posts
+
+posts = []  # List to store submitted data
 
 # Send contact form email
 def send_contact_email(name, email, phone, message):
@@ -332,7 +333,7 @@ conversational_chain = RunnableWithMessageHistory(
 # Website Routes
 @app.route('/')
 def home():
-    conn = mysql.connector.connect(**DB_CONFIG)
+    conn = mysql.connector.connect(**db_config)
     cursor = conn.cursor(dictionary=True)
 
     cursor.execute("SELECT * FROM submissions")
@@ -341,32 +342,26 @@ def home():
     cursor.close()
     conn.close()
     return render_template('home.html', submissions=submissions)
-
 @app.route('/Blog')
 def Blog():
     posts = fetch_medium_posts()
     return render_template('more/Blog.html', posts=posts)
-
 @app.route('/consulting')
 def consulting():
     return render_template('more/consulting.html')
-
 @app.route('/Contact')
 def Contact():
     return render_template('more/Contact.html')
-
-@app.route('/event')
-def event():
-    return render_template('more/event.html')
-
 @app.route('/Succss')
 def Succss():
     return render_template('more/Succss.html')
 
-
+@app.route('/Services')
+def Services():
+    return render_template('Services.html')
 @app.route('/form', methods=['GET', 'POST'])
 def form():
-    conn = mysql.connector.connect(**DB_CONFIG)
+    conn = mysql.connector.connect(**db_config)
     cursor = conn.cursor(dictionary=True)
 
     if request.method == 'POST':
@@ -396,7 +391,7 @@ def form():
 
 @app.route('/delete_submission/<int:submission_id>', methods=['POST'])
 def delete_submission(submission_id):
-    conn = mysql.connector.connect(**DB_CONFIG)
+    conn = mysql.connector.connect(**db_config)
     cursor = conn.cursor()
 
     # Get filename to delete from disk
@@ -415,42 +410,48 @@ def delete_submission(submission_id):
     conn.close()
 
     return redirect(url_for('form'))
-
 @app.route('/aichatbot')
 def aichatbot():
     return render_template('Services/chatbot.html')
-
 @app.route('/digital')
 def digital():
     return render_template('Services/digital.html')
-
 @app.route('/agent')
 def agent():
     return render_template('Services/aiproject.html')
-
 @app.route('/train')
 def train():
     return render_template('Services/lms.html')
 
-# Route to handle contact form submission
-@app.route('/submit-contact', methods=['POST'])
-def submit_contact():
-    name = request.form.get('name', '').strip()
-    email = request.form.get('email', '').strip()
-    phone = request.form.get('phone', '').strip()
-    message = request.form.get('message', '').strip()
 
-    if not name or not email or not phone:
-        flash("Please fill in all required fields (Name, Email, Phone).", "error")
-        return redirect(url_for('Contact'))
 
-    success = send_contact_email(name, email, phone, message)
-    if success:
-        flash("Thank you for your message! We’ll get back to you soon.", "success")
-    else:
-        flash("Failed to send your message. Please try again later.", "error")
+@app.route('/course')
+def course():
+    return render_template('courses/python2.html')
+@app.route('/aibeginner')
+def aibeginner():
+    return render_template('courses/AI_beginner.html')
+@app.route('/aibusiness')
+def aiforbusiness():
+    return render_template('courses/AI_for_business_leaders.html')
+@app.route('/aiagency')
+def aiforagency():
+    return render_template('courses/AI_for_Agency.html')
+@app.route('/aicareer')
+def aiforcareer():
+    return render_template('courses/AI_career.html')
 
-    return redirect(url_for('Contact'))
+
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+@app.route('/AI')
+def AI():
+    return render_template('AI.html')
+@app.route('/event')
+def event():
+    return render_template('event1.html')
 
 # Chatbot Route
 @app.route('/chat', methods=['POST'])

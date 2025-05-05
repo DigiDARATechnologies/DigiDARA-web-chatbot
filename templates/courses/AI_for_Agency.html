@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI for Agency Mastery</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{url_for('static', filename='chatbot.css')}}">
+  <script src="{{url_for('static', filename='chatbot.js')}}" defer></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', Arial, sans-serif;
+      background-color: #f0f0f0;
+    }
+
+    /* Navigation */
+    .nav {
+      background-color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .nav-img {
+      width: 200px;
+      height: 80px;
+    }
+
+    .menu-icon {
+      font-size: 24px;
+      cursor: pointer;
+      display: none;
+    }
+
+    .nav {
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .nav-img {
+            width: 200px;
+            height: 80px;
+            padding: 5px;
+        }
+
+        .menu-icon {
+            font-size: 28px;
+            cursor: pointer;
+            display: none;
+            padding: 5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            font-size: larger;
+        }
+
+        .nav-menu li {
+            margin: 0 15px;
+            font-size: 30px;
+            color: #1010ad;
+            cursor: pointer;
+            padding: 10px;
+            transition: background-color 0.3s;
+            transition: transform 0.3s ease;
+        }
+        .nav-menu li:hover {
+            
+            transform: scale(1.1);
+        }
+        .nav-menu li:hover {
+            background-color: #f5f5f5;
+        }
+
+        .nav-menu li a {
+            color: #1010ad;
+            text-decoration: none;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 25px;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            cursor: pointer;
+            display: inline-block;
+            padding-right: 15px;
+            position: relative;
+            font-size: 25px;
+        }
+
+        .dropdown-toggle::after {
+            content: '▼';
+            font-size: 10px;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #fff;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            min-width: 400px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            
+        }
+
+        .dropdown:hover .dropdown-menu,
+        .dropdown.active .dropdown-menu {
+            display: block;
+            
+        }
+
+        .dropdown-menu li {
+            padding: 10px;
+            margin: 0;
+        }
+
+        .dropdown-menu li a {
+            color: #1010ad;
+            font-size: 25px;
+            display: block;
+            text-decoration: none;
+        }
+        .more-dropdown {
+            left: auto;
+            right: 0;
+        }
+        .more-dropdown li a{
+          left: -100px;
+
+        }
+
+        .dropdown-menu li a:hover {
+            background-color: #f0f0f0;
+        }
+
+
+    /* Content */
+    .hero-section {
+      padding: 80px 20px;
+    }
+
+    .section-title {
+      color: #004aad;
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .section-subtitle {
+      font-size: 1.2rem;
+      color: #5e5e5e;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .features-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .features-list li {
+      font-size: 1.1rem;
+      color: #555;
+      margin-bottom: 15px;
+      padding-left: 30px;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .features-list li:before {
+      content: '🔹';
+      position: absolute;
+      left: 0;
+    }
+
+    .course-grid {
+      padding: 60px 20px;
+    }
+
+    .course-card {
+      background-color: white;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0px 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .course-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .course-card h3 {
+      color: #1010ad;
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+
+    .course-card p {
+      color: #5e5e5e;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    /* Responsive Images */
+    .content-img {
+      width: 100%;
+      height: auto;
+      max-width: 800px;
+      transition: transform 0.3s ease;
+    }
+
+    .content-img:hover {
+      transform: scale(1.05);
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      padding: 10px;
+      background-color: #f0f0f0;
+      border-radius: 5px;
+      margin: 20px 0;
+    }
+
+    .social-icons img {
+      width: 30px;
+      height: 30px;
+    }
+
+    .footer {
+      padding: 20px;
+      background-color: #f0f0f0;
+      text-align: center;
+    }
+
+    .footer p {
+      color: #333;
+      font-size: 18px;
+      margin: 10px 0;
+    }
+
+    .footer-links {
+      margin-top: 50px;
+    }
+
+    .footer-links a {
+      color: #1e3a8a;
+      font-size: 18px;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-line {
+      margin: 90px 720px 90px 720px;
+    }
+
+    /* Mobile Navigation Responsive Styles */
+    @media (max-width: 768px) {
+      .menu-icon {
+        display: block;
+      }
+
+      .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-menu.active {
+        display: flex;
+      }
+
+      .nav-menu li {
+        margin: 0;
+        padding: 15px 20px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .dropdown-menu {
+        position: static;
+        width: 100%;
+        box-shadow: none;
+        background-color: #f8f8f8;
+        margin-left: 20px;
+      }
+
+      .dropdown-toggle::after {
+        right: 20px;
+      }
+
+      .more-dropdown {
+        left: 0;
+        right: auto;
+      }
+
+      .hero-section {
+        padding: 60px 15px;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .section-subtitle {
+        font-size: 1rem;
+      }
+
+      .features-list li {
+        font-size: 1rem;
+      }
+
+      .content-img {
+        max-width: 100%;
+        margin-bottom: 20px;
+      }
+
+      .nav-img {
+        height: 60px;
+      }
+
+      .course-card h3 {
+        font-size: 1.3rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .section-title {
+        font-size: 1.8rem;
+      }
+
+      .section-subtitle {
+        font-size: 0.9rem;
+      }
+
+      .course-card {
+        padding: 15px;
+      }
+
+      .footer-line {
+        margin: 20px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="nav">
+    <a href="{{url_for('home')}}"><img class="nav-img" src="{{url_for('static',filename='image/log.jpeg')}}" alt="Logo"></a>
+    <div class="menu-icon" id="menu-icon">☰</div>
+    <ul class="nav-menu" id="nav-links">
+        <li class="dropdown">
+            <span class="dropdown-toggle">Services</span>
+            <ul class="dropdown-menu">
+                <li><a href="{{url_for('digital')}}">AI-Powered Digital Marketing</a></li>
+                <li><a href="{{url_for('aichatbot')}}">AI-Powered Chatbot Integration</a></li>
+                <li><a href="{{url_for('agent')}}">Agentic AI Project Development</a></li>
+                <li><a href="{{url_for('consulting')}}">AI Business Consulting</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <span class="dropdown-toggle">Courses</span>
+            <ul class="dropdown-menu">
+              <li><a href="{{ url_for('course') }}">Python Course</a></li>
+              <li><a href="{{ url_for('aibeginner') }}">AI for Beginners</a></li>
+              <li><a href="{{ url_for('aiforbusiness') }}">AI for Business Leaders</a></li>
+              <li><a href="{{ url_for('aiforagency') }}">AI for Agency</a></li>
+              <li><a href="{{ url_for('aiforcareer') }}">AI for Career</a></li>
+            </ul>
+          </li>
+        <li><a href="{{url_for('AI')}}">AI-Powered Internship</a></li>
+        <li class="dropdown">
+            <span class="dropdown-toggle">Company</span>
+            <ul class="dropdown-menu">
+                <li><a href="{{url_for('about')}}">About Us</a></li>
+                <li><a href="{{url_for('Contact')}}">Contact Us</a></li>
+            </ul>
+        </li>
+        <li><a href="{{url_for('Blog')}}">AI Blogs & Insights</a></li>
+        <li class="dropdown">
+            <span class="dropdown-toggle ">More</span>
+            <ul class="dropdown-menu more-dropdown">
+                <li><a href="{{url_for('event')}}">Webinars & Events</a></li>
+                <li><a href="{{url_for('Succss')}}">Success Stories</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+  <section class="hero-section">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <img src="../static/AI_agency/Ai_agency_1.webp" class="content-img" alt="AI for Agency Mastery">
+        </div>
+        <div class="col-md-6">
+          <h1 class="section-title">AI for Agency Mastery & Digital Transformation</h1>
+          <h4 class="section-subtitle">Stay ahead of the competition by integrating AI-powered automation into your business processes, digital marketing strategies, and productivity workflows.</h4>
+          <ul class="features-list">
+            <li>Increase efficiency & reduce manual work with AI automation</li>
+            <li>Master 30+ AI tools to enhance your business & professional productivity</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="course-grid">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="course-card">
+            <img src="../static/AI_agency/AI_agency_2.webp" alt="AI-Powered Digital Marketing">
+            <h3>AI-Powered Digital Marketing</h3>
+            <p>
+              Use AI to 10x your marketing campaigns & boost engagement.<br>
+              <b>What You’ll Learn:</b><br>
+              🔹 AI-driven content creation, ad targeting<br>
+              🔹 Chatbots & customer engagement for leads<br>
+              🔹 AI-based SEO & analytics<br>
+              <b>Who Should Join?</b><br>
+              🔹 Marketers automating campaigns<br>
+              🔹 Entrepreneurs improving with AI<br>
+              🔹 Agencies & content creators
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="course-card">
+            <img src="../static/AI_agency/AI_Agency_3.webp" alt="AI Agent Setup">
+            <h3>AI Agent Setup for Professionals</h3>
+            <p>
+              Automate business processes with AI agents.<br>
+              <b>What You’ll Learn:</b><br>
+              🔹 Set up AI virtual agents for support<br>
+              🔹 Automation to reduce manual work<br>
+              🔹 Deploy agents for real-world use<br>
+              <b>Who Should Join?</b><br>
+              🔹 Professionals automating tasks<br>
+              🔹 Startups scaling with AI<br>
+              🔹 Customer managers using AI support
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="course-card">
+            <img src="../static/AI_agency/AI_agency_4.webp" alt="30+ AI Tools Mastery">
+            <h3>30+ AI Tools Mastery</h3>
+            <p>
+              Master top AI tools.<br>
+              <b>What You’ll Learn:</b><br>
+              🔹 Tools for writing, design, and productivity<br>
+              🔹 AI for workflow and time management<br>
+              🔹 Real-world business use cases<br>
+              <b>Who Should Join?</b><br>
+              🔹 Freelancers, executives using AI<br>
+              🔹 Business owners for automation<br>
+              🔹 Consultants & digital workers
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="social-icons">
+    <a href="https://www.facebook.com/DigidaraTechnologies/"><img src="../static/icons/5.png" alt="Facebook"></a>
+    <a href="https://www.instagram.com/digidaratechnologies/"><img src="../static/icons/insta.png" alt="Instagram"></a>
+    <a href="https://www.linkedin.com/company/104865843/admin/dashboard/"><img src="../static/icons/7.webp" alt="LinkedIn"></a>
+    <a href="https://x.com/digiDARA_Tech"><img src="../static/icons/8.png" alt="Twitter"></a>
+    <a href="https://www.youtube.com/@DigiDARATechnologies"><img src="../static/icons/9.png" alt="YouTube"></a>
+  </div>
+
+  <div class="footer">
+    <p>Copyright © 2025 DigiDARA Technologies Private Limited - All Rights Reserved.</p>
+    <div class="footer-links">
+      <a href="#">Home</a>
+      <a href="#">About Us</a>
+    </div>
+  </div>
+  {% include 'chatbot.html' %}
+  <hr class="footer-line">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuIcon = document.getElementById('menu-icon');
+      const navLinks = document.getElementById('nav-links');
+
+      menuIcon.addEventListener('click', function() {
+        navLinks.classList.toggle('active');
+      });
+
+      // Close mobile menu when clicking outside
+      document.addEventListener('click', function(event) {
+        const isClickInsideNav = navLinks.contains(event.target) || menuIcon.contains(event.target);
+        if (!isClickInsideNav && navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
