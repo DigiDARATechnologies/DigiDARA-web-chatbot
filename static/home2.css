@@ -1,0 +1,487 @@
+body {
+    margin: 0;
+    font-family: 'Open Sans', Arial, sans-serif;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    padding: 40px;
+    background-color: #fff;
+    height: 50px;
+}
+
+.navbar-logo {
+    width: 300px;
+    height: 80px;
+    margin-right: 50px;
+    padding-left: 55px;
+}
+
+.nav-links {
+    margin-left: 270px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #1e3a8a;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.container {
+    display: flex;
+    height: calc(100vh - 60px);
+}
+
+.main-image {
+    width: 800px;
+    height: 100%;
+    object-fit: cover;
+}
+
+.left-section {
+    flex: 1;
+}
+
+.right-section {
+    flex: 1;
+    background-color: #1e3a8a;
+    color: white;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    margin-left: -670px;
+}
+
+.right-section h2 {
+    font-size: 40px;
+    margin-top: 0;
+}
+
+.right-section p {
+    font-size: 28px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.right-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.right-section li {
+    font-size: 26px;
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.right-section li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: white;
+    font-size: 20px;
+}
+
+.find-out-more {
+    background-color: white;
+    color: black;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 7px;
+    width: 150px;
+    height: 50px;
+    margin-top: 10px;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 40px 0;
+}
+
+.line {
+    flex: 1;
+    height: 1px;
+    background-color: #ccc;
+    border: none;
+    margin: 0 100px;
+}
+
+.text {
+    white-space: nowrap;
+    font-size: 20px;
+    font-weight: 500;
+    color: #222;
+}
+
+.mission-section {
+    display: flex;
+    align-items: center;
+    padding: 40px;
+    background-color: #fff;
+}
+
+.mission-image img {
+    width: 500px;
+    height: 400px;
+    object-fit: cover;
+    padding-left: 150px;
+}
+
+.mission-text {
+    padding-left: 20px;
+    padding-right: 120px;
+}
+
+.mission-text h2 {
+    color: #1e3a8a;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.mission-text p {
+    color: #333;
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+.mission-text p:last-child {
+    padding-top: 50px;
+}
+
+.vision-section {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    margin: 10px 0;
+}
+
+.vision-image img {
+    width: 600px;
+    height: 350px;
+    padding-right: 100px;
+}
+
+.vision-text {
+    padding-left: 200px;
+    padding-right: 40px;
+}
+
+.vision-text h2 {
+    color: #1e3a8a;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.vision-text p, .vision-text ul {
+    color: #333;
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+.founder-section {
+    display: flex;
+    align-items: center;
+    padding: 40px;
+    background-color: #fff;
+}
+
+.founder-image img {
+    width: 130%;
+    height: 500px;
+    padding-left: 250px;
+    margin-top: -10px;
+}
+
+.founder-text {
+    padding-left: 500px;
+    
+}
+
+.founder-text h2 {
+    color: #1e3a8a;
+    font-size: 40px;
+    margin-bottom: 25px;
+    
+}
+
+.founder-text h3 {
+    color: #213f93;
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+.founder-text h4 {
+    color: #1d1c1c;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.founder-text .quote, #main, #model {
+    color: #555;
+    font-size: 20px;
+    line-height: 1.5;
+    padding-right: 140px;
+}
+
+.founder-text .quote {
+    margin-bottom: 50px;
+}
+
+#model {
+    margin-top: -10px;
+}
+
+.achievements-expertise, .expertise-section, .message-section {
+    color: #555;
+    max-width: 600px;
+    margin-left: auto;
+    text-align: left;
+    padding-right: 140px;
+}
+
+.achievements-expertise {
+    margin-top: -50px;
+}
+
+.achievements-expertise h2, .expertise-section h2, .message-section h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.achievements-expertise li, .expertise-section li {
+    color: #333;
+    font-size: 20px;
+    line-height: 1.6;
+}
+
+.expertise-section ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.message-section p {
+    color: #333;
+    font-size: 20px;
+    line-height: 1.6;
+    padding-right: 80px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+
+.social-icons img {
+    width: 30px;
+    height: 30px;
+}
+
+.footer {
+    padding: 20px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.footer p {
+    color: #333;
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.footer-links {
+    margin-top: 50px;
+}
+
+.footer-links a {
+    color: #1e3a8a;
+    font-size: 18px;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.footer-line {
+    margin: 90px 720px 90px 720px;
+}
+
+/* Mobile View */
+@media screen and (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        height: auto;
+        padding: 20px;
+    }
+
+    .navbar-logo {
+        width: 150px;
+        height: 40px;
+        padding-left: 0;
+        margin: 0 auto 10px;
+    }
+
+    .nav-links {
+        margin-left: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-links a {
+        font-size: 14px;
+        padding: 5px;
+    }
+
+    .container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .main-image {
+        width: 100%;
+        height: 200px;
+    }
+
+    .right-section {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .right-section h2 {
+        font-size: 24px;
+    }
+
+    .right-section p {
+        font-size: 16px;
+    }
+
+    .right-section li {
+        font-size: 14px;
+    }
+
+    .find-out-more {
+        font-size: 14px;
+        width: 120px;
+        height: 40px;
+    }
+
+    .section-title {
+        margin: 20px 0;
+    }
+
+    .line {
+        margin: 0 20px;
+    }
+
+    .text {
+        font-size: 16px;
+    }
+
+    .mission-section, .vision-section, .founder-section {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .mission-image img {
+        width: 100%;
+        height: 200px;
+        padding-left: 0;
+    }
+
+    .mission-text {
+        padding: 10px;
+    }
+
+    .mission-text h2 {
+        font-size: 20px;
+    }
+
+    .mission-text p {
+        font-size: 14px;
+    }
+
+    .mission-text p:last-child {
+        padding-top: 20px;
+    }
+
+    .vision-image img {
+        width: 100%;
+        height: 200px;
+        padding-right: 0;
+    }
+
+    .vision-text {
+        padding: 10px;
+    }
+
+    .vision-text h2 {
+        font-size: 20px;
+    }
+
+    .vision-text p, .vision-text ul {
+        font-size: 14px;
+    }
+
+    .founder-image img {
+        width: 100%;
+        height: 300px;
+        padding-left: 0;
+        border-radius: 0;
+    }
+
+    .founder-text {
+        padding: 10px;
+    }
+
+    .founder-text h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .founder-text h3 {
+        font-size: 20px;
+    }
+
+    .founder-text h4 {
+        font-size: 16px;
+    }
+
+    .founder-text .quote, #main, #model {
+        font-size: 14px;
+        padding-right: 0;
+    }
+
+    .achievements-expertise, .expertise-section, .message-section {
+        max-width: 100%;
+        padding: 20px;
+        margin-top: 0;
+    }
+
+    .achievements-expertise li, .expertise-section li {
+        font-size: 14px;
+    }
+
+    .message-section p {
+        font-size: 14px;
+        padding-right: 0;
+    }
+
+    .footer-line {
+        margin: 20px 5%;
+    }
+}
