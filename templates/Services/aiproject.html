@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='chatbot.css')}}">
+    <script src="{{url_for('static', filename='chatbot.js')}}" defer></script>
+    <title>DigiDARA Technologies</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Montserrat',sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        
+
+        .section-title, .section-1 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 40px 0;
+            margin-top: 150px;
+        }
+
+        .line {
+            flex: 1;
+            height: 1px;
+            background-color: #ccc;
+            border: none;
+            margin: 0 20px;
+        }
+
+        .text {
+            white-space: nowrap;
+            font-size: 20px;
+            font-weight: 500;
+            color: #222;
+        }
+
+        .internship-section, .projects-section, .career-section, .graduate-section, .why-digidara-section, .apply-section {
+            display: flex;
+            align-items: center;
+            padding: 40px;
+            background-color: #fff;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 20px;
+        }
+
+        .internship-image, .projects-image, .career-image, .graduate-image, .why-digidara-image, .image {
+            flex: 1;
+            
+        }
+
+        .section-image {
+            width: 100%;
+            max-height: 680px;
+            object-fit: cover;
+        }
+
+        .section-text {
+            flex: 1;
+            padding: 0 20px;
+        }
+
+        .internship-text h1, .text-section h1 {
+            color: rgb(16, 16, 173);
+            font-size: 30px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .internship-text h1 span {
+            color: rgb(16, 16, 173);
+        }
+
+        .internship-text p, .projects-text p, .career-text p, .graduate-text p, .why-digidara-text p, .text-section p {
+            color: #5e5e55;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .internship-details p, .projects-details p {
+            font-size: 18px;
+            color: #5e5e55;
+            margin: 10px 0;
+        }
+
+        .internship-details h3, .internship-details h4, .text-section h4 {
+            font-size: 20px;
+            color: #5e5e55;
+            margin: 10px 0;
+        }
+
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #fff;
+            gap: 20px;
+        }
+
+        .text-section {
+            flex: 1;
+            padding: 40px;
+        }
+
+        .text-section ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .text-section ul li {
+            font-size: 18px;
+            color: #5e5e55;
+            margin-bottom: 10px;
+        }
+
+        .main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            font-size: 18px;
+            color: #5e5e55;
+            text-align: center;
+        }
+
+        .projects-text h2, .career-text h2, .graduate-text h2, .why-digidara-text h2, .apply-text h2 {
+            color: #1e3a8a;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .projects-text ul, .career-text ul, .graduate-text ul, .why-digidara-text ul, .apply-text ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .projects-text ul li, .career-text ul li, .graduate-text ul li, .why-digidara-text ul li, .apply-text ul li {
+            font-size: 18px;
+            color: #5e5e55;
+        }
+
+        .projects-details p::before, .highlight::before {
+            content: "✨";
+            margin-right: 10px;
+        }
+
+        .apply-form {
+            flex: 1;
+            max-width: 500px;
+            padding: 20px;
+        }
+
+        .apply-form h3 {
+            color: #1e3a8a;
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        #g{
+            text-align: center;
+            padding-left: 20%;
+            margin-top: -70px;
+            margin-bottom: -50px;
+        }
+        .apply-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #5e5e55;
+        }
+        #x>img{
+            margin-left: 250px;
+            margin-top: -50px;
+        }
+
+        .apply-form input[type="text"],
+        .apply-form input[type="tel"],
+        .apply-form input[type="email"],
+        .apply-form textarea {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            background-color: #f1f1f1;
+            box-sizing: border-box;
+            font-size: 14px;
+            border-radius: 2px;
+            margin-bottom: 15px;
+        }
+        #a{
+            font-family: 'Montserrat',sans-serif;
+            font-size: 1.6rem;
+        }
+        #a>h3{
+            margin-bottom: -10px;
+        }
+        #a>h1{
+            font-size: 2.3rem;
+            margin-bottom: -20px;
+        }
+        #hr{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 10px 0;
+            
+        }
+        #a>p{
+            font-size: 1.4rem;
+            line-height: 1.6;
+        }
+        #b>h1{
+            margin-top: -50px;
+            
+        }
+        #b>p{
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+        #c{
+            margin-top: 0px;
+            margin-right: 5px;
+        }
+        #g{
+            color: #1010ad;
+            font-size: 2.2rem;
+            margin-top: -180px;
+            margin-bottom: -160px;
+            text-align: center;
+            margin-left: 150px;
+        }
+        #e>p{
+            font-size: 1.5rem;
+            line-height: 1.6;
+            
+
+        }
+        #e>h1{
+            color: #1010ad;
+            font-size: 1.9rem;
+            margin-top: -100px;
+        }
+        #e>h3{
+            color: #1010ad;
+            font-size: 1.9rem;
+            font-weight: lighter;
+            
+        }
+        #f>h1{
+            color: #1010ad;
+            font-size: 1.9rem;
+            margin-top: -70px;
+        }
+        #f>p{
+            font-size: 1.5rem;
+            line-height: 1.6;
+        }
+        #f>h3{
+            color: #1010ad;
+            font-size: 1.9rem;
+            text-align: left;
+            font-weight: lighter;
+            
+        }
+        #h>h1{
+            color: #1010ad;
+            font-size: 1.9rem;
+            margin-top: -190px; 
+
+        }
+        #h>p{
+            font-size: 1.5rem;
+            line-height: 1.6;
+
+        }
+        #h>h3{
+            color: #1010ad;
+            font-size: 1.9rem;
+            text-align: left;
+            font-weight: lighter;
+        }   
+        #i>h1{
+            color: #1010ad;
+            font-size: 1.9rem;
+            margin-top: -100px;
+
+        }
+        #i>p{
+            font-size: 1.5rem;
+            line-height: 1.6;
+
+        }
+        #i>h3{
+            color: #1010ad;
+            font-size: 1.9rem;
+            text-align: left;
+            font-weight: lighter;
+
+        }
+        #w>p{
+            font-size: 1.5rem;
+            line-height: 1.6;
+        }
+        #m{
+            margin-top: 20px;
+            margin-right: 5px;
+        }
+
+        .apply-form textarea {
+            resize: vertical;
+            height: 120px;
+        }
+        #j>table {
+            margin-top: -100px;
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        #j>th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        #j>th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+        #j>tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        #j>tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .apply-form button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007BFF;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 2px;
+            transition: background-color 0.3s;
+        }
+
+        .apply-form button:hover {
+            background-color: #0056b3;
+        }
+
+        .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+
+.social-icons img {
+    width: 30px;
+    height: 30px;
+}
+#z{
+    width: 50%;
+    height: auto;
+    margin-left: 25%;
+}
+
+.footer {
+    padding: 20px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.footer p {
+    color: #333;
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.footer-links {
+    margin-top: 50px;
+}
+
+.footer-links a {
+    color: #1e3a8a;
+    font-size: 18px;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.footer-line {
+    margin: 90px 720px 90px 720px;
+}
+
+
+        /* Mobile View */
+        @media screen and (max-width: 768px) {
+            
+
+            .section-title, .section-1 {
+                flex-direction: column;
+                margin: 20px 0;
+                padding: 0 15px;
+            }
+
+            .line {
+                width: 100%;
+                margin: 10px 0;
+            }
+
+            .text {
+                font-size: 16px;
+                text-align: center;
+            }
+            #g{
+                margin-left: -50px;
+                margin-top: -50px;
+            }
+            #x>img{
+                margin-bottom: 50px;
+                margin-top: 5px;
+                margin-left: -50px;
+            }
+            .internship-section, .projects-section, .career-section, .graduate-section, .why-digidara-section, .apply-section, .container {
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+            }
+
+            .section-image {
+                width: 100%;
+                max-height: 300px;
+                object-fit: cover;
+            }
+
+            .section-text, .apply-form {
+                padding: 15px;
+                max-width: 100%;
+            }
+
+            .internship-text h1, .text-section h1, .projects-text h2, .career-text h2, .graduate-text h2, .why-digidara-text h2, .apply-text h2, .apply-form h3 {
+                font-size: 22px;
+                text-align: center;
+            }
+
+            .internship-text p, .projects-text p, .career-text p, .graduate-text p, .why-digidara-text p, .text-section p, .internship-details p, .projects-details p {
+                font-size: 16px;
+                text-align: left;
+            }
+
+            .text-section ul, .projects-text ul, .career-text ul, .graduate-text ul, .why-digidara-text ul, .apply-text ul {
+                padding-left: 20px;
+                text-align: left;
+            }
+
+            .text-section ul li, .projects-text ul li, .career-text ul li, .graduate-text ul li, .why-digidara-text ul li, .apply-text ul li {
+                font-size: 14px;
+            }
+
+            .text-section {
+                padding: 20px;
+            }
+
+            .main {
+                padding: 15px;
+                font-size: 16px;
+            }
+
+            .apply-form input[type="text"],
+            .apply-form input[type="tel"],
+            .apply-form input[type="email"],
+            .apply-form textarea {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            .apply-form button {
+                font-size: 16px;
+                padding: 10px;
+            }
+
+            .footer {
+                padding: 15px;
+            }
+
+            .serve, .copy, .ser {
+                font-size: 12px;
+            }
+
+            .line-1 {
+                max-width: 80px;
+            }
+            #g{
+                margin-top: -40px;
+                font-size: 1.7rem;
+                text-align: center;
+            }
+            #e>h2{
+                margin-top: 10px;
+            }
+            #f{
+                margin-top: 10px;
+            }
+            #z{
+                margin-left: -30px;
+            }
+            #h{
+                margin-top: 100px;
+            }
+            #i{
+                margin-top: 80px;
+            }
+
+        }
+         
+    </style>
+</head>
+<body>
+    {% include 'nav.html'%}
+    <div class="section-title">
+        <hr class="line">
+        <span class="text" style="font-family:  'Montserrat', sans-serif;">Custom AI Agent Development</span>
+        <hr class="line">
+    </div>
+    <div class="internship-section"> 
+        <div class="internship-image">
+            <img src="../../static/agent/im1.png" alt="AI Agent">
+        </div>
+        <div class="internship-text section-text" id="a">
+            <h1 style="font-family:  'Montserrat', sans-serif;">Smart, Scalable, and Tailor-Made AI Assistants</h1>
+            <p style="font-family:  'Montserrat', sans-serif;">At DigiDARA Technologies, we specialize in building custom AI agents that are designed to solve specific problems, streamline processes, and elevate productivity. These are not just generic chatbots—our AI agents are built around your business logic, audience needs, and growth goals.</p>
+            <p style="font-family:  'Montserrat', sans-serif;">Whether you're looking to boost sales, support students, or manage internal knowledge, our AI-powered digital agents are crafted to work for you—seamlessly, intelligently, and 24/7.</p>
+       
+        </div>
+    </div>
+    <div class="section-title" id="hr">
+        
+    </div>
+    
+
+    
+    <div class="apply-section">
+        <h1 id="g" style="font-family:  'Montserrat', sans-serif;"  >Services Offered</h1>
+    </div>
+    <div class="apply-section" id="x">
+        
+        <img src="../../static/agent/im2.png" alt="Services">
+    </div>
+    <div class="apply-section">
+        <div class="apply-text section-text" id="e">
+            <h1 style="font-family:  'Montserrat', sans-serif;">1. Internal Knowledge Agents</h1>
+            <p style="font-family:  'Montserrat', sans-serif;">Transform company documents, SOPs, and policies into a conversational knowledge base.</p>
+            <h3 style="font-family:  'Montserrat', sans-serif;"><b>What we deliver:</b></h3>
+            <p style="font-family:  'Montserrat', sans-serif;">
+                - AI agents trained on your internal manuals, PDFs, and help documents<br>
+                - 24/7 assistance for employees or support teams<br>
+                - Searchable, permission-controlled access for teams<br>
+                - Ideal for HR, IT support, and operations
+            </p>
+        </div>
+        <div class="apply-form" id="f">
+            <h1 style="font-family:  'Montserrat', sans-serif;">2. AI Agents for Colleges & Educational Institutions</h1>
+            <p style="font-family:  'Montserrat', sans-serif;">Deliver personalized, real-time support for students, faculty, and alumni.</p>
+            <h3 style="font-family:  'Montserrat', sans-serif;"><b>What we deliver:</b></h3>
+            <p style="font-family:  'Montserrat', sans-serif;">
+                - AI Student Advisor: answers queries on courses, admissions, fees, exams<br>
+                - Alumni Interaction Bot: bridges alumni and students for career mentorship<br>
+                - Faculty Support Agent: helps with admin queries, timetable updates, etc.<br>
+                - LMS-integrated AI assistants for hybrid learning support
+            </p>
+        </div>
+    </div>
+
+    <div class="apply-section">
+        <div class="apply-text section-text" id="h">
+            <h1 style="font-family:  'Montserrat', sans-serif;">3. AI Agents for CRM, Sales & Lead Management</h1>
+            <p style="font-family:  'Montserrat', sans-serif;">Automate your lead qualification, follow-ups, and sales engagement.</p>
+            <h3 style="font-family:  'Montserrat', sans-serif;"><b>What we deliver:</b></h3>
+            <p style="font-family:  'Montserrat', sans-serif;">
+                - AI Sales Assistant for website/landing page chat<br>
+                - Lead capture and scoring integration<br>
+                - CRM sync for follow-up tracking and notifications<br>
+                - Customer support agent with conversational history
+            </p>  
+        </div>
+        <div class="apply-form" id="i">
+            <h1 style="font-family:  'Montserrat', sans-serif;">4. Website/Portal Integration Agents</h1>
+            <p style="font-family:  'Montserrat', sans-serif;">Turn your website into a powerful interactive hub with always-available AI assistance.</p>
+            <h3 style="font-family:  'Montserrat', sans-serif;"><b>What we deliver:</b></h3>
+            <p style="font-family:  'Montserrat', sans-serif;">
+                - AI Guide for admission, product, or service FAQs<br>
+                - Navigation assistant for large portals and course catalogs<br>
+                - Appointment booking and form-filling automation<br>
+                - Feedback collection and visitor data capture
+            </p>
+        </div>
+    </div>
+    <div class="section-title" id="hr">
+        
+    </div>
+    <div class="container">
+        <div class="text-section section-text" id="j">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th style="text-align: left;">Sector</th>
+                        <th>Custom Agent Applications</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Education</td>
+                        <td >Student Advisor, LMS Assistant, Alumni Bot</td>
+                    </tr>
+                    <tr>
+                        <td> Enterprises</td>
+                        <td>HR Knowledge Agent, CRM LeadBot, Employee FAQs</td>
+                    </tr>
+                    <tr>
+                        <td>Startups</td>
+                        <td>Product Discovery Agent, Sales Funnel Bot</td>
+                    </tr>
+                    <tr>
+                        <td> Coaches & <br> Trainers</td>
+                        <td>Goal Tracker Agent, Course Navigator</td>
+                    </tr>
+                    <tr>
+                        <td> Teams</td>
+                        <td>SOP Explainer, Onboarding Assistant, Daily Planner</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="image" id="m">
+            <img src="../../static/agent/im3.png" alt="Use Cases">
+        </div>
+    </div>
+    <div class="section-title" id="hr">
+        
+    </div>
+    <div class="internship-section"> 
+        <div class="internship-image">
+            <img src="../../static/agent/im4.png" alt="Deliverables">
+        </div>
+        <div class="internship-text section-text" id="w">
+            <h1>📈 Sample Deliverables</h1>
+            <p>
+                - AI-powered Student Guide Bot for a college portal<br>
+                - Custom CRM AI Agent for capturing & qualifying leads<br>
+                - Productivity Coach Bot for employee self-management<br>
+                - AI FAQ Assistant trained on company policies<br>
+                - Community Agent to facilitate alumni and student mentorship
+            </p>
+        </div>
+    </div>
+   
+
+    
+    
+    <div class="social-icons" style="background-color: #f1f1f1;">
+        <a href="#"><img src="../static/img_internship/fac.png" alt="Facebook"></a>
+        <a href="#"><img src="../static/img_internship/insta.png" alt="Instagram"></a>
+        <a href="#"><img src="../static/img_internship/linked.webp" alt="LinkedIn"></a>
+        <a href="#"><img src="../static/img_internship/twitter.png" alt="Twitter"></a>
+        <a href="#"><img src="../static/img_internship/yt.png" alt="YouTube"></a>
+    </div>
+    {% include 'chatbot.html' %}
+    <div class="footer" style="background-color: #f1f1f1;"  >
+        <p>Copyright © 2025 DigiDARA Technologies Private Limited - All Rights Reserved.</p>
+        
+        </div>
+    </div>
+    
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuIcon = document.getElementById('menu-icon');
+        const navLinks = document.getElementById('nav-links');
+        const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+        const dropdowns = document.querySelectorAll('.dropdown');
+    
+        // Ensure elements exist to avoid errors
+        if (!menuIcon || !navLinks) {
+            console.error('Menu icon or nav links not found');
+            return;
+        }
+    
+        // Toggle the main menu and hamburger icon style
+        menuIcon.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent event bubbling
+            navLinks.classList.toggle('active'); // Toggle the menu
+            menuIcon.classList.toggle('small-font'); // Toggle hamburger icon style
+    
+            // Close all dropdowns when toggling the main menu
+            dropdowns.forEach(dropdown => {
+                dropdown.classList.remove('active');
+            });
+        });
+    
+        // Toggle dropdown menus (only for screens <= 1000px)
+        dropdownToggles.forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent event bubbling to document click handler
+                if (window.innerWidth <= 1000) {
+                    const parentDropdown = toggle.closest('.dropdown');
+    
+                    // Close other dropdowns
+                    dropdowns.forEach(dropdown => {
+                        if (dropdown !== parentDropdown) {
+                            dropdown.classList.remove('active');
+                        }
+                    });
+    
+                    // Toggle the clicked dropdown
+                    parentDropdown.classList.toggle('active');
+                }
+            });
+        });
+    
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', (e) => {
+            // Only close if the click is outside the nav-links and menu-icon
+            if (!e.target.closest('#nav-links') && !e.target.closest('#menu-icon')) {
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+                navLinks.classList.remove('active'); // Also close the main menu
+                menuIcon.classList.remove('small-font'); // Reset hamburger icon style
+            }
+        });
+    });
+    const menuIcon = document.getElementById('menu-icon');
+          const navLinks = document.getElementById('nav-links');
+          const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+  
+          menuIcon.addEventListener('click', () => {
+              navLinks.classList.toggle('active');
+          });
+  
+          dropdownToggles.forEach(toggle => {
+              toggle.addEventListener('click', (e) => {
+                  if (window.innerWidth <= 900) {
+                      const parentDropdown = toggle.closest('.dropdown');
+                      dropdownToggles.forEach(item => {
+                          const otherDropdown = item.closest('.dropdown');
+                          if (otherDropdown !== parentDropdown) {
+                              otherDropdown.classList.remove('active');
+                          }
+                      });
+                      parentDropdown.classList.toggle('active');
+                  }
+              });
+          });
+</script>
+</body>
+</html>

@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digidara Technologies</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            font-size: 16px;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+
+        /* Section Title */
+        .section-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 40px 0;
+            padding: 0 15px;
+            width: 100%;
+        }
+
+        .line {
+            flex: 1;
+            height: 2px;
+            background-color: #ccc;
+            border: none;
+        }
+
+        .text {
+            white-space: nowrap;
+            font-size: 20px;
+            font-weight: 500;
+            color: #222;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 50px;
+            padding: 0 15px;
+        }
+
+        #q4 {
+            flex: 1;
+            padding: 10px;
+        }
+
+        #q4 > img {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            max-height: 800px;
+            object-fit: contain;
+            display: block;
+        }
+
+        #q5 {
+            flex: 1;
+            padding: 10px;
+        }
+
+        #q5 > h1 {
+            font-size: 32px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bolder;
+            color: #1010ad;
+            margin-bottom: 20px;
+        }
+
+        #q5 > p {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 1.5rem;
+            line-height: 1.9;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        #q5 > button {
+            border: none;
+            background-color: #1010ad;
+            padding: 10px;
+            width: 200px;
+            border-radius: 10px;
+            height: 70px;
+            cursor: pointer;
+            display: block;
+        }
+
+        #q6 {
+            font-size: 25px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        #q7 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bolder;
+            color: #1010ad;
+            font-size: 24px;
+        }
+
+        #q8 {
+            margin-left: 50px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 25px;
+            margin-bottom: 10px;
+            line-height: 40px;
+            text-align: left;
+            margin-top: 50px;
+            color: #333;
+        }
+
+        #q9 {
+            margin-left: 50px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 25px;
+            margin-bottom: 10px;
+            line-height: 40px;
+            text-align: left;
+            color: #333;
+        }
+
+        #q10 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bolder;
+            color: #1010ad;
+            font-size: 24px;
+        }
+
+        .q11 {
+            margin-left: 50px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 25px;
+            margin-bottom: 10px;
+            line-height: 40px;
+            text-align: left;
+            margin-top: 50px;
+            color: #333;
+        }
+
+        #q12 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bolder;
+            color: #1010ad;
+            font-size: 24px;
+        }
+
+        #q13 {
+            margin-left: 50px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 25px;
+            margin-bottom: 10px;
+            line-height: 40px;
+            text-align: left;
+            margin-top: 50px;
+            color: #333;
+        }
+
+        /* Container Sections */
+        .container.text-center {
+            width: 100%;
+            padding: 0;
+        }
+
+        .container.text-center .row {
+            margin: 30px 0;
+            width: 100%;
+        }
+
+        .container.text-center .row .col img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin: 10px auto;
+            display: block;
+        }
+
+        /* Social Icons */
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 10px;
+            background-color: white;
+            border-radius: 5px;
+            margin: 20px 0;
+            width: 100%;
+        }
+
+        .social-icons img {
+            width: 30px;
+            height: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .social-icons img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        footer {
+            width: 100%;
+        }
+
+        footer h3 {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px 15px;
+            font-size: 14px;
+            color: #666;
+            background-color: #f0f0f0;
+            width: 100%;
+        }
+
+        /* Responsive Design */
+        /* Mobile View (≤600px) */
+        @media screen and (max-width: 600px) {
+            .header {
+                padding: 8px 10px;
+                width: 100%;
+            }
+
+            
+
+            .hero-section {
+                flex-direction: column;
+                margin-top: 30px;
+                padding: 0 10px;
+            }
+
+            #q4 {
+                width: 100%;
+                padding: 5px;
+            }
+
+            #q4 > img {
+                margin-top: 0;
+                width: 100%;
+                max-width: 100%;
+                height: auto;
+                max-height: 300px;
+                object-fit: contain;
+            }
+
+            #q5 {
+                width: 100%;
+                padding: 5px;
+            }
+
+            #q5 > h1 {
+                margin: 20px 10px;
+                font-size: 22px;
+                width: 100%;
+                text-align: center;
+            }
+
+            #q5 > p {
+                margin: 10px 10px;
+                font-family: Arial, Helvetica, sans-serif;
+                line-height: 1.6;
+                font-size: 16px;
+                width: 100%;
+                text-align: center;
+            }
+
+            #q5 > button {
+                display: block;
+                border: none;
+                background-color: #1010ad;
+                color: white;
+                margin: 20px auto;
+                padding: 10px;
+                width: 80%;
+                border-radius: 10px;
+                height: 50px;
+                font-size: 16px;
+                cursor: pointer;
+                text-align: center;
+            }
+
+            #q6 {
+                font-size: 16px;
+                text-decoration: none;
+                color: white;
+                font-weight: bold;
+            }
+
+            .section-title {
+                margin: 30px 0;
+                gap: 8px;
+                padding: 0 10px;
+                width: 100%;
+            }
+
+            .section-title .text {
+                font-size: 16px;
+            }
+
+            #q7,
+            #q10,
+            #q12 {
+                font-size: 18px;
+                margin-bottom: 20px;
+                width: 100%;
+            }
+
+            #q8,
+            #q9,
+            .q11,
+            #q13 {
+                margin: 10px 10px;
+                font-size: 16px;
+                line-height: 1.6;
+                text-align: center;
+                width: 100%;
+            }
+
+            .container.text-center .row .col,
+            .container.text-center .row .col h1,
+            .container.text-center .row .col p {
+                text-align: center;
+            }
+
+            .container.text-center .row .col p {
+                margin: 10px 10px;
+                font-size: 16px;
+                line-height: 1.6;
+            }
+
+            .container.text-center .row .col img {
+                width: 100%;
+                max-width: 100%;
+                height: auto;
+                max-height: 250px;
+                object-fit: cover;
+            }
+
+            .social-icons {
+                gap: 10px;
+                padding: 10px;
+                margin: 20px 0;
+                width: 100%;
+            }
+
+            .social-icons img {
+                width: 28px;
+                height: 28px;
+            }
+
+            .social-icons img:hover {
+                transform: none;
+            }
+
+            footer h3 {
+                font-size: 12px;
+                padding: 15px 10px;
+                width: 100%;
+            }
+        }
+
+        /* Tablet View (601px–900px) */
+        @media screen and (min-width: 601px) and (max-width: 900px) {
+            .header {
+                padding: 10px 15px;
+                width: 100%;
+            }
+
+            
+            .hero-section {
+                flex-direction: column;
+                margin-top: 40px;
+                padding: 0 15px;
+            }
+
+            #q4 {
+                width: 100%;
+                padding: 5px;
+            }
+
+            #q4 > img {
+                margin-top: 0;
+                width: 100%;
+                max-width: 100%;
+                height: auto;
+                max-height: 400px;
+                object-fit: contain;
+            }
+
+            #q5 {
+                width: 100%;
+                padding: 5px;
+            }
+
+            #q5 > h1 {
+                margin: 20px 15px;
+                font-size: 26px;
+                width: 100%;
+                text-align: center;
+            }
+
+            #q5 > p {
+                margin: 10px 15px;
+                font-family: Arial, Helvetica, sans-serif;
+                line-height: 1.6;
+                font-size: 18px;
+                width: 100%;
+                text-align: center;
+            }
+
+            #q5 > button {
+                display: block;
+                border: none;
+                background-color: #1010ad;
+                color: white;
+                margin: 20px auto;
+                padding: 10px;
+                width: 60%;
+                border-radius: 10px;
+                height: 60px;
+                font-size: 18px;
+                cursor: pointer;
+                text-align: center;
+            }
+
+            #q6 {
+                font-size: 18px;
+                text-decoration: none;
+                color: white;
+                font-weight: bold;
+            }
+
+            .section-title .text {
+                font-size: 18px;
+            }
+
+            #q7,
+            #q10,
+            #q12 {
+                font-size: 20px;
+            }
+
+            #q8,
+            #q9,
+            .q11,
+            #q13 {
+                margin: 10px 15px;
+                font-size: 18px;
+                line-height: 1.6;
+                text-align: center;
+                width: 100%;
+            }
+
+            .container.text-center .row .col img {
+                width: 100%;
+                max-width: 100%;
+                height: auto;
+                max-height: 300px;
+                object-fit: cover;
+            }
+
+            .social-icons img {
+                width: 30px;
+                height: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    {%include 'nav.html'%}
+    <div class="section-title" style="margin-top: 150px;">
+        <hr class="line">
+        <span class="text" style="font-family:  'Montserrat', sans-serif;">AI Business Consulting  </span>
+        <hr class="line">
+    </div>
+
+    <div class="hero-section">
+        <div id="q4">
+            <img src="../static/consulting/im1.webp" alt="AI Innovation">
+        </div>
+        <div id="q5">
+            <h1>Transform Your Business with AI-Driven Innovation</h1>
+            <p>We help businesses adopt AI for automation, efficiency, and growth. From AI strategy and process automation to predictive analytics and AI-powered decision-making, DigiDARA Technologies provides expert AI consulting solutions tailored to your needs.</p>
+            <p>• AI Adoption | • Process Automation | • Data-Driven Decision-Making</p>
+            <button><a id="q6" href="/Contact"><b>Contact us</b></a></button>
+        </div>
+    </div>
+
+    <div class="section-title">
+        <hr class="line">
+        <span class="text">What We Offer – AI Consulting Solutions</span>
+        <hr class="line">
+    </div>
+    
+    <div class="container text-center">
+        <div class="row">
+            <div class="col">
+                <h1 id="q7">AI Strategy & Business<br> Intelligence</h1>
+                <img src="../static/consulting/im2.webp" class="img-fluid" alt="AI Strategy">
+                <p id="q8">AI is reshaping industries by enabling data-driven decision-making and automation. We help businesses develop, integrate, and scale AI solutions to improve efficiency and gain actionable insights from their data.</p>
+                <p id="q9">Our AI Strategy Services Include:<br>
+                    • Custom AI Roadmap – Tailored AI strategy aligned with your business goals<br>
+                    • AI Feasibility Analysis – Identify high-impact AI opportunities in your organization<br>
+                    • AI-Driven Business Intelligence (BI) – Real-time analytics and predictive insights<br>
+                    • AI Model Selection & Deployment – Choose the right AI models for automation & growth</p>
+                <h1 id="q7">Predictive Analytics & Data Science</h1>
+                <img src="../static/consulting/im5.webp" alt="Predictive Analytics">
+                <p id="q8">AI-powered predictive analytics and data science help businesses make informed decisions, minimize risks, and improve performance. Our experts develop machine learning models to analyze data patterns and forecast business trends.</p>
+                <p id="q9">Our Predictive Analytics Solutions Include:<br>
+                    • Customer Behavior Analysis – AI-powered recommendations to boost sales<br>
+                    • AI-Driven Market & Trend Forecasting – Stay ahead of industry trends<br>
+                    • Risk Assessment & Fraud Detection – Predict and prevent security threats<br> 
+                    • AI for Supply Chain Optimization – Reduce costs & improve logistics efficiency</p>
+            </div>
+            <div class="col">
+                <h1 id="q7">AI-Powered Process <br> Automation</h1>
+                <img src="../static/consulting/im3.webp" alt="Process Automation">
+                <p id="q8">Eliminate manual tasks and optimize operations with AI-powered process automation. From intelligent chatbots to RPA solutions, we help businesses achieve cost savings and increased productivity.</p>
+                <p id="q9">Our AI Process Automation Solutions Include:<br>
+                    • AI Chatbots & Virtual Assistants – Automate customer support & lead generation<br>
+                    • Robotic Process Automation (RPA) – Automate repetitive tasks and reduce human errors<br>
+                    • AI for HR & Recruitment – AI-powered resume screening & hiring automation<br>
+                    • AI for Finance & Accounting – Automate financial forecasting & risk assessment<br></p>
+                <h1 id="q10">AI for Digital<br> Transformation</h1>
+                <img src="../static/consulting/im4.webp" alt="Digital Transformation">
+                <p class="q11">AI is the key to business modernization and scalability. We help companies upgrade legacy systems, migrate to AI-powered platforms, and automate key operations for enhanced productivity.</p>
+                <p class="q11">Our AI Digital Transformation Solutions Include:<br>
+                    • Legacy System AI Integration – Upgrade outdated IT infrastructure<br>
+                    • AI Cloud Solutions – Implement AI-driven cloud automation<br>
+                    • AI in Cybersecurity – Enhance threat detection & prevent cyberattacks<br>
+                    • AI in Customer Experience – Personalize customer interactions using AI</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-title">
+        <hr class="line">
+        <span class="text">Industries We Serve – AI-Powered Solutions for Every Sector</span>
+        <hr class="line">
+    </div>
+    
+    <div class="container text-center">
+        <div class="row">
+            <div class="col">
+                <h1 id="q12">AI for Startups & Entrepreneurs</h1>
+                <p id="q13">Startups and small businesses must scale quickly and efficiently while keeping costs low. AI provides automation, predictive analytics, and smart decision-making tools that help early-stage businesses gain a competitive edge.</p>
+                <p id="q13">Example: A SaaS startup used AI-driven chatbots and predictive marketing to increase customer conversion rates by 50% in just 3 months.</p>
+                <h1 id="q12">AI for Healthcare</h1>
+                <p id="q13">AI is revolutionizing healthcare by enhancing diagnosis, improving patient care, and optimizing hospital operations. From AI-driven medical imaging to virtual health assistants, AI helps hospitals, clinics, and pharmaceutical companies provide faster and more accurate healthcare services.</p>
+                <p id="q13">Example: A hospital integrated AI-powered medical imaging, improving diagnostic accuracy by 25% and reducing patient wait times by 40%.</p>
+            </div>
+            <div class="col">
+                <h1 id="q12">AI for Retail & E-commerce</h1>
+                <p id="q13">Retailers and e-commerce businesses must understand customer behavior, personalize experiences, and optimize operations. AI helps increase sales, improve customer satisfaction, and enhance supply chain management.</p>
+                <p id="q13">Example: An e-commerce platform integrated AI-driven product recommendations, increasing sales by 35% and customer retention by 20%.</p>
+                <h1 id="q12">AI for Manufacturing</h1>
+                <p id="q13">Manufacturing industries are leveraging AI-powered automation, predictive maintenance, and real-time monitoring to improve efficiency, reduce costs, and minimize downtime. AI optimizes supply chains, enhances quality control, and ensures equipment longevity.</p>
+                <p id="q13">Example: A factory implemented AI-driven predictive maintenance, reducing equipment failures by 55% and saving $2 million annually.</p>
+            </div>
+            <div class="col">
+                <h1 id="q12">AI for Financial Services</h1>
+                <p id="q13">Banks, fintech startups, and financial institutions rely on AI to analyze risks, detect fraud, and automate financial operations. AI-powered predictive analytics and fraud detection tools ensure secure transactions and data-driven decision-making.</p>
+                <p id="q13">Example: A bank implemented AI-based fraud detection, reducing fraud-related losses by 40% within a year.</p>
+                <h1 id="q12">AI for Education & Training</h1>
+                <p id="q13">The education sector is evolving with AI-driven personalized learning, automated grading, and virtual tutoring. AI enhances teaching efficiency and improves student outcomes through adaptive learning platforms and AI-powered assessments.</p>
+                <p id="q13">Example: A university integrated AI-powered adaptive learning, increasing student retention rates by 30% and improving learning outcomes</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="social-icons">
+        <a href="https://www.facebook.com/DigidaraTechnologies/"><img src="../static/icons/5.png" alt="Facebook"></a>
+        <a href="https://www.instagram.com/digidaratechnologies/"><img src="../static/icons/insta.png" alt="Instagram"></a>
+        <a href="https://www.linkedin.com/company/104865843/admin/dashboard/"><img src="../static/icons/7.webp" alt="LinkedIn"></a>
+        <a href="https://x.com/digiDARA_Tech"><img src="../static/icons/8.png" alt="Twitter"></a>
+        <a href="https://www.youtube.com/@DigiDARATechnologies"><img src="../static/icons/9.png" alt="YouTube"></a>
+    </div>
+
+    <footer>
+        <h3>Copyright © 2025 DigiDARA Technologies Private Limited - All Rights Reserved.</h3>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuIcon = document.getElementById('menu-icon');
+            const navLinks = document.getElementById('nav-links');
+            const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+            const dropdowns = document.querySelectorAll('.dropdown');
+        
+            // Ensure elements exist to avoid errors
+            if (!menuIcon || !navLinks) {
+                console.error('Menu icon or nav links not found');
+                return;
+            }
+        
+            // Toggle the main menu and hamburger icon style
+            menuIcon.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent event bubbling
+                navLinks.classList.toggle('active'); // Toggle the menu
+                menuIcon.classList.toggle('small-font'); // Toggle hamburger icon style
+        
+                // Close all dropdowns when toggling the main menu
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+            });
+        
+            // Toggle dropdown menus (only for screens <= 1000px)
+            dropdownToggles.forEach(toggle => {
+                toggle.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Prevent event bubbling to document click handler
+                    if (window.innerWidth <= 1000) {
+                        const parentDropdown = toggle.closest('.dropdown');
+        
+                        // Close other dropdowns
+                        dropdowns.forEach(dropdown => {
+                            if (dropdown !== parentDropdown) {
+                                dropdown.classList.remove('active');
+                            }
+                        });
+        
+                        // Toggle the clicked dropdown
+                        parentDropdown.classList.toggle('active');
+                    }
+                });
+            });
+        
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', (e) => {
+                // Only close if the click is outside the nav-links and menu-icon
+                if (!e.target.closest('#nav-links') && !e.target.closest('#menu-icon')) {
+                    dropdowns.forEach(dropdown => {
+                        dropdown.classList.remove('active');
+                    });
+                    navLinks.classList.remove('active'); // Also close the main menu
+                    menuIcon.classList.remove('small-font'); // Reset hamburger icon style
+                }
+            });
+        });
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuIcon = document.getElementById('menu-icon');
+            const navLinks = document.getElementById('nav-links');
+            const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+            const dropdowns = document.querySelectorAll('.dropdown');
+
+            if (!menuIcon || !navLinks) {
+                console.error('Menu icon or nav links not found');
+                return;
+            }
+
+            menuIcon.addEventListener('click', (e) => {
+                e.stopPropagation();
+                navLinks.classList.toggle('active');
+                menuIcon.classList.toggle('small-font');
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+            });
+
+            dropdownToggles.forEach(toggle => {
+                toggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    if (window.innerWidth <= 900) {
+                        const parentDropdown = toggle.closest('.dropdown');
+                        dropdowns.forEach(dropdown => {
+                            if (dropdown !== parentDropdown) {
+                                dropdown.classList.remove('active');
+                            }
+                        });
+                        parentDropdown.classList.toggle('active');
+                    }
+                });
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('#nav-links') && !e.target.closest('#menu-icon')) {
+                    dropdowns.forEach(dropdown => {
+                        dropdown.classList.remove('active');
+                    });
+                    navLinks.classList.remove('active');
+                    menuIcon.classList.remove('small-font');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

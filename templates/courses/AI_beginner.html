@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI for Beginners</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{url_for('static', filename='chatbot.css')}}">
+  <script src="{{url_for('static', filename='chatbot.js')}}" defer></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Montserrat", sans-serif;
+      background-color: #f0f0f0;
+    }
+    h1{
+      font-size: 30px;
+    }
+    p{
+      font-size: 25px;
+      line-height: 60px;
+    }
+
+    
+    /* Content */
+    .hero-section {
+      background-color: #2929b8;
+      color: white;
+      padding: 80px 20px;
+    }
+
+    .section-title {
+      color: #004aad;
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+      margin-top: 50px;
+    }
+    
+
+    .hero-text {
+      font-size: 1.3rem;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .features-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .features-list li {
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+      padding-left: 30px;
+      position: relative;
+      line-height: 1.8;
+    }
+
+    .features-list li:before {
+      content: '♦';
+      position: absolute;
+      left: 0;
+      color: white;
+    }
+
+    .course-grid {
+      padding: 60px 20px;
+    }
+
+    .course-card {
+      background-color: white;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0px 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .course-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .course-card h3 {
+      color: #1010ad;
+      font-size: 1.8rem;
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+
+    .course-card p {
+      color: #5e5e5e;
+      font-size: 1.2rem;
+      line-height: 1.9;
+    }
+
+    .show-more-btn {
+      color: #1a0dab;
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .show-more-btn:hover {
+      color: #0b0080;
+      text-decoration: underline;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      padding: 10px;
+      background-color: #f0f0f0;
+      border-radius: 5px;
+      margin: 20px 0;
+    }
+
+    .social-icons img {
+      width: 30px;
+      height: 30px;
+    }
+
+    .footer {
+      padding: 20px;
+      background-color: #f0f0f0;
+      text-align: center;
+    }
+
+    .footer p {
+      color: #333;
+      font-size: 18px;
+      margin: 10px 0;
+    }
+
+    .footer-links {
+      margin-top: 50px;
+    }
+
+    .footer-links a {
+      color: #1e3a8a;
+      font-size: 18px;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-line {
+      margin: 90px 720px 90px 720px;
+    }
+
+    /* Mobile Navigation Responsive Styles */
+    @media (max-width: 768px) {
+      
+
+      .hero-section {
+        padding: 60px 15px;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .hero-text {
+        font-size: 1rem;
+      }
+
+      .features-list li {
+        font-size: 1rem;
+      }
+
+      .nav-img {
+        height: 60px;
+      }
+
+      .course-card h3 {
+        font-size: 1.3rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .section-title {
+        font-size: 2.0rem;
+        line-height: 2.9rem;
+      }
+      .features-list li {
+        font-size: 1.2rem;
+      }
+
+      .hero-text {
+        font-size: 1.2rem;
+        
+      }
+
+      .course-card {
+        padding: 15px;
+      }
+
+      .footer-line {
+        margin: 20px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  {% include 'nav.html' %}
+
+  <section class="hero-section">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-7">
+          <h1 class="section-title text-white" style="font-family: 'Montserrat', sans-serif;">AI for Beginners – Build a Strong AI Foundation</h1>
+          <p class="hero-text" style="font-family: 'Montserrat', sans-serif;">
+            <b>Perfect for beginners & students exploring AI for the first time. Start your AI journey with hands-on learning, real-world applications, and expert guidance.</b>
+          </p>
+          <ul class="features-list">
+            <li style="font-family: 'Montserrat', sans-serif;">No coding experience required – Learn AI concepts step by step.</li>
+            <li style="font-family: 'Montserrat', sans-serif;">Industry-relevant skills – Gain knowledge that helps you in careers & businesses.</li>
+            <li style="font-family: 'Montserrat', sans-serif;">Real-world projects & practical applications – Learn AI by doing!</li>
+            <li style="font-family: 'Montserrat', sans-serif;">Join thousands of learners and master AI today!</li>
+          </ul>
+        </div>
+        <div class="col-md-5 text-center">
+          <img src="../static/AI Beginner/AI1.webp" class="img-fluid" alt="AI for Beginners" style="max-width: 400px;margin-top: 50px;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="course-grid">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="course-card">
+            <img src="../static/AI Beginner/AI_2.webp" alt="Generative AI">
+            <h3 style="font-family: 'Montserrat', sans-serif;">Generative AI for Beginners</h3>
+            <p style="font-family: 'Montserrat', sans-serif;">
+              Learn the fundamentals of Generative AI, from AI text generation to AI-powered creativity.<br>
+              <b>What You’ll Learn:</b><br>
+              🔹 Basics of ChatGPT, MidJourney, and AI image & text generation<br>
+              🔹 How AI learns & creates human-like content<br>
+              🔹 Hands-on Generative AI applications for personal & professional use<br>
+              <b>Who Should Join?</b><br>
+              🔹 Students & beginners interested in AI-powered creativity<br>
+              <span id="more-content-1" style="display: none;font-family: 'Montserrat', sans-serif;" >
+                🔹 Professionals looking to use AI for content generation<br>
+                🔹 Anyone curious about how AI-generated text, images & videos work<br>
+              </span>
+              <div class="text-center mt-2">
+                <a href="#" id="show-more-btn-1" class="show-more-btn" style="font-family: 'Montserrat', sans-serif;">+ Show More</a>
+              </div>
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="course-card">
+            <img src="../static/AI Beginner/AI_3.webp" alt="AI & ML">
+            <h3 style="font-family: 'Montserrat', sans-serif;">Artificial Intelligence & Machine Learning</h3>
+            <p style="font-family: 'Montserrat', sans-serif;">
+              A step-by-step introduction to AI, machine learning, and deep learning concepts.<br>
+              <b>What You’ll Learn:</b><br>
+              🔹 Core principles of Artificial Intelligence & Machine Learning<br>
+              🔹 Supervised & Unsupervised Learning – How machines learn from data<br>
+              🔹 Hands-on with Python, TensorFlow & AI-powered applications<br>
+              <b>Who Should Join?</b><br>
+              🔹 Students & professionals new to AI & ML<br>
+              <span id="more-content-2" style="display: none;font-family: 'Montserrat', sans-serif;" >
+                🔹 Anyone looking to build a career in AI & ML<br>
+                🔹 Entrepreneurs & business owners exploring AI adoption<br>
+              </span>
+              <div class="text-center mt-2">
+                <a href="#" id="show-more-btn-2" class="show-more-btn" style="font-family: 'Montserrat', sans-serif;"  >+ Show More</a>
+              </div>
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="course-card">
+            <img src="../static/AI Beginner/AI_4.webp" alt="Data Science">
+            <h3 style="font-family: 'Montserrat', sans-serif;">Data Science & Data Analytics</h3>
+            <p style="font-family: 'Montserrat', sans-serif;">
+              Master data analysis, visualization, and AI-driven insights.<br>
+              <b>What You’ll Learn:</b><br>
+              🔹 Data analytics using Python, Pandas & Power BI<br>
+              🔹 AI-powered predictive analytics & data storytelling<br>
+              🔹 Real-world projects – Become job-ready in data science<br>
+              <b>Who Should Join?</b><br>
+              🔹 Anyone interested in data science & AI-driven decision-making<br>
+              <span id="more-content-3" style="display: none;" style="font-family: 'Montserrat', sans-serif;">
+                🔹 Professionals looking to analyze business data & trends<br>
+                🔹 Beginners who want to start a career in data analytics<br>
+              </span>
+              <div class="text-center mt-2">
+                <a href="#" id="show-more-btn-3" class="show-more-btn" style="font-family: 'Montserrat', sans-serif;">+ Show More</a>
+              </div>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="social-icons">
+    <a href="https://www.facebook.com/DigidaraTechnologies/"><img src="../static/icons/5.png" alt="Facebook"></a>
+    <a href="https://www.instagram.com/digidaratechnologies/"><img src="../static/icons/insta.png" alt="Instagram"></a>
+    <a href="https://www.linkedin.com/company/104865843/admin/dashboard/"><img src="../static/icons/7.webp" alt="LinkedIn"></a>
+    <a href="https://x.com/digiDARA_Tech"><img src="../static/icons/8.png" alt="Twitter"></a>
+    <a href="https://www.youtube.com/@DigiDARATechnologies"><img src="../static/icons/9.png" alt="YouTube"></a>
+  </div>
+
+  <div class="footer">
+    <p>Copyright © 2025 DigiDARA Technologies Private Limited - All Rights Reserved.</p>
+    <div class="footer-links">
+      <a href="#">Home</a>
+      <a href="#">About Us</a>
+    </div>
+  </div>
+  {% include 'chatbot.html' %}
+  <hr class="footer-line">
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuIcon = document.getElementById('menu-icon');
+      const navLinks = document.getElementById('nav-links');
+      const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+      const dropdowns = document.querySelectorAll('.dropdown');
+  
+      // Ensure elements exist to avoid errors
+      if (!menuIcon || !navLinks) {
+          console.error('Menu icon or nav links not found');
+          return;
+      }
+  
+      // Toggle the main menu and hamburger icon style
+      menuIcon.addEventListener('click', (e) => {
+          e.stopPropagation(); // Prevent event bubbling
+          navLinks.classList.toggle('active'); // Toggle the menu
+          menuIcon.classList.toggle('small-font'); // Toggle hamburger icon style
+  
+          // Close all dropdowns when toggling the main menu
+          dropdowns.forEach(dropdown => {
+              dropdown.classList.remove('active');
+          });
+      });
+  
+      // Toggle dropdown menus (only for screens <= 1000px)
+      dropdownToggles.forEach(toggle => {
+          toggle.addEventListener('click', (e) => {
+              e.stopPropagation(); // Prevent event bubbling to document click handler
+              if (window.innerWidth <= 1000) {
+                  const parentDropdown = toggle.closest('.dropdown');
+  
+                  // Close other dropdowns
+                  dropdowns.forEach(dropdown => {
+                      if (dropdown !== parentDropdown) {
+                          dropdown.classList.remove('active');
+                      }
+                  });
+  
+                  // Toggle the clicked dropdown
+                  parentDropdown.classList.toggle('active');
+              }
+          });
+      });
+  
+      // Close dropdowns when clicking outside
+      document.addEventListener('click', (e) => {
+          // Only close if the click is outside the nav-links and menu-icon
+          if (!e.target.closest('#nav-links') && !e.target.closest('#menu-icon')) {
+              dropdowns.forEach(dropdown => {
+                  dropdown.classList.remove('active');
+              });
+              navLinks.classList.remove('active'); // Also close the main menu
+              menuIcon.classList.remove('small-font'); // Reset hamburger icon style
+          }
+      });
+  });
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuIcon = document.getElementById('menu-icon');
+      const navLinks = document.getElementById('nav-links');
+
+      menuIcon.addEventListener('click', function() {
+        navLinks.classList.toggle('active');
+      });
+
+      // Close mobile menu when clicking outside
+      document.addEventListener('click', function(event) {
+        const isClickInsideNav = navLinks.contains(event.target) || menuIcon.contains(event.target);
+        if (!isClickInsideNav && navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+        }
+      });
+
+      // Show More/Show Less functionality
+      document.querySelectorAll('.show-more-btn').forEach((button, index) => {
+        button.addEventListener("click", function(event) {
+          event.preventDefault();
+          const moreContent = document.getElementById(`more-content-${index + 1}`);
+          if (moreContent.style.display === "none") {
+            moreContent.style.display = "block";
+            button.textContent = "− Show Less";
+          } else {
+            moreContent.style.display = "none";
+            button.textContent = "+ Show More";
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

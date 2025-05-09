@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Improved Navbar</title>
+    <style>
+        body {
+          margin: 0;
+          padding: 0;
+          font-family: 'Poppins', Arial, sans-serif;
+          background-color: #f0f0f0;
+        }
+    
+        /* Navigation */
+        .nav {
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .nav-img {
+            width: 300px;
+            height: 100px;
+            padding: 5px;
+            margin-left: 50px;
+        }
+
+        .menu-icon {
+            font-size: 28px;
+            cursor: pointer;
+            display: none;
+            padding: 5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            font-size: larger;
+        }
+
+        .nav-menu li {
+            margin: 0 15px;
+            font-size: 30px;
+            color: #1010ad;
+            cursor: pointer;
+            padding: 10px;
+            transition: background-color 0.3s;
+            transition: transform 0.3s ease;
+        }
+        .nav-menu li:hover {
+            
+            transform: scale(1.1);
+        }
+        .nav-menu li:hover {
+            background-color: #f5f5f5;
+        }
+
+        .nav-menu li a {
+            color: #1010ad;
+            text-decoration: none;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            cursor: pointer;
+            display: inline-block;
+            padding-right: 15px;
+            font-family: Arial, Helvetica, sans-serif;
+            position: relative;
+            font-size: 20px;
+        }
+
+        .dropdown-toggle::after {
+            
+            font-size: 10px;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .navv{
+            border-color: white;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #fff;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            min-width: 400px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            
+        }
+
+        .dropdown:hover .dropdown-menu,
+        .dropdown.active .dropdown-menu {
+            display: block;
+            
+        }
+
+        .dropdown-menu li {
+            padding: 10px;
+            margin: 0;
+        }
+
+        .dropdown-menu li a {
+            color: #1010ad;
+            font-size: 20px;
+            display: block;
+            text-decoration: none;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .more-dropdown {
+            left: auto;
+            right: 0;
+        }
+        .more-dropdown li a{
+          left: -100px;
+
+        }
+
+        .dropdown-menu li a:hover {
+            background-color: #f0f0f0;
+        }
+        @media screen and (max-width: 600px) {
+            .nav-img {
+                width: 150px;
+                height: 60px;
+                padding: 10px;
+            }
+
+            .menu-icon {
+                display: block;
+                padding: 10px;
+                padding-right: 50px;
+            }
+
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: #fff;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                overflow:auto;
+                max-height: 300px; /* Adjust as needed */
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+            
+
+            .nav-menu li {
+                width: 100%;
+                margin: 0;
+                border-bottom: 1px solid #e5e5e5;
+                text-align: left;
+            }
+
+            .nav-menu li a,
+            .dropdown-toggle {
+        
+                padding: 15px 20px;
+                font-size: 14px;
+                display: block;
+            }
+             
+            .dropdown-toggle::after {
+                content: '↓';
+                font-size: 12px; /* Slightly larger for visibility */
+                position: absolute;
+                right: 20px; /* Align with padding */
+                top: 50%;
+                transform: translateY(-50%);
+                color: #0056b3; /* Match link color */
+            }
+
+            .dropdown-menu {
+                position: static;
+                width: 100%;
+                background-color: #fafafa;
+                border: none;
+                box-shadow: none;
+            }
+           
+
+            .dropdown-menu li a {
+                padding: 10px 30px;
+            }
+            #menu-icon.small-font {
+                font-size: 15px;
+            }
+            .nav-menu li:hover {
+                transform: none !important;
+            }
+
+            #menu-icon:hover {
+                transform: none !important;
+            }
+     }
+     @media screen and (min-width: 1100px) and (max-width: 1300px){
+        .nav {
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .nav-img {
+            width: 200px;
+            height: 80px;
+            padding: 5px;
+        }
+
+        .menu-icon {
+            font-size: 28px;
+            cursor: pointer;
+            display: none;
+            padding: 5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            font-size: larger;
+        }
+
+        .nav-menu li {
+            margin: 0 15px;
+            font-size: 30px;
+            color: #1010ad;
+            cursor: pointer;
+            padding: 10px;
+            transition: background-color 0.3s;
+            transition: transform 0.3s ease;
+        }
+        .nav-menu li:hover {
+            
+            transform: scale(1.1);
+        }
+        .nav-menu li:hover {
+            background-color: #f5f5f5;
+        }
+
+        .nav-menu li a {
+            color: #1010ad;
+            text-decoration: none;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 13px;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            cursor: pointer;
+            display: inline-block;
+            padding-right: 15px;
+            font-family: Arial, Helvetica, sans-serif;
+            position: relative;
+            font-size: 13px;
+        }
+
+        .dropdown-toggle::after {
+            
+            font-size: 5px;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #fff;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            min-width: 400px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            
+        }
+
+        .dropdown:hover .dropdown-menu,
+        .dropdown.active .dropdown-menu {
+            display: block;
+            
+        }
+
+        .dropdown-menu li {
+            padding: 10px;
+            margin: 0;
+        }
+
+        .dropdown-menu li a {
+            color: #1010ad;
+            font-size: 13px;
+            display: block;
+            text-decoration: none;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .more-dropdown {
+            left: auto;
+            right: 0;
+        }
+        .more-dropdown li a{
+          left: -100px;
+
+        }
+
+        .dropdown-menu li a:hover {
+            background-color: #f0f0f0;
+        }
+    }
+
+
+     
+     @media screen and (min-width: 601px) and (max-width: 1100px) {
+        .nav-img {
+            width: 150px;
+            height: 60px;
+            padding: 10px;
+        }
+
+        .menu-icon {
+            display: block;
+            padding: 10px;
+            padding-right: 50px;
+        }
+
+        .nav-menu {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            background-color: #fff;
+            position: absolute;
+            top: 80px;
+            left: 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            overflow:auto;
+            max-height: 300px; /* Adjust as needed */
+        }
+
+        .nav-menu.active {
+            display: flex;
+        }
+        
+
+        .nav-menu li {
+            width: 100%;
+            margin: 0;
+            border-bottom: 1px solid #e5e5e5;
+            text-align: left;
+        }
+
+        .nav-menu li a,
+        .dropdown-toggle {
+    
+            padding: 15px 20px;
+            font-size: 14px;
+            display: block;
+        }
+         
+        .dropdown-toggle::after {
+            content: '↓';
+            font-size: 12px; /* Slightly larger for visibility */
+            position: absolute;
+            right: 20px; /* Align with padding */
+            top: 50%;
+            transform: translateY(-50%);
+            color: #0056b3; /* Match link color */
+        }
+
+        .dropdown-menu {
+            position: static;
+            width: 100%;
+            background-color: #fafafa;
+            border: none;
+            box-shadow: none;
+        }
+       
+
+        .dropdown-menu li a {
+            padding: 10px 30px;
+        }
+        #menu-icon.small-font {
+            font-size: 15px;
+        }
+        .nav-menu li:hover {
+            transform: none !important;
+        }
+
+        #menu-icon:hover {
+            transform: none !important;
+        }
+        }
+        .chat-container {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 450px;
+    height: 550px;
+    background: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    display: none;
+    flex-direction: column;
+    z-index: 1000;
+}
+.chat-header {
+    background: #0d6efd; /* Matches btn-primary */
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.chat-body {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    background: #f8f9fa;
+}
+.chat-message {
+    margin: 8px 0;
+    padding: 10px;
+    border-radius: 8px;
+    max-width: 80%;
+    font-size: 20px;
+}
+.user-message {
+    background: #0d6efd; /* Matches btn-primary */
+    color: white;
+    margin-left: auto;
+    margin-right: 10px;
+}
+.bot-message {
+    background: #e9ecef;
+    margin-left: 10px;
+}
+.chat-footer {
+    padding: 10px;
+    background: #fff;
+    border-top: 1px solid #dee2e6;
+    display: flex;
+    align-items: center;
+}
+.chat-footer input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    margin-right: 10px;
+    front-size: 80px;
+    height: 50px;
+}
+.chat-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #0d6efd; /* Matches btn-primary */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 999;
+}
+.quick-replies {
+    margin: 10px 0;
+}
+.quick-reply-btn {
+    background: #0d6efd; /* Matches btn-primary */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 6px 12px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+@media (max-width: 600px) {
+    .chat-container {
+        width: 60%;
+        height: 70%;
+        bottom: 20px;
+        right: 10px;
+    }
+    .chat-toggle {
+        width: 55px;
+        height: 55px;
+        font-size: 22px;
+    }
+    .chat-message {
+        margin: 8px 0;
+        padding: 10px;
+        border-radius: 8px;
+        max-width: 80%;
+        font-size: 10px;
+    }
+    .chat-header {
+        background: #0d6efd; /* Matches btn-primary */
+        color: white;
+        padding: 10px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 15px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+    .chat-footer input {
+        flex: 1;
+        padding: 8px;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        margin-right: 10px;
+        font-size: 20px;
+        height: 50px;
+    }
+    #chatInput{
+        font-size: 20px;
+    }
+    
+}
+
+    </style>
+</head>
+<body>
+    <div class="nav">
+    <a class="navv" href="{{url_for('home')}}"><img class="nav-img"  src="../static/agent/logo.png" alt="Logo"></a>
+    <div class="menu-icon" id="menu-icon">☰</div>
+    <ul class="nav-menu" id="nav-links">
+        <li class="dropdown">
+            <span class="dropdown-toggle">Services ↓</span>
+            <ul class="dropdown-menu">
+                <li><a href="{{url_for('digital')}}">AI-Powered Digital Marketing</a></li>
+                <li><a href="{{url_for('aichatbot')}}">AI-Powered Chatbot Integration</a></li>
+                <li><a href="{{url_for('agent')}}">Agentic AI Project Development</a></li>
+                <li><a href="{{url_for('consulting')}}">AI Business Consulting</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <span class="dropdown-toggle">Courses ↓</span>
+            <ul class="dropdown-menu">
+              <li><a href="{{ url_for('course') }}">Python Course</a></li>
+              <li><a href="{{ url_for('aibeginner') }}">AI for Beginners</a></li>
+              <li><a href="{{ url_for('aiforbusiness') }}">AI for Business Leaders</a></li>
+              <li><a href="{{ url_for('aiforagency') }}">AI for Agency</a></li>
+              <li><a href="{{ url_for('aiforcareer') }}">AI for Career</a></li>
+            </ul>
+          </li>
+        <li><a href="{{url_for('AI')}}">AI-Powered Internship</a></li>
+        <li class="dropdown">
+            <span class="dropdown-toggle">Company ↓</span>
+            <ul class="dropdown-menu">
+                <li><a href="{{url_for('about')}}">About Us</a></li>
+                <li><a href="{{url_for('Contact')}}">Contact Us</a></li>
+            </ul>
+        </li>
+        <li><a href="{{url_for('Blog')}}">AI Blogs & Insights</a></li>
+        <li class="dropdown">
+            <span class="dropdown-toggle ">More ↓</span>
+            <ul class="dropdown-menu more-dropdown">
+                <li><a href="{{url_for('event')}}">Webinars & Events</a></li>
+                <li><a href="{{url_for('freemasterclass')}}">Free AI Master Class</a></li>
+                <li><a href="{{url_for('Succss')}}">Success Stories</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+{% include 'chatbot.html'%}
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuIcon = document.getElementById('menu-icon');
+        const navLinks = document.getElementById('nav-links');
+        const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+        const dropdowns = document.querySelectorAll('.dropdown');
+    
+        // Ensure elements exist to avoid errors
+        if (!menuIcon || !navLinks) {
+            console.error('Menu icon or nav links not found');
+            return;
+        }
+    
+        // Toggle the main menu and hamburger icon style
+        menuIcon.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent event bubbling
+            navLinks.classList.toggle('active'); // Toggle the menu
+            menuIcon.classList.toggle('small-font'); // Toggle hamburger icon style
+    
+            // Close all dropdowns when toggling the main menu
+            dropdowns.forEach(dropdown => {
+                dropdown.classList.remove('active');
+            });
+        });
+    
+        // Toggle dropdown menus (only for screens <= 1000px)
+        dropdownToggles.forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent event bubbling to document click handler
+                if (window.innerWidth <= 1000) {
+                    const parentDropdown = toggle.closest('.dropdown');
+    
+                    // Close other dropdowns
+                    dropdowns.forEach(dropdown => {
+                        if (dropdown !== parentDropdown) {
+                            dropdown.classList.remove('active');
+                        }
+                    });
+    
+                    // Toggle the clicked dropdown
+                    parentDropdown.classList.toggle('active');
+                }
+            });
+        });
+    
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', (e) => {
+            // Only close if the click is outside the nav-links and menu-icon
+            if (!e.target.closest('#nav-links') && !e.target.closest('#menu-icon')) {
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+                navLinks.classList.remove('active'); // Also close the main menu
+                menuIcon.classList.remove('small-font'); // Reset hamburger icon style
+            }
+        });
+    });
+    // Chat widget functionality
+const chatContainer = document.getElementById('chatContainer');
+const chatBody = document.getElementById('chatBody');
+const chatInput = document.getElementById('chatInput');
+
+function toggleChat() {
+    chatContainer.style.display = chatContainer.style.display === 'none' ? 'flex' : 'none';
+    if (chatContainer.style.display === 'flex' && !chatBody.innerHTML) {
+        sendMessage(''); // Trigger welcome message on first open
+    }
+}
+
+async function sendMessage(prompt = null) {
+    const message = prompt !== null ? prompt : chatInput.value.trim();
+    if (message || !chatBody.innerHTML) {
+        if (message) {
+            const userMessage = document.createElement('div');
+            userMessage.className = 'chat-message user-message';
+            userMessage.textContent = message;
+            chatBody.appendChild(userMessage);
+        }
+
+        try {
+            const response = await fetch('/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ prompt: message })
+            });
+            const data = await response.json();
+
+            const botMessage = document.createElement('div');
+            botMessage.className = 'chat-message bot-message';
+            botMessage.textContent = data.response;
+            chatBody.appendChild(botMessage);
+
+            if (data.quickReplies) {
+                const quickRepliesDiv = document.createElement('div');
+                quickRepliesDiv.className = 'quick-replies';
+                data.quickReplies.forEach(reply => {
+                    const button = document.createElement('button');
+                    button.className = 'quick-reply-btn';
+                    button.textContent = reply;
+                    button.onclick = () => sendMessage(reply);
+                    quickRepliesDiv.appendChild(button);
+                });
+                chatBody.appendChild(quickRepliesDiv);
+            }
+
+            chatBody.scrollTop = chatBody.scrollHeight;
+            chatInput.value = '';
+        } catch (error) {
+            console.error('Error:', error);
+            const errorMessage = document.createElement('div');
+            errorMessage.className = 'chat-message bot-message';
+            errorMessage.textContent = 'Error connecting to chatbot.';
+            chatBody.appendChild(errorMessage);
+        }
+    }
+}
+
+chatInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        sendMessage();
+    }
+});
+</script>
+    
+
+
+</body>
+</html>
