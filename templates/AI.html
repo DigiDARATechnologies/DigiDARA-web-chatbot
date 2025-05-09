@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='chatbot.css')}}">
+    <script src="{{url_for('static', filename='chatbot.js')}}" defer></script>
+    <title>DigiDARA Technologies</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family:  'Montserrat', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        
+
+        .section-title, .section-1 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 40px 0;
+        }
+
+        .line {
+            flex: 1;
+            height: 1px;
+            background-color: #ccc;
+            border: none;
+            margin: 0 20px;
+        }
+
+        .text {
+            white-space: nowrap;
+            font-size: 20px;
+            font-weight: 500;
+            color: #222;
+        }
+
+        .internship-section, .projects-section, .career-section, .graduate-section, .why-digidara-section, .apply-section {
+            display: flex;
+            align-items: center;
+            padding: 40px;
+            background-color: #fff;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 20px;
+        }
+
+        .internship-image, .projects-image, .career-image, .graduate-image, .why-digidara-image, .image {
+            flex: 1;
+            
+        }
+
+        .section-image {
+            width: 100%;
+            max-height: 680px;
+            object-fit: cover;
+        }
+
+        .section-text {
+            flex: 1;
+            padding: 0 20px;
+        }
+
+        .internship-text h1, .text-section h1 {
+            color: rgb(16, 16, 173);
+            font-size: 30px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .internship-text h1 span {
+            color: rgb(16, 16, 173);
+        }
+
+        .internship-text p, .projects-text p, .career-text p, .graduate-text p, .why-digidara-text p, .text-section p {
+            color: #5e5e55;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .internship-details p, .projects-details p {
+            font-size: 18px;
+            color: #5e5e55;
+            margin: 10px 0;
+        }
+
+        .internship-details h3, .internship-details h4, .text-section h4 {
+            font-size: 20px;
+            color: #5e5e55;
+            margin: 10px 0;
+        }
+
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #fff;
+            gap: 20px;
+        }
+
+        .text-section {
+            flex: 1;
+            padding: 40px;
+        }
+
+        .text-section ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .text-section ul li {
+            font-size: 18px;
+            color: #5e5e55;
+            margin-bottom: 10px;
+        }
+
+        .main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            font-size: 18px;
+            color: #5e5e55;
+            text-align: center;
+        }
+
+        .projects-text h2, .career-text h2, .graduate-text h2, .why-digidara-text h2, .apply-text h2 {
+            color: #1e3a8a;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .projects-text ul, .career-text ul, .graduate-text ul, .why-digidara-text ul, .apply-text ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .projects-text ul li, .career-text ul li, .graduate-text ul li, .why-digidara-text ul li, .apply-text ul li {
+            font-size: 18px;
+            color: #5e5e55;
+        }
+
+        .projects-details p::before, .highlight::before {
+            content: "✨";
+            margin-right: 10px;
+        }
+
+        .apply-form {
+            flex: 1;
+            max-width: 500px;
+            padding: 20px;
+        }
+
+        .apply-form h3 {
+            color: #1e3a8a;
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .apply-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #5e5e55;
+        }
+
+        .apply-form input[type="text"],
+        .apply-form input[type="tel"],
+        .apply-form input[type="email"],
+        .apply-form textarea {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            background-color: #f1f1f1;
+            box-sizing: border-box;
+            font-size: 14px;
+            border-radius: 2px;
+            margin-bottom: 15px;
+        }
+
+        .apply-form textarea {
+            resize: vertical;
+            height: 120px;
+        }
+
+        .apply-form button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007BFF;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 2px;
+            transition: background-color 0.3s;
+        }
+
+        .apply-form button:hover {
+            background-color: #0056b3;
+        }
+        #a>h1{
+            font-size: 1.8rem;
+           
+        }
+        #a>p{
+            font-size: 1.3rem;
+            line-height: 1.9;
+        }
+        #b>p{
+            font-size: 1.3rem;
+            line-height: 1.9;
+        }
+        #b>h1{
+            font-size: 1.8rem;
+        }
+        #b>ul>li{
+            font-size: 1.3rem;
+            line-height: 1.5;
+        }
+        #c>p{
+            font-size: 1.5rem;
+            line-height: 1.9;
+
+        }
+        #c>div>p{
+            font-size: 1.5rem;
+            line-height: 1.9;
+        }
+        #c>h2{
+            font-size: 1.8rem;
+        }
+        #d>h2{
+            font-size: 1.8rem;
+        }
+        #d>p{
+            font-size: 1.5rem;
+            line-height: 1.9;
+        }
+        #d>ul>li{
+            font-size: 1.5rem;
+            line-height: 1.9;
+        }
+        #e>h2{
+            font-size: 1.8rem;
+        }
+        #e>p{
+            font-size: 1.5rem;
+            line-height: 1.9;
+        }
+        #e>ul>li{
+            font-size: 1.5rem;
+            line-height: 1.9;
+        }
+        #f>h2{
+            font-size: 1.8rem;
+        }
+        #f>p{
+            font-size: 1.5rem;
+            line-height: 1.9;
+        }
+        #f>ul>li{
+            font-size: 1.5rem;
+            line-height: 1.9;
+        }
+        #h>h2{
+            font-size: 1.8rem;
+        }
+        #h>p{
+            font-size: 1.5rem;
+            line-height: 1.9;
+        }
+        #h>ul>li{
+            font-size: 1.5rem;
+            line-height: 1.9;
+        }
+        .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+
+.social-icons img {
+    width: 30px;
+    height: 30px;
+}
+
+.footer {
+    padding: 20px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.footer p {
+    color: #333;
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.footer-links {
+    margin-top: 50px;
+}
+
+.footer-links a {
+    color: #1e3a8a;
+    font-size: 18px;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.footer-line {
+    margin: 90px 720px 90px 720px;
+}
+
+
+        /* Mobile View */
+        @media screen and (max-width: 768px) {
+            
+
+            .section-title, .section-1 {
+                flex-direction: column;
+                margin: 20px 0;
+                padding: 0 15px;
+            }
+
+            .line {
+                width: 100%;
+                margin: 10px 0;
+            }
+
+            .text {
+                font-size: 16px;
+                text-align: center;
+            }
+
+            .internship-section, .projects-section, .career-section, .graduate-section, .why-digidara-section, .apply-section, .container {
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+            }
+
+            .section-image {
+                width: 100%;
+                max-height: 300px;
+                object-fit: cover;
+            }
+
+            .section-text, .apply-form {
+                padding: 15px;
+                max-width: 100%;
+            }
+
+            .internship-text h1, .text-section h1, .projects-text h2, .career-text h2, .graduate-text h2, .why-digidara-text h2, .apply-text h2, .apply-form h3 {
+                font-size: 22px;
+                text-align: center;
+            }
+
+            .internship-text p, .projects-text p, .career-text p, .graduate-text p, .why-digidara-text p, .text-section p, .internship-details p, .projects-details p {
+                font-size: 16px;
+                text-align: left;
+            }
+
+            .text-section ul, .projects-text ul, .career-text ul, .graduate-text ul, .why-digidara-text ul, .apply-text ul {
+                padding-left: 20px;
+                text-align: left;
+            }
+
+            .text-section ul li, .projects-text ul li, .career-text ul li, .graduate-text ul li, .why-digidara-text ul li, .apply-text ul li {
+                font-size: 14px;
+            }
+
+            .text-section {
+                padding: 20px;
+            }
+
+            .main {
+                padding: 15px;
+                font-size: 16px;
+            }
+
+            .apply-form input[type="text"],
+            .apply-form input[type="tel"],
+            .apply-form input[type="email"],
+            .apply-form textarea {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            .apply-form button {
+                font-size: 16px;
+                padding: 10px;
+            }
+
+            .footer {
+                padding: 15px;
+            }
+
+            .serve, .copy, .ser {
+                font-size: 12px;
+            }
+
+            .line-1 {
+                max-width: 80px;
+            }
+        }
+         
+    </style>
+</head>
+<body>
+    {% include 'nav.html'%}
+    <div class="section-title">
+        <hr class="line">
+        <span class="text" style="margin-top: 100px;font-family:  'Montserrat', sans-serif;">Artificial Intelligence & Data Science Internship in Trichy</span>
+        <hr class="line">
+    </div>
+    <div class="internship-section"> 
+        <div class="internship-image">
+            <img src="../static/img_internship/1.webp" alt="AI & Data Science Internship" class="section-image">
+        </div>
+        <div class="internship-text section-text " style="font-family:  'Montserrat', sans-serif;" id="a">
+            <h1 style="font-family:  'Montserrat', sans-serif;">Launch Your Future: <span>Artificial Intelligence & Data Science Internship in Trichy</span></h1>
+            <p style="font-family:  'Montserrat', sans-serif;">The future of technology isn’t coming — it’s already here. And it begins with <b>you.</b> Join Trichy’s most transformative <b>1-Month Online or Offline AI & Data Science Internship</b>, exclusively offered by <b>DigiDARA Technologies.</b></p>
+            <p style="font-family:  'Montserrat', sans-serif;">Designed for aspiring <b>Engineers, Graduates, and AI Enthusiasts</b> — this program gives you the skills, confidence, and portfolio to stand out in today’s AI-driven world.</p>
+            <div class="internship-details">
+                <p style="font-family:  'Montserrat', sans-serif;"> Real Projects | Industry Tools | 1:1 Mentorship | Career Launchpad</p>
+                <h3 style="font-family:  'Montserrat', sans-serif;"> Location: Trichy</h3>
+                <h4 style="font-family:  'Montserrat', sans-serif;"> Duration: 1 Month | Online/Offline & Mentor-Led</h4>
+            </div>  
+        </div>
+    </div>
+    <div class="container">
+        <div class="text-section section-text" id="b">
+            <h1 style="font-family:  'Montserrat', sans-serif;">Master the Tools That Top Tech Careers Are Built On</h1>
+            <p style="font-family:  'Montserrat', sans-serif;">Get ready to <b>build real AI solutions from the ground up</b>.</p>
+            <p style="font-family:  'Montserrat', sans-serif;">Our internship goes beyond theory — you'll learn, code, and apply every concept with hands-on exercises and mini-projects.</p>
+            <h4 style="font-family:  'Montserrat', sans-serif;">Here's what you'll confidently master:</h4>
+            <ul>
+                <li style="font-family:  'Montserrat', sans-serif;"><b>• Python, NumPy, Pandas</b> — your foundation in data wrangling</li>
+                <li style="font-family:  'Montserrat', sans-serif;"><b>• Matplotlib, Seaborn, Plotly</b> — visualize insights like a pro</li>
+                <li style="font-family:  'Montserrat', sans-serif;"><b>• Machine Learning</b> (Regression, Classification, Clustering)</li>
+                <li style="font-family:  'Montserrat', sans-serif;"><b>• Deep Learning</b> with <b>TensorFlow & PyTorch</b></li>
+                <li style="font-family:  'Montserrat', sans-serif;"><b>• NLP & Time Series</b> Forecasting</li>
+                <li style="font-family:  'Montserrat', sans-serif;">• Business Dashboards using <b>Power BI</b></li>
+                <li style="font-family:  'Montserrat', sans-serif;"><b>• Data Cleaning, EDA & Predictive Modeling</b> for business use cases</li>
+            </ul>
+        </div>
+        <div class="image">
+            <img src="../static/img_internship/2.webp" alt="AI & Data Science Internship" class="section-image">
+        </div>
+    </div>
+   
+    <div class="projects-section">
+        <div class="projects-image">
+            <img src="../static/img_internship/3.webp" alt="Turn Your Learning Into Real Impact" class="section-image" style="overflow: visible;">
+        </div>
+        <div class="projects-text section-text" id="c">
+            <h2 style="font-family:  'Montserrat', sans-serif;">Real-World Projects & Dashboards</h2>
+            <p style="font-family:  'Montserrat', sans-serif;">It’s not just about learning — it’s about <b>doing</b>. In this internship, you’ll <b>solve real-world business problems using data</b>, collaborate with your peers, and deliver solutions that mimic industry projects. Work on hands-on <b>mini-projects</b> every week to apply concepts in real time.</p>
+            <div class="projects-details">
+                <p style="font-family:  'Montserrat', sans-serif;"> Build <b>interactive dashboards</b> using:</p>
+                <p style="font-family:  'Montserrat', sans-serif;"> <b>Power BI</b> for storytelling</p>
+                <p style="font-family:  'Montserrat', sans-serif;"> <b>Matplotlib & Seaborn</b> for static analytics</p>
+                <p style="font-family:  'Montserrat', sans-serif;"> <b>Plotly</b> for dynamic, web-based charts</p>
+                <p style="font-family:  'Montserrat', sans-serif;">Complete your journey with a <b>Hands-On Project</b> where you tackle a real use case — from dataset to deployment — and showcase the solution during our Demo Day.</p>
+            </div>
+            <p class="highlight" style="font-family:  'Montserrat', sans-serif;">By the end, you’ll have a complete portfolio with real, demo-ready projects that you can showcase on GitHub, LinkedIn, or job interviews</p>
+        </div>
+    </div>
+    <div class="career-section">
+        <div class="career-text section-text" id="d">
+            <h2 style="font-family:  'Montserrat', sans-serif;">Your Career, Supercharged with Real-World Readiness</h2>
+            <p style="font-family:  'Montserrat', sans-serif;">At DigiDARA, your growth doesn’t stop at coding. We offer a complete career acceleration package to help you step into the tech world with clarity and confidence.</p>
+            <ul>
+                <li style="font-family:  'Montserrat', sans-serif;"> <b>1:1 Mentorship:</b> Get personalized guidance from industry experts</li>
+                <li style="font-family:  'Montserrat', sans-serif;"> <b>Resume Revamp:</b> a powerful, job-ready profile</li>
+                <li style="font-family:  'Montserrat', sans-serif;"> <b>LinkedIn & GitHub Optimization:</b> Stand out online with a portfolio that speaks volumes</li>
+                <li style="font-family:  'Montserrat', sans-serif;"> <b>Mock Interviews:</b> Practice for real-world scenarios — technical, HR, and business cases</li>
+            </ul>
+            <p style="font-family:  'Montserrat', sans-serif;">Whether you’re applying for internships, full-time jobs, or higher studies — we prepare you to <b>get noticed, get hired, and grow faster</b></p>
+        </div>
+        <div class="career-image">
+            <img src="../static/img_internship/4.webp" alt="Career Supercharged" class="section-image" style="overflow: visible;">
+        </div>
+    </div>
+    <div class="graduate-section">
+        <div class="graduate-image">
+            <img src="../static/img_internship/5.webp" alt="Graduate with Confidence" class="section-image" style="overflow: visible;">
+        </div>
+        <div class="graduate-text section-text" id="e">
+            <h2 style="font-family:  'Montserrat', sans-serif;">Graduate With Confidence, Show Your Brilliance</h2>
+            <p style="font-family:  'Montserrat', sans-serif;">It’s time to put everything you’ve learned into action. On <b>Demo Day</b>, you’ll present your <b>Capstone Project</b> to peers, mentors, and industry guests.</p>
+            <ul>
+                <li style="font-family:  'Montserrat', sans-serif;list-style: none;">Showcase your:</li>
+                <li style="font-family:  'Montserrat', sans-serif;"> GitHub Repository & Source Code</li>
+                <li style="font-family:  'Montserrat', sans-serif;"> Business Dashboard & Data Visualizations</li>
+                <li style="font-family:  'Montserrat', sans-serif;"> Real-world Insights & Problem-Solving Skills</li>
+            </ul>
+            <p style="font-family:  'Montserrat', sans-serif;">🎓 All participants receive an official <b>Internship Certificate</b> from DigiDARA Technologies.</p>
+            <p class="highlight" style="font-family:  'Montserrat', sans-serif;"> Top performers are awarded a <b>Letter of Recommendation</b>, opening doors to future career and academic opportunities.</p>
+            <p style="font-family:  'Montserrat', sans-serif;">This moment is more than a certificate — it’s a milestone in your journey to becoming a future-ready AI professional.</p>
+        </div>
+    </div>
+    <div class="why-digidara-section">
+        <div class="why-digidara-text section-text" id="f">
+            <h2 style="font-family:  'Montserrat', sans-serif;">Why DigiDARA Technologies?</h2>
+            <p style="font-family:  'Montserrat', sans-serif;">At DigiDARA Technologies, we believe learning should <b>transform</b>, not just inform.</p>
+            <p style="font-family:  'Montserrat', sans-serif;">Here’s why hundreds of students and professionals trust us to shape their AI journey:</p>
+            <ul>
+                <li style="font-family:  'Montserrat', sans-serif;"> <b>Real-World, Practical AI Learning</b> — No fluff, just hands-on projects.</li>
+                <li style="font-family:  'Montserrat', sans-serif;"> <b>360° Career Development</b> — Resume, LinkedIn, mock interviews, and portfolio.</li>
+                <li style="font-family:  'Montserrat', sans-serif;"> <b>Expert Mentorship</b> — Learn from professionals with global industry experience.</li>
+                <li style="font-family:  'Montserrat', sans-serif;"> <b>Trichy-Based, Globally Relevant</b> — Local presence with world-class curriculum.</li>
+                <li style="font-family:  'Montserrat', sans-serif;"> <b>Proven Framework for Career Growth</b> — Structured learning that delivers results.</li>
+            </ul>
+            <p style="font-family:  'Montserrat', sans-serif;">Whether you’re a student, job seeker, or future tech leader — <b>we prepare you to lead, not follow</b>.</p>
+        </div>
+        <div class="why-digidara-image">
+            <img src="../static/img_internship/6.webp" alt="Begin Your AI Journey Today" class="section-image" style="overflow: visible;">
+        </div>
+    </div>
+    <div class="section-1">
+        <hr class="line">
+        <span class="text">Apply for AI & Data Science Internship</span>
+        <hr class="line">
+    </div>
+    <div class="apply-section">
+        <div class="apply-text section-text" id="h">
+            <h2 style="font-family:  'Montserrat', sans-serif;">Apply for AI & Data Science Internship – Limited Seats Available!</h2>
+            <p style="font-family:  'Montserrat', sans-serif;"><b>Kickstart Your Tech Career with Real-World AI Experience!</b></p>
+            <p style="font-family:  'Montserrat', sans-serif;">Join our exclusive <b>1-Month Online/Offline Internship in Artificial Intelligence, Data Science & Analytics.</b></p>
+            <ul>
+                <li style="font-family:  'Montserrat', sans-serif;"> Gain hands-on project experience</li>
+                <li style="font-family:  'Montserrat', sans-serif;"> Learn industry tools and workflows</li>
+                <li style="font-family:  'Montserrat', sans-serif;"> Get mentored by professionals</li>
+                <li style="font-family:  'Montserrat', sans-serif;"> Build your career-ready portfolio</li>
+            </ul>
+            <p class="highlight" style="font-family:  'Montserrat', sans-serif;"> <b>Fill the form below to apply now.</b> Our team will review your application and connect you shortly with the next steps!</p>
+        </div>
+        <div class="apply-form">
+            <h3 style="font-family:  'Montserrat', sans-serif;">Apply Now</h3>
+            <form>
+                <div>
+                    <label for="name">Name*</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div>
+                    <label for="phone">Phone*</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div>
+                    <label for="email">Email*</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div>
+                    <label for="degree">Degree & Year</label>
+                    <input type="text" id="degree" name="degree">
+                </div>
+                <div>
+                    <label for="college">College/University/Company</label>
+                    <input type="text" id="college" name="college">
+                </div>
+                <div>
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="4"></textarea>
+                </div>
+                <div>
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="social-icons" style="background-color: #f3f2f2;">
+        <a href="#"><img src="../static/img_internship/fac.png" alt="Facebook"></a>
+        <a href="#"><img src="../static/img_internship/insta.png" alt="Instagram"></a>
+        <a href="#"><img src="../static/img_internship/linked.webp" alt="LinkedIn"></a>
+        <a href="#"><img src="../static/img_internship/twitter.png" alt="Twitter"></a>
+        <a href="#"><img src="../static/img_internship/yt.png" alt="YouTube"></a>
+    </div>
+    {% include 'chatbot.html' %}
+    <div class="footer" style="background-color: #f3f2f2;">
+        <p>Copyright © 2025 DigiDARA Technologies Private Limited - All Rights Reserved.</p>
+        <div class="footer-links">
+            <a href="#">Home</a>
+            <a href="#">About Us</a>
+        </div>
+    </div>
+    <hr class="footer-line">
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuIcon = document.getElementById('menu-icon');
+        const navLinks = document.getElementById('nav-links');
+        const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+        const dropdowns = document.querySelectorAll('.dropdown');
+    
+        // Ensure elements exist to avoid errors
+        if (!menuIcon || !navLinks) {
+            console.error('Menu icon or nav links not found');
+            return;
+        }
+    
+        // Toggle the main menu and hamburger icon style
+        menuIcon.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent event bubbling
+            navLinks.classList.toggle('active'); // Toggle the menu
+            menuIcon.classList.toggle('small-font'); // Toggle hamburger icon style
+    
+            // Close all dropdowns when toggling the main menu
+            dropdowns.forEach(dropdown => {
+                dropdown.classList.remove('active');
+            });
+        });
+    
+        // Toggle dropdown menus (only for screens <= 1000px)
+        dropdownToggles.forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent event bubbling to document click handler
+                if (window.innerWidth <= 1000) {
+                    const parentDropdown = toggle.closest('.dropdown');
+    
+                    // Close other dropdowns
+                    dropdowns.forEach(dropdown => {
+                        if (dropdown !== parentDropdown) {
+                            dropdown.classList.remove('active');
+                        }
+                    });
+    
+                    // Toggle the clicked dropdown
+                    parentDropdown.classList.toggle('active');
+                }
+            });
+        });
+    
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', (e) => {
+            // Only close if the click is outside the nav-links and menu-icon
+            if (!e.target.closest('#nav-links') && !e.target.closest('#menu-icon')) {
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+                navLinks.classList.remove('active'); // Also close the main menu
+                menuIcon.classList.remove('small-font'); // Reset hamburger icon style
+            }
+        });
+    });
+    const menuIcon = document.getElementById('menu-icon');
+          const navLinks = document.getElementById('nav-links');
+          const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+  
+          menuIcon.addEventListener('click', () => {
+              navLinks.classList.toggle('active');
+          });
+  
+          dropdownToggles.forEach(toggle => {
+              toggle.addEventListener('click', (e) => {
+                  if (window.innerWidth <= 900) {
+                      const parentDropdown = toggle.closest('.dropdown');
+                      dropdownToggles.forEach(item => {
+                          const otherDropdown = item.closest('.dropdown');
+                          if (otherDropdown !== parentDropdown) {
+                              otherDropdown.classList.remove('active');
+                          }
+                      });
+                      parentDropdown.classList.toggle('active');
+                  }
+              });
+          });
+</script>
+</body>
+</html>

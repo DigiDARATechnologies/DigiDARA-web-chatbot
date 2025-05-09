@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI for Career Growth</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{url_for('static', filename='chatbot.css')}}">
+  <script src="{{url_for('static', filename='chatbot.js')}}" defer></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family:  'Montserrat', sans-serif;
+      background-color: #f0f0f0;
+    }
+    
+
+    
+
+    /* Content */
+    .hero-section {
+      padding: 100px 20px;
+      margin-top: 50px;
+    }
+
+    .section-title {
+      color: #1010ad;
+      font-size: 2.8rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .section-text {
+      font-size: 1.5rem;
+      color: #5e5e5e;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .features-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 1.8rem;
+    }
+
+    .features-list li {
+      font-size: 1.1rem;
+      color: #555;
+      margin-bottom: 15px;
+      padding-left: 30px;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .features-list li:before {
+      content: '🔹';
+      position: absolute;
+      left: 0;
+      
+    }
+
+    .course-grid {
+      padding: 60px 20px;
+    }
+
+    .course-card {
+      background-color: white;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0px 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .course-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .course-card h3 {
+      color: #1010ad;
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      margin-top: 15px;
+    }
+
+    .course-card p {
+      color: #5e5e5e;
+      font-size: 1.2rem;
+      line-height: 1.9;
+    }
+
+    /* Responsive Images */
+    .content-img {
+      width: 100%;
+      height: auto;
+      max-width: 800px;
+      transition: transform 0.3s ease;
+    }
+
+    .content-img:hover {
+      transform: scale(1.05);
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      padding: 10px;
+      background-color: #f0f0f0;
+      border-radius: 5px;
+      margin: 20px 0;
+    }
+
+    .social-icons img {
+      width: 30px;
+      height: 30px;
+    }
+
+    .footer {
+      padding: 20px;
+      background-color: #f0f0f0;
+      text-align: center;
+    }
+
+    .footer p {
+      color: #333;
+      font-size: 18px;
+      margin: 10px 0;
+    }
+
+    .footer-links {
+      margin-top: 50px;
+    }
+
+    .footer-links a {
+      color: #1e3a8a;
+      font-size: 18px;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-line {
+      margin: 90px 720px 90px 720px;
+    }
+
+    /* Mobile Navigation Responsive Styles */
+    @media (max-width: 768px) {
+     
+
+      .hero-section {
+        padding: 60px 15px;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .section-text {
+        font-size: 1rem;
+      }
+
+      .features-list li {
+        font-size: 1rem;
+      }
+
+      .content-img {
+        max-width: 100%;
+        margin-bottom: 20px;
+      }
+
+      .nav-img {
+        height: 60px;
+      }
+
+      .course-card h3 {
+        font-size: 1.3rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .section-title {
+        font-size: 1.8rem;
+      }
+
+      .section-text {
+        font-size: 0.9rem;
+      }
+
+      .course-card {
+        padding: 15px;
+      }
+
+      .footer-line {
+        margin: 20px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  {% include 'nav.html'%}
+
+  <section class="hero-section">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <img src="../static/AI_career/Ai_career1.webp" class="content-img" alt="AI for Career Growth">
+        </div>
+        <div class="col-md-6">
+          <h1 class="section-title" style="font-family: 'Montserrat', sans-serif;">AI for Career Growth & Job Seekers</h1>
+          <p class="section-text" style="font-family: 'Montserrat', sans-serif;">
+            Leverage AI-powered tools and strategies to advance your career, enhance job search, and optimize hiring processes.
+          </p>
+          <ul class="features-list">
+            <li style="font-family: 'Montserrat', sans-serif;">Job seekers: Use AI for smarter job applications & interview prep</li>
+            <li style="font-family: 'Montserrat', sans-serif;">Educators: Enhance student learning & engagement with AI-driven teaching</li>
+            <li style="font-family: 'Montserrat', sans-serif;">Recruiters & career coaches: Automate Hiring & Talent Acquisition</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="course-grid">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="course-card">
+            <img src="../static/AI_career/AI_career2.jpeg" alt="AI Powered Education">
+            <h3 style="font-family: 'Montserrat', sans-serif;">AI Powered Education</h3>
+            <p style="font-family: 'Montserrat', sans-serif;">
+              Discover how AI is transforming education, making learning more interactive, adaptive, and efficient.<br>
+              <b>What You’ll Learn:</b><br>
+              🔹 AI-powered teaching strategies & automation to enhance classroom learning<br>
+              🔹 AI-driven assessment tools for personalized student feedback<br>
+              🔹 How AI improves student engagement & learning outcomes<br>
+              <b>Who Should Join?</b><br>
+              🔹 Educators & professors looking to integrate AI in teaching<br>
+              🔹 School & college administrators seeking AI-powered learning solutions<br>
+              🔹 Education startups & trainers leveraging AI for student engagement
+            </p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="course-card">
+            <img src="../static/AI_career/AI_career3.jpg" alt="AI-Driven Campus Hiring">
+            <h3 style="font-family: 'Montserrat', sans-serif;">AI-Driven Campus Hiring</h3>
+            <p style="font-family: 'Montserrat', sans-serif;">
+              Leverage AI for smarter hiring processes and improve campus placements.<br>
+              <b>What You’ll Learn:</b><br>
+              🔹 AI-powered resume screening & automated hiring<br>
+              🔹 AI-driven candidate selection & recruitment insights<br>
+              🔹 Live AI hiring case studies – How companies are using AI for better hiring<br>
+              <b>Who Should Join?</b><br>
+              🔹 College placement officers improving campus hiring success rates<br>
+              🔹 HR professionals & recruiters streamlining hiring with AI automation<br>
+              🔹 University career services teams enhancing student job placements
+            </p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="course-card">
+            <img src="../static/AI_career/AI_career4.png" alt="AI LinkedIn Mastery">
+            <h3 style="font-family: 'Montserrat', sans-serif;">AI LinkedIn Mastery Workshop</h3>
+            <p style="font-family: 'Montserrat', sans-serif;">
+              Use AI to optimize your LinkedIn profile, expand your network, and attract job opportunities.<br>
+              <b>What You’ll Learn:</b><br>
+              🔹 AI-driven LinkedIn profile optimization for maximum visibility<br>
+              🔹 AI-powered networking & outreach automation<br>
+              🔹 Personal branding with AI-generated content & posts<br>
+              <b>Who Should Join?</b><br>
+              🔹 Job seekers & professionals looking to build a strong LinkedIn presence<br>
+              🔹 Entrepreneurs & freelancers expanding their network with AI tools<br>
+              🔹 Career coaches & HR professionals helping others optimize their profiles
+            </p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="course-card">
+            <img src="../static/AI_career/Ai_career1.webp" alt="AI-Powered Career Mastery">
+            <h3 style="font-family: 'Montserrat', sans-serif;">AI-Powered Career Mastery Accelerator</h3>
+            <p style="font-family: 'Montserrat', sans-serif;">
+              Land your dream job faster with AI-powered career development strategies.<br>
+              <b>What You’ll Learn:</b><br>
+              🔹 AI-powered resume optimization & job search automation<br>
+              🔹 AI-driven interview preparation & career coaching<br>
+              🔹 Live AI job application case studies – Learn from real-world success stories<br>
+              <b>Who Should Join?</b><br>
+              🔹 Job seekers & career changers looking to improve job search efficiency<br>
+              🔹 Students & fresh graduates wanting to land high-paying jobs using AI<br>
+              🔹 Professionals seeking AI-powered career growth strategies
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="social-icons">
+    <a href="https://www.facebook.com/DigidaraTechnologies/"><img src="../static/icons/5.png" alt="Facebook"></a>
+    <a href="https://www.instagram.com/digidaratechnologies/"><img src="../static/icons/insta.png" alt="Instagram"></a>
+    <a href="https://www.linkedin.com/company/104865843/admin/dashboard/"><img src="../static/icons/7.webp" alt="LinkedIn"></a>
+    <a href="https://x.com/digiDARA_Tech"><img src="../static/icons/8.png" alt="Twitter"></a>
+    <a href="https://www.youtube.com/@DigiDARATechnologies"><img src="../static/icons/9.png" alt="YouTube"></a>
+  </div>
+
+  <div class="footer">
+    <p>Copyright © 2025 DigiDARA Technologies Private Limited - All Rights Reserved.</p>
+    <div class="footer-links">
+      <a href="#">Home</a>
+      <a href="#">About Us</a>
+    </div>
+  </div>
+  {% include 'chatbot.html' %}
+  <hr class="footer-line">
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuIcon = document.getElementById('menu-icon');
+      const navLinks = document.getElementById('nav-links');
+      const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+      const dropdowns = document.querySelectorAll('.dropdown');
+  
+      // Ensure elements exist to avoid errors
+      if (!menuIcon || !navLinks) {
+          console.error('Menu icon or nav links not found');
+          return;
+      }
+  
+      // Toggle the main menu and hamburger icon style
+      menuIcon.addEventListener('click', (e) => {
+          e.stopPropagation(); // Prevent event bubbling
+          navLinks.classList.toggle('active'); // Toggle the menu
+          menuIcon.classList.toggle('small-font'); // Toggle hamburger icon style
+  
+          // Close all dropdowns when toggling the main menu
+          dropdowns.forEach(dropdown => {
+              dropdown.classList.remove('active');
+          });
+      });
+  
+      // Toggle dropdown menus (only for screens <= 1000px)
+      dropdownToggles.forEach(toggle => {
+          toggle.addEventListener('click', (e) => {
+              e.stopPropagation(); // Prevent event bubbling to document click handler
+              if (window.innerWidth <= 1000) {
+                  const parentDropdown = toggle.closest('.dropdown');
+  
+                  // Close other dropdowns
+                  dropdowns.forEach(dropdown => {
+                      if (dropdown !== parentDropdown) {
+                          dropdown.classList.remove('active');
+                      }
+                  });
+  
+                  // Toggle the clicked dropdown
+                  parentDropdown.classList.toggle('active');
+              }
+          });
+      });
+  
+      // Close dropdowns when clicking outside
+      document.addEventListener('click', (e) => {
+          // Only close if the click is outside the nav-links and menu-icon
+          if (!e.target.closest('#nav-links') && !e.target.closest('#menu-icon')) {
+              dropdowns.forEach(dropdown => {
+                  dropdown.classList.remove('active');
+              });
+              navLinks.classList.remove('active'); // Also close the main menu
+              menuIcon.classList.remove('small-font'); // Reset hamburger icon style
+          }
+      });
+  });
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuIcon = document.getElementById('menu-icon');
+      const navLinks = document.getElementById('nav-links');
+
+      menuIcon.addEventListener('click', function() {
+        navLinks.classList.toggle('active');
+      });
+
+      // Close mobile menu when clicking outside
+      document.addEventListener('click', function(event) {
+        const isClickInsideNav = navLinks.contains(event.target) || menuIcon.contains(event.target);
+        if (!isClickInsideNav && navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

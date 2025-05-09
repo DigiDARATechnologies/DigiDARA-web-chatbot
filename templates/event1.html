@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigiDARA Technologies</title>
+    <!-- <link rel="stylesheet" href="{{url_for('static',filename='event.css')}}"> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="{{url_for('static', filename='chatbot.css')}}">
+    <script src="{{url_for('static', filename='chatbot.js')}}" defer></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Open Sans', Arial, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-top: 100px; /* Added to prevent content from being hidden under fixed nav */
+        }
+
+        
+
+
+        /* Section Title */
+        .section-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 40px 0; /* Adjusted margin to ensure visibility */
+        }
+
+        .line {
+            flex: 1;
+            height: 1px;
+            background-color: #ccc;
+            border: none;
+            margin: 0 20px;
+        }
+
+        .text {
+            white-space: nowrap;
+            font-size: 20px;
+            font-weight: 500;
+            color: #222;
+        }
+
+        /* Content Sections */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .content-item {
+            text-align: center;
+        }
+
+        .content-item img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .content-item h1 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1010ad;
+            margin: 20px 0;
+        }
+
+        .content-item p {
+            font-size: 18px;
+            color: #333;
+        }
+
+        .show-more-container {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .show-more-btn {
+            font-size: 18px;
+            color: #1010ad;
+            text-decoration: none;
+        }
+
+        .event-section {
+            display: flex;
+            align-items: center;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .event-section img {
+            width: 50%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .event-text {
+            width: 50%;
+        }
+
+        .event-text h1 {
+            font-size: 28px;
+            font-weight: bold;
+            color: #1010ad;
+            margin-bottom: 20px;
+        }
+
+        .event-text p {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .event-text button {
+            background-color: #1010ad;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .webinar-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .webinar-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .webinar-item h1 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1010ad;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .webinar-item p {
+            font-size: 18px;
+            color: #333;
+            line-height: 1.8;
+        }
+
+        .why-attend {
+            background-color: #1010ad;
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .why-attend h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .why-attend p {
+            font-size: 20px;
+            margin: 0 auto;
+            max-width: 800px;
+        }
+
+        .social-links {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .social-links svg {
+            width: 40px;
+            height: 40px;
+            margin: 0 10px;
+            fill: #1010ad;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        footer h3 {
+            font-size: 16px;
+            color: #333;
+        }
+
+        /* Responsive Design */
+        @media screen and (min-width: 601px) and (max-width: 900px) {
+            
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .event-section {
+                flex-direction: column;
+            }
+
+            .event-section img,
+            .event-text {
+                width: 100%;
+            }
+
+            .webinar-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            body {
+                padding-top: 80px; /* Adjusted for smaller nav height on mobile */
+            }
+
+            
+
+            .section-title {
+                margin: 20px 0;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .line {
+                width: 100%;
+                margin: 10px 0;
+            }
+
+            .text {
+                font-size: 16px;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+                padding: 15px;
+            }
+
+            .content-item h1 {
+                font-size: 20px;
+            }
+
+            .content-item p {
+                font-size: 16px;
+            }
+
+            .event-section {
+                flex-direction: column;
+                padding: 15px;
+            }
+
+            .event-section img,
+            .event-text {
+                width: 100%;
+            }
+
+            .event-text h1 {
+                font-size: 22px;
+            }
+
+            .event-text p {
+                font-size: 16px;
+            }
+
+            .event-text button {
+                width: 100%;
+                font-size: 16px;
+            }
+
+            .webinar-grid {
+                grid-template-columns: 1fr;
+                padding: 15px;
+            }
+
+            .webinar-item h1 {
+                font-size: 20px;
+            }
+
+            .webinar-item p {
+                font-size: 16px;
+            }
+
+            .why-attend {
+                padding: 20px;
+            }
+
+            .why-attend h1 {
+                font-size: 24px;
+            }
+
+            .why-attend p {
+                font-size: 16px;
+            }
+
+            .social-links svg {
+                width: 30px;
+                height: 30px;
+            }
+
+            footer h3 {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    {% include 'nav.html' %}
+    <div class="section-title">
+        <hr class="line">
+        <span class="text">About DigiDARA Technologies Private Limited</span>
+        <hr class="line">
+    </div>
+
+    <div class="content-grid">
+        <div class="content-item">
+            <img src="../static/images_event/im1.webp" alt="Python & AI Foundations">
+            <h1>Python & AI Foundations</h1>
+            <p>Introducing the Python & AI Foundations Bootcamp by DigiDARA Technologies — a 30-day hands-on journey from zero coding to AI-ready skills.<br>
+                Why This Bootcamp Is Different:<br>
+                ✅ Learn Python – From scratch to pro-level coding<br>
+                ✅ Explore 20+ Real AI Tools – ChatGPT, Prompt Engineering, DALL·E, Copilot, GravityWrite & more<br>
+                <div id="more-content" style="display: none;">
+                    ✅ Capstone Project – Apply everything you learn in a real-world project<br>
+                    ✅ AI-Powered Career Support – Resume, LinkedIn, Interview skills<br>
+                    ✅ Soft Skills Training – Storytelling, Communication, Confidence<br>
+                    🗓️ Duration: April 28 – May 30, 2025<br>
+                    📍 Location: DigiDARA Technologies, Periyasamy Tower, 2nd Floor, Chathiram Bus Stand, Trichy - 620002<br>
+                    📞 Call/WhatsApp: 9500406945
+                </div>
+            </p>
+            <div class="show-more-container">
+                <a href="#" id="show-more-btn" class="show-more-btn">+ Show More</a>
+            </div>
+        </div>
+        <div class="content-item">
+            <img src="../static/images_event/im2.webp" alt="Our Programs">
+            <h1>Our Programs</h1>
+            <p>We offer a variety of programs designed to meet the diverse needs and interests of our students. From vocational training to college prep, our programs are designed to provide students with the skills and knowledge they need to succeed in their chosen field.</p>
+        </div>
+        <div class="content-item">
+            <img src="../static/images_event/im3.webp" alt="Our Teachers">
+            <h1>Our Teachers</h1>
+            <p>Our experienced and dedicated teachers are committed to helping students achieve their goals. They are passionate about teaching and are always looking for new and innovative ways to help students learn.</p>
+        </div>
+    </div>
+
+    <div class="event-section">
+        <img src="../static/images_event/im4.webp" alt="Stay Ahead with AI">
+        <div class="event-text">
+            <h1>Stay Ahead with AI – Join Our Live Webinars & Events</h1>
+            <p>Discover the latest AI trends, tools, and strategies from industry experts! Attend our live AI training sessions, expert panel discussions, and interactive workshops to gain hands-on AI knowledge.<br><br>
+                ✅ AI Webinars for Beginners & Experts<br>
+                ✅ Live AI Training & Masterclasses<br>
+                ✅ Expert-Led AI Discussions
+            </p>
+            <button><a style="text-decoration: none; color: white;" href="{{url_for('event')}}">Find out more</a></button>
+        </div>
+    </div>
+
+    <div class="section-title">
+        <hr class="line">
+        <span class="text">Upcoming Webinars & Events – Reserve Your Spot!</span>
+        <hr class="line">
+    </div>
+
+    <div class="webinar-grid">
+        <div class="webinar-item">
+            <h1>AI LinkedIn Mastery Workshop</h1>
+            <img src="../static/images_event/im5.webp" alt="AI LinkedIn Mastery">
+            <p>Learn how to use AI for personal branding, networking, and career growth on LinkedIn.<br><br>
+                ✅ AI-Powered LinkedIn Profile Optimization – Craft a compelling profile using AI<br>
+                ✅ AI for Content Creation – Generate viral posts, articles, and thought leadership content<br>
+                ✅ AI Networking Strategies – Use AI to expand your professional connections<br>
+                ✅ AI-Driven Job Search – Leverage AI tools for personalized job recommendations<br>
+                ✅ Automating LinkedIn Outreach with AI – Build meaningful relationships effortlessly<br><br>
+                🎁 Bonus: Free access to our AI LinkedIn Optimization Checklist!<br><br>
+                Training Date to be announced soon
+            </p>
+        </div>
+        <div class="webinar-item">
+            <h1>Generative AI & Agentic AI for Business Leaders</h1>
+            <img src="../static/images_event/im6.webp" alt="Generative AI">
+            <p>Unlock the power of Generative AI & Agentic AI to drive business automation, innovation, and decision-making.<br><br>
+                ✅ Understanding Generative AI & Agentic AI – Key concepts, business applications & emerging trends<br>
+                ✅ AI-Powered Business Automation – Streamline operations with autonomous AI-driven agents<br>
+                ✅ AI for Decision-Making – Use Generative AI for predictive insights & strategic planning<br>
+                ✅ AI-Generated Content & Marketing – Automate content creation, branding & personalized outreach<br>
+                ✅ Integrating AI into Business Workflows – Practical implementation strategies for business leaders<br><br>
+                🎁 Bonus: Get access to an AI Business Strategy Guide & Exclusive AI Implementation Framework!<br><br>
+                Training Date to be announced soon
+            </p>
+        </div>
+        <div class="webinar-item">
+            <h1>AI-Powered Professionals: Master 30+ AI Tools</h1>
+            <img src="../static/images_event/im7.webp" alt="AI-Powered Professionals">
+            <p>Unlock the power of 30+ AI tools to enhance productivity, automate tasks, and accelerate career and business success.<br><br>
+                ✅ AI for Productivity & Workflow Automation – Automate repetitive tasks and boost efficiency<br>
+                ✅ AI for Business Growth & Marketing – Leverage AI for content creation, social media, and branding<br>
+                ✅ AI for Data Analytics & Decision-Making – Extract insights and make data-driven decisions faster<br>
+                ✅ AI for Communication & Collaboration – Use AI-powered tools for emails, presentations, and team collaboration<br>
+                ✅ AI for Personal & Professional Growth – Enhance career opportunities, learning, and skill development<br><br>
+                🎁 Bonus: Get a Free AI Toolkit Guide with access to the best AI tools for professionals!<br><br>
+                Training Date to be announced soon
+            </p>
+        </div>
+        <div class="webinar-item">
+            <h1>AI-Powered Interview Mastery</h1>
+            <img src="../static/images_event/im8.webp" alt="AI Interview Mastery">
+            <p>Master AI-powered strategies for interview success, resume optimization, and job search automation.<br><br>
+                ✅ AI-Powered Resume Optimization – Create ATS-friendly resumes tailored for your dream job<br>
+                ✅ AI for Job Search & Smart Applications – Find high-matching job opportunities using AI-powered platforms<br>
+                ✅ AI-Driven Interview Preparation – Leverage AI mock interviews with real-time feedback<br>
+                ✅ AI for Answering Behavioral & Technical Questions – Get AI insights to improve responses & confidence<br>
+                ✅ AI-Powered Networking & LinkedIn Growth – Use AI to expand professional connections & attract recruiters<br><br>
+                🎁 Bonus: Get a Free AI Interview Preparation Guide & Exclusive Access to AI-Powered Job Search Tools!<br><br>
+                Training Date to be announced soon
+            </p>
+        </div>
+    </div>
+
+    <div class="why-attend">
+        <h1>Why Attend These Webinars?</h1>
+        <p>✔ Led by AI Industry Experts – Learn from professionals with hands-on AI experience<br>
+           ✔ Interactive Live Q&A – Get your questions answered in real time<br>
+           ✔ AI-Powered Learning Tools – Access AI-driven strategies to enhance your career & business<br>
+           ✔ Exclusive Bonuses – Get AI templates, toolkits, and checklists
+        </p>
+    </div>
+
+    <div class="social-links">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+            <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16">
+            <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z"/>
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+            <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
+            <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
+        </svg>
+    </div>
+    {% include 'chatbot.html' %}
+
+    <footer>
+        <h3>Copyright © 2025 DigiDARA Technologies Private Limited - All Rights Reserved.</h3>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuIcon = document.getElementById('menu-icon');
+            const navLinks = document.getElementById('nav-links');
+            const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+            const dropdowns = document.querySelectorAll('.dropdown');
+        
+            // Ensure elements exist to avoid errors
+            if (!menuIcon || !navLinks) {
+                console.error('Menu icon or nav links not found');
+                return;
+            }
+        
+            // Toggle the main menu and hamburger icon style
+            menuIcon.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent event bubbling
+                navLinks.classList.toggle('active'); // Toggle the menu
+                menuIcon.classList.toggle('small-font'); // Toggle hamburger icon style
+        
+                // Close all dropdowns when toggling the main menu
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+            });
+        
+            // Toggle dropdown menus (only for screens <= 1000px)
+            dropdownToggles.forEach(toggle => {
+                toggle.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Prevent event bubbling to document click handler
+                    if (window.innerWidth <= 1000) {
+                        const parentDropdown = toggle.closest('.dropdown');
+        
+                        // Close other dropdowns
+                        dropdowns.forEach(dropdown => {
+                            if (dropdown !== parentDropdown) {
+                                dropdown.classList.remove('active');
+                            }
+                        });
+        
+                        // Toggle the clicked dropdown
+                        parentDropdown.classList.toggle('active');
+                    }
+                });
+            });
+        
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', (e) => {
+                // Only close if the click is outside the nav-links and menu-icon
+                if (!e.target.closest('#nav-links') && !e.target.closest('#menu-icon')) {
+                    dropdowns.forEach(dropdown => {
+                        dropdown.classList.remove('active');
+                    });
+                    navLinks.classList.remove('active'); // Also close the main menu
+                    menuIcon.classList.remove('small-font'); // Reset hamburger icon style
+                }
+            });
+        });
+        const menuIcon = document.getElementById('menu-icon');
+        const navLinks = document.getElementById('nav-links');
+        const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+        const navItems = document.querySelectorAll('.nav-menu li');
+
+        // Toggle mobile menu
+        menuIcon.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Highlight active menu item and toggle dropdowns
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                // Prevent default for dropdowns to handle toggle
+                if (item.classList.contains('dropdown')) {
+                    e.preventDefault();
+                }
+                // Remove active class from all items
+                navItems.forEach(i => i.classList.remove('active'));
+                // Add active class to clicked item
+                item.classList.add('active');
+
+                // Handle dropdown toggle
+                if (item.classList.contains('dropdown')) {
+                    const parentDropdown = item;
+                    dropdownToggles.forEach(toggle => {
+                        const otherDropdown = toggle.closest('.dropdown');
+                        if (otherDropdown !== parentDropdown) {
+                            otherDropdown.classList.remove('active');
+                        }
+                    });
+                    parentDropdown.classList.toggle('active');
+                    e.stopPropagation();
+                }
+            });
+        });
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.dropdown')) {
+                document.querySelectorAll('.dropdown').forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+            }
+        });
+
+        // Show More button functionality
+        document.getElementById("show-more-btn").addEventListener("click", function(event) {
+            event.preventDefault();
+            const moreContent = document.getElementById("more-content");
+            const button = document.getElementById("show-more-btn");
+            if (moreContent.style.display === "none") {
+                moreContent.style.display = "block";
+                button.textContent = "− Show Less";
+            } else {
+                moreContent.style.display = "none";
+                button.textContent = "+ Show More";
+            }
+        });
+    </script>
+</body>
+</html>

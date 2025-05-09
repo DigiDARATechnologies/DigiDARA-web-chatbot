@@ -1,0 +1,231 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digidara technologies</title>
+    <title>My Medium Blogs</title>
+    <link rel="stylesheet" href="../../static/Blog.css">
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+
+    <link rel="stylesheet"  href="{{url_for('static',filename='home.css')}}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{url_for('static', filename='chatbot.css')}}">
+    <script src="{{url_for('static', filename='chatbot.js')}}" defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .grid-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            width: 45%;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+        .card img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .card-title a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .card-date {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .card-summary {
+            color: #444;
+        }
+        .menu-icon {
+            font-size: 28px;
+            cursor: pointer;
+            display: none;
+        }
+        
+        footer h3 {
+            text-align: center;
+            margin-top: 30px;
+            padding-bottom: 50px;
+            font-size: 16px;
+            color: #555;
+        }
+        .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      padding: 10px;
+      background-color: #f0f0f0;
+      border-radius: 5px;
+      margin: 20px 0;
+    }
+
+    .social-icons img {
+      width: 30px;
+      height: 30px;
+    }
+          
+          
+           /* Responsive Design */
+        /* Mobile View (≤600px) */
+        @media screen and (max-width: 600px) {
+            
+            footer h3 {
+                font-size: 14px;
+                padding-bottom: 30px;
+            }
+          }
+        @media (max-width: 768px) {
+            .card {
+                width: 100%;
+            }
+        }
+        @media (max-width: 1000px) {
+            .menu-icon {
+                display: block;
+            }
+        }
+
+            
+        
+    </style>
+</head>
+<body>
+    {%include 'nav.html'%}
+    <h1 style="margin-top: 130px;margin-bottom: 50px;">Latest Blog Posts</h1>
+    {% if posts %}
+        <div class="grid-container">
+            {% for post in posts %}
+                <div class="card">
+                    {% if post.image %}
+                        <img src="{{ post.image }}" alt="Blog Image">
+                    {% endif %}
+                    <div class="card-title">
+                        <a href="{{ post.link }}" target="_blank">{{ post.title }}</a>
+                    </div>
+                    <div class="card-date">{{ post.published }}</div>
+                    <div class="card-summary">{{ post.summary | safe }}</div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No blog posts found.</p>
+    {% endif %}
+
+
+    <div class="social-icons">
+        <a href="https://www.facebook.com/DigidaraTechnologies/"><img src="../static/icons/5.png" alt="Facebook"></a>
+        <a href="https://www.instagram.com/digidaratechnologies/"><img src="../static/icons/insta.png" alt="Instagram"></a>
+        <a href="https://www.linkedin.com/company/104865843/admin/dashboard/"><img src="../static/icons/7.webp" alt="LinkedIn"></a>
+        <a href="https://x.com/digiDARA_Tech"><img src="../static/icons/8.png" alt="Twitter"></a>
+        <a href="https://www.youtube.com/@DigiDARATechnologies"><img src="../static/icons/9.png" alt="YouTube"></a>
+      </div>
+      {% include 'chatbot.html' %}
+      <footer>
+        <h3>Copyright © 2025 DigiDARA Technologies Private Limited - All Rights Reserved.</h3>
+    </footer>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuIcon = document.getElementById('menu-icon');
+        const navLinks = document.getElementById('nav-links');
+        const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+        const dropdowns = document.querySelectorAll('.dropdown');
+    
+        // Ensure elements exist to avoid errors
+        if (!menuIcon || !navLinks) {
+            console.error('Menu icon or nav links not found');
+            return;
+        }
+    
+        // Toggle the main menu and hamburger icon style
+        menuIcon.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent event bubbling
+            navLinks.classList.toggle('active'); // Toggle the menu
+            menuIcon.classList.toggle('small-font'); // Toggle hamburger icon style
+    
+            // Close all dropdowns when toggling the main menu
+            dropdowns.forEach(dropdown => {
+                dropdown.classList.remove('active');
+            });
+        });
+    
+        // Toggle dropdown menus (only for screens <= 1000px)
+        dropdownToggles.forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent event bubbling to document click handler
+                if (window.innerWidth <= 1000) {
+                    const parentDropdown = toggle.closest('.dropdown');
+    
+                    // Close other dropdowns
+                    dropdowns.forEach(dropdown => {
+                        if (dropdown !== parentDropdown) {
+                            dropdown.classList.remove('active');
+                        }
+                    });
+    
+                    // Toggle the clicked dropdown
+                    parentDropdown.classList.toggle('active');
+                }
+            });
+        });
+    
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', (e) => {
+            // Only close if the click is outside the nav-links and menu-icon
+            if (!e.target.closest('#nav-links') && !e.target.closest('#menu-icon')) {
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+                navLinks.classList.remove('active'); // Also close the main menu
+                menuIcon.classList.remove('small-font'); // Reset hamburger icon style
+            }
+        });
+    });
+    
+        const menuIcon = document.getElementById('menu-icon');
+        const navLinks = document.getElementById('nav-links');
+        const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+
+        menuIcon.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        dropdownToggles.forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                if (window.innerWidth <= 900) {
+                    const parentDropdown = toggle.closest('.dropdown');
+                    dropdownToggles.forEach(item => {
+                        const otherDropdown = item.closest('.dropdown');
+                        if (otherDropdown !== parentDropdown) {
+                            otherDropdown.classList.remove('active');
+                        }
+                    });
+                    parentDropdown.classList.toggle('active');
+                }
+            });
+        });
+
+</script>
+</body>
+</html>

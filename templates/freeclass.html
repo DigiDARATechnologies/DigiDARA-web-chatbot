@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digidara Technologies - Contact</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        
+
+        /* Contact Form */
+        #q {
+            margin-top: 20px;
+            padding: 0 15px;
+        }
+
+        #q > h1 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bolder;
+            color: #1010ad;
+            font-size: 45px;
+            text-align: center;
+        }
+
+        #q > input,
+        #q > textarea {
+            margin-top: 20px;
+            height: 80px;
+            font-size: 30px;
+            background-color: rgb(240, 238, 238);
+            width: 100%; /* Ensure full width in desktop */
+            box-sizing: border-box;
+        }
+
+        #q > textarea {
+            height: 120px;
+        }
+
+        #q > button {
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+            background-color: #1010ad;
+            height: 80px;
+            font-size: 40px;
+            color: white;
+            border-color: #1010ad;
+            border-radius: 10px;
+        }
+
+        #q > p {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        #q2 {
+            margin-top: 20px;
+            padding: 0 15px;
+            position: relative;
+        }
+
+        #q2 > img {
+            width: 90%;
+            max-height: 1800px;
+            margin-left: 100px;
+        }
+
+        #q4 {
+            width: 90%;
+            margin: 50px auto;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .social-icons img {
+            width: 30px;
+            height: 30px;
+        }
+
+        footer h3 {
+            text-align: center;
+            margin-top: 30px;
+            padding-bottom: 50px;
+            font-size: 16px;
+        }
+
+        /* Responsive Design */
+        /* Mobile View (≤600px) */
+        @media screen and (max-width: 600px) {
+            
+
+            #q {
+                margin-bottom: 40px;
+            }
+
+            #q > h1 {
+                font-size: 32px;
+            }
+
+            #q > input,
+            #q > textarea {
+                width: 100% !important; /* Ensure full width */
+                font-size: 20px;
+                height: 60px;
+                box-sizing: border-box;
+            }
+
+            #q > textarea {
+                height: 100px;
+            }
+
+            #q > button {
+                font-size: 24px;
+                height: 60px;
+            }
+
+            #q2 > img {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            #q4 {
+                width: 90%;
+                margin: 30px auto;
+            }
+
+            .social-icons img {
+                width: 40px;
+                height: 40px;
+            }
+
+            footer h3 {
+                font-size: 14px;
+                padding-bottom: 30px;
+            }
+        }
+
+        /* Tablet View (601px–1000px) */
+        @media screen and (min-width: 601px) and (max-width: 1000px) {
+            
+
+            #q {
+                margin-bottom: 40px;
+            }
+
+            #q > h1 {
+                font-size: 40px;
+            }
+
+            #q > input,
+            #q > textarea {
+                width: 100% !important; /* Ensure full width */
+                font-size: 24px;
+                box-sizing: border-box;
+            }
+
+            #q > button {
+                font-size: 30px;
+            }
+
+            #q2 > img {
+                margin-left: 0;
+               
+                width: 100%;
+            }
+
+            #q4 {
+                width: 90%;
+                margin: 40px auto;
+            }
+
+            .social-icons img {
+                width: 40px;
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    {% include 'nav.html'%}
+
+    <div class="container" style="margin-top: 150px;">
+        <div class="row g-3">
+            <div class="col-12 col-sm-5 mx-auto" id="q">
+                <h1>Drop us a line!</h1>
+                <input type="text" class="form-control" placeholder="Name*" name="name">
+                <input type="text" class="form-control" placeholder="Profession*" name="profession">
+                <select style="background-color: rgb(235, 234, 234);height: 100px;font-size: 23px;font-family:Arial, Helvetica, sans-serif;font-weight: 40px;margin-top: 20px;color: #413f3f; " class="form-select form-control" aria-label="Default select example" name="interest">
+                    <option selected>Why you Interest to attend AI Masterclass?</option>
+                    <option value="1">Planning to Join Course</option>
+                    <option value="2">Gain Knowledge</option>
+                    <option value="3">Others</option>
+                </select>
+                <input type="email" class="form-control" placeholder="Email*" name="email">
+                <input type="number" class="form-control" placeholder="Phone No*" name="phone">
+                <input type="date" class="form-control" value="2025-05-08" min="2025-05-08" max="2025-05-11" name="date">
+                <input type="time" class="form-control" value="16:00" disabled name="time">
+                <!-- <select class="form-select form-control" aria-label="Default select example">
+                    <option selected>Book Your Time</option>
+                    <option value="1">4.00PM</option>
+                    <option value="2">5.00PM</option>
+                    <option value="3">6.00PM</option>
+                    <option value="3">7.00PM</option>
+                </select> -->
+                <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Remarks" rows="3" name="remark"></textarea>
+                <button type="submit" onclick="sendmasterForm()">Send</button>
+                <p>This site is protected by reCAPTCHA and the Google <a style="text-decoration: none;" href="https://policies.google.com/privacy">Privacy Policy</a> and <a style="text-decoration: none;" href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
+            </div>
+            
+            <div class="col-12 col-sm-7 mx-auto" id="q2">
+                <img src="../static/master.jpg" class="d-block w-100" alt="Slide 1">
+            </div>
+        </div>
+    </div>
+
+    <div id="q4">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.733492887345!2d78.69193471018042!3d10.83169558927587!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baaf54f3389a26f%3A0x6a7d5d52b17aab76!2sDigiDara%20Technologies%20Private%20Limited!5e0!3m2!1sta!2sin!4v1745832239842!5m2!1sta!2sin" width="100%" height="700px" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+    <div class="social-icons">
+        <a href="https://www.facebook.com/DigidaraTechnologies/"><img src="../static/icons/5.png" alt="Facebook"></a>
+        <a href="https://www.instagram.com/digidaratechnologies/"><img src="../static/icons/insta.png" alt="Instagram"></a>
+        <a href="https://www.linkedin.com/company/104865843/admin/dashboard/"><img src="../static/icons/7.webp" alt="LinkedIn"></a>
+        <a href="https://x.com/digiDARA_Tech"><img src="../static/icons/8.png" alt="Twitter"></a>
+        <a href="https://www.youtube.com/@DigiDARATechnologies"><img src="../static/icons/9.png" alt="YouTube"></a>
+    </div>
+
+    <footer>
+        <h3>Copyright © 2025 DigiDARA Technologies Private Limited - All Rights Reserved.</h3>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuIcon = document.getElementById('menu-icon');
+            const navLinks = document.getElementById('nav-links');
+            const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+            const dropdowns = document.querySelectorAll('.dropdown');
+        
+            // Ensure elements exist to avoid errors
+            if (!menuIcon || !navLinks) {
+                console.error('Menu icon or nav links not found');
+                return;
+            }
+        
+            // Toggle the main menu and hamburger icon style
+            menuIcon.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent event bubbling
+                navLinks.classList.toggle('active'); // Toggle the menu
+                menuIcon.classList.toggle('small-font'); // Toggle hamburger icon style
+        
+                // Close all dropdowns when toggling the main menu
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+            });
+        
+            // Toggle dropdown menus (only for screens <= 1000px)
+            dropdownToggles.forEach(toggle => {
+                toggle.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Prevent event bubbling to document click handler
+                    if (window.innerWidth <= 1000) {
+                        const parentDropdown = toggle.closest('.dropdown');
+        
+                        // Close other dropdowns
+                        dropdowns.forEach(dropdown => {
+                            if (dropdown !== parentDropdown) {
+                                dropdown.classList.remove('active');
+                            }
+                        });
+        
+                        // Toggle the clicked dropdown
+                        parentDropdown.classList.toggle('active');
+                    }
+                });
+            });
+        
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', (e) => {
+                // Only close if the click is outside the nav-links and menu-icon
+                if (!e.target.closest('#nav-links') && !e.target.closest('#menu-icon')) {
+                    dropdowns.forEach(dropdown => {
+                        dropdown.classList.remove('active');
+                    });
+                    navLinks.classList.remove('active'); // Also close the main menu
+                    menuIcon.classList.remove('small-font'); // Reset hamburger icon style
+                }
+            });
+        });
+        // Navigation Menu
+        const menuIcon = document.getElementById('menu-icon');
+        const navLinks = document.getElementById('nav-links');
+        const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+
+        menuIcon.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        dropdownToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                if (window.innerWidth <= 1000) {
+                    const parentDropdown = toggle.closest('.dropdown');
+                    dropdownToggles.forEach(item => {
+                        const otherDropdown = item.closest('.dropdown');
+                        if (otherDropdown !== parentDropdown) {
+                            otherDropdown.classList.remove('active');
+                        }
+                    });
+                    parentDropdown.classList.toggle('active');
+                }
+            });
+        });
+        function sendmasterForm() {
+            const name = document.querySelector('input[name="name"]').value.trim();
+            const email = document.querySelector('input[name="profession"]').value.trim();
+            const email = document.querySelector('input[name="interest"]').value.trim();
+            const email = document.querySelector('input[name="email"]').value.trim();
+            const phone = document.querySelector('input[name="phone"]').value.trim();
+            const phone = document.querySelector('input[name="date"]').value.trim();
+            const phone = document.querySelector('input[name="time"]').value.trim();
+            const message = document.querySelector('textarea[name="message"]').value.trim();
+
+            if (!name || !profession || !interest || !email || !phone ||!date || !time || !message) {
+                alert("Please fill in all required fields.");
+                return;
+            }
+
+            const emailPattern = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+            if (!emailPattern.test(email)) {
+                alert("Please enter a valid email address.");
+                return;
+            }
+
+            const phonePattern = /^\d{10}$/;
+            if (!phonePattern.test(phone)) {
+                alert("Please enter a valid 10-digit phone number.");
+                return;
+            }
+
+            const data = {
+                name: name,
+                profession: profession,
+                interest: interest,
+                email: email,
+                phone: phone,
+                date: date,
+                time: time,
+                message: message
+            };
+
+            fetch('/submit_contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert("Your message has been sent successfully!");
+                    window.location.href = '/Succss';
+                } else {
+                    alert("Failed to send message. Please try again later.");
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("An error occurred. Please try again later.");
+            });
+        }
+    </script>
+</body>
+</html>

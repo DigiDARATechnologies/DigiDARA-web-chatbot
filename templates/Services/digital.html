@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='chatbot.css')}}">
+    <script src="{{url_for('static', filename='chatbot.js')}}" defer></script>
+    <title>DigiDARA Technologies</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Montserrat',sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        
+
+        .section-title, .section-1 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 40px 0;
+            margin-top: 150px;
+        }
+        #hr{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 10px 0;
+            
+        }
+
+        .line {
+            flex: 1;
+            height: 1px;
+            background-color: #ccc;
+            border: none;
+            margin: 0 20px;
+        }
+
+        .text {
+            white-space: nowrap;
+            font-size: 20px;
+            font-weight: 500;
+            color: #222;
+        }
+
+        .internship-section, .projects-section, .career-section, .graduate-section, .why-digidara-section, .apply-section {
+            display: flex;
+            align-items: center;
+            padding: 40px;
+            background-color: #fff;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 20px;
+        }
+
+        .internship-image, .projects-image, .career-image, .graduate-image, .why-digidara-image, .image {
+            flex: 1;
+            
+        }
+
+        .section-image {
+            width: 100%;
+            max-height: 680px;
+            object-fit: cover;
+        }
+
+        .section-text {
+            flex: 1;
+            padding: 0 20px;
+        }
+
+        .internship-text h1, .text-section h1 {
+            color: rgb(16, 16, 173);
+            font-size: 30px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .internship-text h1 span {
+            color: rgb(16, 16, 173);
+        }
+
+        .internship-text p, .projects-text p, .career-text p, .graduate-text p, .why-digidara-text p, .text-section p {
+            color: #5e5e55;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .internship-details p, .projects-details p {
+            font-size: 18px;
+            color: #5e5e55;
+            margin: 10px 0;
+        }
+
+        .internship-details h3, .internship-details h4, .text-section h4 {
+            font-size: 20px;
+            color: #5e5e55;
+            margin: 10px 0;
+        }
+
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #fff;
+            gap: 20px;
+        }
+
+        .text-section {
+            flex: 1;
+            padding: 40px;
+        }
+
+        .text-section ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .text-section ul li {
+            font-size: 18px;
+            color: #5e5e55;
+            margin-bottom: 10px;
+        }
+
+        .main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            font-size: 18px;
+            color: #5e5e55;
+            text-align: center;
+        }
+
+        .projects-text h2, .career-text h2, .graduate-text h2, .why-digidara-text h2, .apply-text h2 {
+            color: #1e3a8a;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .projects-text ul, .career-text ul, .graduate-text ul, .why-digidara-text ul, .apply-text ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .projects-text ul li, .career-text ul li, .graduate-text ul li, .why-digidara-text ul li, .apply-text ul li {
+            font-size: 18px;
+            color: #5e5e55;
+        }
+
+        .projects-details p::before, .highlight::before {
+            content: "✨";
+            margin-right: 10px;
+        }
+
+        .apply-form {
+            flex: 1;
+            max-width: 500px;
+            padding: 20px;
+        }
+
+        .apply-form h3 {
+            color: #1e3a8a;
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        #g{
+            text-align: center;
+            padding-left: 20%;
+            margin-top: -70px;
+            margin-bottom: -50px;
+        }
+        .apply-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #5e5e55;
+        }
+
+        .apply-form input[type="text"],
+        .apply-form input[type="tel"],
+        .apply-form input[type="email"],
+        .apply-form textarea {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            background-color: #f1f1f1;
+            box-sizing: border-box;
+            font-size: 14px;
+            border-radius: 2px;
+            margin-bottom: 15px;
+        }
+        #a{
+            font-family: 'Montserrat',sans-serif;
+            font-size: 1.6rem;
+        }
+        #a>h3{
+            margin-bottom: -10px;
+        }
+        #a>h1{
+            font-size: 2.3rem;
+            margin-bottom: -20px;
+        }
+        #a>p{
+            font-size: 1.5rem;
+            line-height: 1.6;
+        }
+        #b>h1{
+            margin-top: -10px;
+            
+        }
+        #b>p{
+            font-size: 1.5rem;
+            line-height: 1.6;
+        }
+        #c{
+            margin-top: 70px;
+            margin-right: 5px;
+        }
+        #g{
+            color: #1010ad;
+            font-size: 2.2rem;
+            margin-top: -300px;
+            margin-bottom: -400px;
+        }
+        #e>p{
+            font-size: 1.5rem;
+            line-height: 1.6;
+
+        }
+        #e>h2{
+            color: #1010ad;
+            font-size: 1.9rem;
+            margin-top: -70px;
+        }
+        #f>h2{
+            color: #1010ad;
+            font-size: 1.9rem;
+            margin-top: -70px;
+        }
+        #f>p{
+            font-size: 1.5rem;
+            line-height: 1.6;
+        }
+        #h>h2{
+            color: #1010ad;
+            font-size: 1.9rem;
+            margin-top: -180px;
+
+        }
+        #h>p{
+            font-size: 1.5rem;
+            line-height: 1.6;
+
+        }
+        #i>h2{
+            color: #1010ad;
+            font-size: 1.9rem;
+            margin-top: -100px;
+
+        }
+        #i>p{
+            font-size: 1.5rem;
+            line-height: 1.6;
+
+        }
+        #j>h3{
+            color: black;
+            font-size: 1.9rem;
+            margin-top: -10px;
+        }
+        #j>p{
+            font-size: 1.5rem;
+            line-height: 1.6;
+            margin-top: -10px;
+        }
+        #j>h1{
+            margin-top: -10px;
+        }
+        #m{
+            margin-top: 100px;
+            margin-right: 5px;
+        }
+
+        .apply-form textarea {
+            resize: vertical;
+            height: 120px;
+        }
+
+        .apply-form button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007BFF;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 2px;
+            transition: background-color 0.3s;
+        }
+
+        .apply-form button:hover {
+            background-color: #0056b3;
+        }
+
+        .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+
+.social-icons img {
+    width: 30px;
+    height: 30px;
+}
+#z{
+    width: 50%;
+    height: auto;
+    margin-left: 25%;
+}
+
+.footer {
+    padding: 20px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.footer p {
+    color: #333;
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.footer-links {
+    margin-top: 50px;
+}
+
+.footer-links a {
+    color: #1e3a8a;
+    font-size: 18px;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.footer-line {
+    margin: 90px 720px 90px 720px;
+}
+
+
+        /* Mobile View */
+        @media screen and (max-width: 768px) {
+            
+
+            .section-title, .section-1 {
+                flex-direction: column;
+                margin: 20px 0;
+                padding: 0 15px;
+            }
+
+            .line {
+                width: 100%;
+                margin: 10px 0;
+            }
+
+            .text {
+                font-size: 16px;
+                text-align: center;
+            }
+
+            .internship-section, .projects-section, .career-section, .graduate-section, .why-digidara-section, .apply-section, .container {
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+            }
+
+            .section-image {
+                width: 100%;
+                max-height: 300px;
+                object-fit: cover;
+            }
+
+            .section-text, .apply-form {
+                padding: 15px;
+                max-width: 100%;
+            }
+
+            .internship-text h1, .text-section h1, .projects-text h2, .career-text h2, .graduate-text h2, .why-digidara-text h2, .apply-text h2, .apply-form h3 {
+                font-size: 22px;
+                text-align: center;
+            }
+
+            .internship-text p, .projects-text p, .career-text p, .graduate-text p, .why-digidara-text p, .text-section p, .internship-details p, .projects-details p {
+                font-size: 16px;
+                text-align: left;
+            }
+
+            .text-section ul, .projects-text ul, .career-text ul, .graduate-text ul, .why-digidara-text ul, .apply-text ul {
+                padding-left: 20px;
+                text-align: left;
+            }
+
+            .text-section ul li, .projects-text ul li, .career-text ul li, .graduate-text ul li, .why-digidara-text ul li, .apply-text ul li {
+                font-size: 14px;
+            }
+
+            .text-section {
+                padding: 20px;
+            }
+            #lo{
+                margin-top: 60px;
+                margin-bottom: -10px;
+            }
+
+            .main {
+                padding: 15px;
+                font-size: 16px;
+            }
+
+            .apply-form input[type="text"],
+            .apply-form input[type="tel"],
+            .apply-form input[type="email"],
+            .apply-form textarea {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            .apply-form button {
+                font-size: 16px;
+                padding: 10px;
+            }
+
+            .footer {
+                padding: 15px;
+            }
+
+            .serve, .copy, .ser {
+                font-size: 12px;
+            }
+
+            .line-1 {
+                max-width: 80px;
+            }
+            #g{
+                margin-top: 10px;
+                font-size: 1.3rem;
+                text-align: center;
+                margin-left: -50px;
+            }
+            #e>h2{
+                margin-top: 10px;
+                font-size: 1.5rem;
+                margin-left: -50px;
+            }
+            #f{
+                margin-top: 10px;
+            }
+            #f>h2{
+                font-size: 1.5rem;
+                
+            }
+            #z{
+                margin-left: -30px;
+                margin-top: 10px;
+                margin-bottom: -30px;
+            }
+            #h{
+                margin-top: 100px;
+            }
+            #h>h2{
+                font-size: 1.4rem;
+                margin-left: -20px;
+            }
+            #i{
+                margin-top: 80px;
+            }
+            #i>h2{
+                font-size: 1.5rem;
+            }
+
+        }
+         
+    </style>
+</head>
+<body>
+    {% include 'nav.html'%}
+    <div class="section-title" id="lo">
+        <hr class="line">
+        <span class="text" style="font-family:  'Montserrat', sans-serif;">AI-Powered Digital Marketing</span>
+        <hr class="line">
+    </div>
+    <div class="internship-section"> 
+        <div class="internship-image">
+            <img src="../../static/digital/im1.png" alt="AI & Data Science Internship" class="section-image">
+        </div>
+        <div class="internship-text section-text" id="a">
+            <h1 style="font-family:  'Montserrat', sans-serif;">Create Impact,Build Visibility.</span></h1>
+            <h3 style="font-family:  'Montserrat', sans-serif;">Scale Smarter with Artificial Intelligence</h3>
+            <p style="font-family:  'Montserrat', sans-serif;">In today’s crowded digital landscape, success doesn’t come from working harder—it comes from working smarter. At DigiDARA Technologies, we offer AI-Powered Digital Marketing services that combine creativity, automation, and intelligence to help businesses stand out, connect with the right audience, and drive measurable growth—faster than ever.</p>
+            <p style="font-family:  'Montserrat', sans-serif;">Whether you're a startup, a local business, or a personal brand, our AI-enhanced marketing approach helps you deliver the right message, to the right people, at the right time—consistently and effortlessly.</p>
+            
+        </div>
+    </div>
+    <div class="section-title" id="hr">
+        
+    </div>
+   
+    
+
+    <div class="container">
+        <div class="text-section section-text" id="b">
+            <h1 style="font-family:  'Montserrat', sans-serif;">Why Choose AI-Driven Digital Marketing?</h1>
+            <p style="font-family:  'Montserrat', sans-serif;">- <b>Smarter Campaigns:</b> AI understands trends, patterns, and user behavior—so your campaigns become more relevant and precise.<br>
+                - <b>Faster Execution:</b> Generate and launch creative content in minutes, not hours.<br>
+                - <b>Hyper-Personalized Reach:</b> Engage customers with personalized messages based on real-time data.<br>
+                - <b>Consistent Communication:</b> Maintain an active and engaging presence across all platforms—automatically.<br>
+                - <b>Better ROI:</b> Track what’s working, optimize quickly, and see your marketing spend convert into results.</p>
+            <p style="font-family:  'Montserrat', sans-serif;"><b>Your marketing doesn’t need more effort. It needs more intelligence.</b></p>
+            
+        </div>
+        
+        <div class="image" id="c">
+            <img  src="../../static/digital/im2.png" alt="AI & Data Science Internship" class="section-image">
+        </div>
+    </div>
+    <div class="section-title" id="hr">
+        
+        </div>
+  
+  
+    <div class="section-title" id="hr">
+        
+        </div>
+    <div class="container">
+        <div class="text-section section-text" id="j">
+            <h1 style="font-family:  'Montserrat', sans-serif;">Who Can Benefit From Our Services?</h1>
+            <h3 style="font-family:  'Montserrat', sans-serif;">Startups & Small Businesses</h3>
+            <p style="font-family:  'Montserrat', sans-serif;">Build your brand online, even with a limited team and budget. Stay consistent, relevant, and competitive from Day </p>
+            <h3 style="font-family:  'Montserrat', sans-serif;">Coaches, Trainers & Content Creators</h3>
+            <p style="font-family:  'Montserrat', sans-serif;">Stay visible and grow your influence across platforms. Focus on delivering value—let us handle the content flow and engagement.</p>
+            <h3 style="font-family:  'Montserrat', sans-serif;">Retailers & Local Service Providers</h3>
+            <p style="font-family:  'Montserrat', sans-serif;">Promote offers, showcase products, and engage local audiences with personalized marketing that drives footfall and leads.</p>
+            <h3 style="font-family:  'Montserrat', sans-serif;">Educational Institutions & EdTech Brands</h3>
+            <p style="font-family:  'Montserrat', sans-serif;">Drive student enrollment, share success stories, and stay connected with alumni and stakeholders through strategic digital presence.</p>
+  
+        </div>
+        <div class="image" id="m">
+            <img  src="../../static/digital/im4.png" alt="AI & Data Science Internship" class="section-image">
+        </div>
+    </div>
+   
+
+    
+    
+    <div class="social-icons" style="background-color: #f1f1f1;">
+        <a href="#"><img src="../static/img_internship/fac.png" alt="Facebook"></a>
+        <a href="#"><img src="../static/img_internship/insta.png" alt="Instagram"></a>
+        <a href="#"><img src="../static/img_internship/linked.webp" alt="LinkedIn"></a>
+        <a href="#"><img src="../static/img_internship/twitter.png" alt="Twitter"></a>
+        <a href="#"><img src="../static/img_internship/yt.png" alt="YouTube"></a>
+    </div>
+    {% include 'chatbot.html' %}
+    <div class="footer" style="background-color: #f1f1f1;"  >
+        <p>Copyright © 2025 DigiDARA Technologies Private Limited - All Rights Reserved.</p>
+        
+        </div>
+    </div>
+    
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuIcon = document.getElementById('menu-icon');
+        const navLinks = document.getElementById('nav-links');
+        const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+        const dropdowns = document.querySelectorAll('.dropdown');
+    
+        // Ensure elements exist to avoid errors
+        if (!menuIcon || !navLinks) {
+            console.error('Menu icon or nav links not found');
+            return;
+        }
+    
+        // Toggle the main menu and hamburger icon style
+        menuIcon.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent event bubbling
+            navLinks.classList.toggle('active'); // Toggle the menu
+            menuIcon.classList.toggle('small-font'); // Toggle hamburger icon style
+    
+            // Close all dropdowns when toggling the main menu
+            dropdowns.forEach(dropdown => {
+                dropdown.classList.remove('active');
+            });
+        });
+    
+        // Toggle dropdown menus (only for screens <= 1000px)
+        dropdownToggles.forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent event bubbling to document click handler
+                if (window.innerWidth <= 1000) {
+                    const parentDropdown = toggle.closest('.dropdown');
+    
+                    // Close other dropdowns
+                    dropdowns.forEach(dropdown => {
+                        if (dropdown !== parentDropdown) {
+                            dropdown.classList.remove('active');
+                        }
+                    });
+    
+                    // Toggle the clicked dropdown
+                    parentDropdown.classList.toggle('active');
+                }
+            });
+        });
+    
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', (e) => {
+            // Only close if the click is outside the nav-links and menu-icon
+            if (!e.target.closest('#nav-links') && !e.target.closest('#menu-icon')) {
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+                navLinks.classList.remove('active'); // Also close the main menu
+                menuIcon.classList.remove('small-font'); // Reset hamburger icon style
+            }
+        });
+    });
+    const menuIcon = document.getElementById('menu-icon');
+          const navLinks = document.getElementById('nav-links');
+          const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+  
+          menuIcon.addEventListener('click', () => {
+              navLinks.classList.toggle('active');
+          });
+  
+          dropdownToggles.forEach(toggle => {
+              toggle.addEventListener('click', (e) => {
+                  if (window.innerWidth <= 900) {
+                      const parentDropdown = toggle.closest('.dropdown');
+                      dropdownToggles.forEach(item => {
+                          const otherDropdown = item.closest('.dropdown');
+                          if (otherDropdown !== parentDropdown) {
+                              otherDropdown.classList.remove('active');
+                          }
+                      });
+                      parentDropdown.classList.toggle('active');
+                  }
+              });
+          });
+</script>
+</body>
+</html>
