@@ -49,6 +49,8 @@ try:
 except AttributeError as e:
     logger.error("Failed to access lead_processing.process_leads: %s", e)
     raise
+    
+user_chains = {}
 
 MYSQL_CONFIG = {
     'user': os.getenv("MYSQL_USER"),
