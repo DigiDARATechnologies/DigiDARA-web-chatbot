@@ -24,6 +24,7 @@ async function sendMessage(prompt = null) {
             const response = await fetch('/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
+                credentials: 'same-origin'
                 body: JSON.stringify({ prompt: message })
             });
             const data = await response.json();
