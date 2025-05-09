@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigiDARA Technologies</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+        }
+        /* Social Icons */
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 15px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+        #head{
+            
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bolder;
+            color: #1010ad;
+            font-size: 36px;
+            text-align: center;
+            margin-top: 150px;
+            margin-bottom: 20px;
+        
+        }
+
+        .social-icons img {
+            width: 28px;
+            height: 28px;
+            transition: transform 0.3s ease;
+        }
+
+        .social-icons img:hover {
+            transform: scale(1.1);
+        }
+        #a>h2{
+            font-size: 2.5rem;
+            
+
+        }
+        #a>p{
+            font-size: 1.3rem;
+            line-height: 1.9;
+        }
+         /* Section Title */
+        .section-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 40px 0;
+            padding: 0 15px;
+            
+            width: 100%;
+            
+           
+        }
+
+        .line {
+            flex: 1;
+            height: 2px;
+            background-color: #ccc;
+            border: none;
+        }
+
+        .text {
+            white-space: nowrap;
+            font-size: 30px;
+            font-weight: 500;
+            color: #222;
+            font-family:"Montserrat", sans-serif;
+        }
+        #b>h2{
+            font-size: 2.5rem;
+        }
+        #b>p{
+            font-size: 1.3rem;
+            line-height: 1.9;
+        }
+        #c>p{
+            font-size: 1.3rem;
+            line-height: 1.9;
+        }
+        #c>h1{
+            font-size: 2.5rem;
+        }
+        #d>h2{
+            font-size: 2.5rem;
+        }
+        #d>p{
+            font-size: 1.3rem;
+            line-height: 1.9;
+        }
+        header.section-header {
+            background: linear-gradient(135deg, #007bff, #6610f2);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .features-grid, .webinar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 40px 20px;
+        }
+        .feature-card, .webinar-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 20px;
+            transition: transform 0.3s ease;
+        }
+        .feature-card:hover, .webinar-card:hover {
+            transform: translateY(-5px);
+        }
+        .feature-image, .webinar-image, .event-image {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .circular-image {
+            border-radius: 50%;
+        }
+        .event-section {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            background: #e9ecef;
+            padding: 40px 20px;
+            border-radius: 10px;
+            margin: 20px;
+        }
+        .event-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            width: 100%;
+        }
+        .event-text {
+            flex: 1;
+            padding: 20px;
+        }
+        .event-image {
+            flex: 1;
+            max-width: 400px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        /* Footer */
+        footer {
+            width: 100%;
+        }
+
+        footer h3 {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px 15px;
+            font-size: 14px;
+            color: #666;
+            background-color: #f0f0f0;
+            width: 100%;
+        }
+        .cta-button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+        .cta-button:hover {
+            background-color: #0056b3;
+        }
+        .show-more-btn {
+            margin-top: 10px;
+            background: none;
+            border: none;
+            color: #007bff;
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            .event-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    {% include 'nav.html'%}
+    
+    <h1 id="head">Webinars and event</h1>
+
+
+
+<section class="features-grid" >
+    <article class="feature-card" id="a">
+        <img src="../static/images_event/im1.webp" alt="Python & AI Foundations Bootcamp" class="feature-image">
+        <h2 style="font-family:'Montserrat',sans-serif; ">Python & AI Foundations</h2>
+        <p style="font-family:'Montserrat',sans-serif; ">
+            Introducing the Python & AI Foundations Bootcamp by DigiDARA Technologies — a 30-day hands-on journey from zero coding to AI-ready skills.
+
+            Why This Bootcamp Is Different:<br>
+            ✅ Learn Python – From scratch to pro-level coding<br>
+            ✅ Explore 20+ Real AI Tools – ChatGPT, Prompt Engineering, DALL·E, Copilot, GravityWrite & more<br>
+            ✅ Capstone Project – Apply
+            <span id="more-content" style="display:none;font-family:'Montserrat',sans-serif; ">
+                 everything you learn in a real-world project<br>
+                ✅ AI-Powered Career Support – Resume, LinkedIn, Interview skills<br>
+                ✅ Soft Skills Training – Storytelling, Communication, Confidence<br>
+
+                🗓️ Duration: April 28 – May 30, 2025<br>
+                📍 Location: DigiDARA Technologies, Periyasamy Tower, 2nd Floor, Chathiram Bus Stand, Trichy - 620002<br>
+                📞 Call/WhatsApp: 9500406945
+            </span>
+        </p>
+        <button id="show-more-btn" class="show-more-btn" style="font-family:'Montserrat',sans-serif; ">+ Show More</button>
+    </article>
+
+    <article class="feature-card" id="b">
+        <img src="../static/images_event/im2.webp" alt="Our Programs" class="feature-image circular-image">
+        <h1 style="font-family:'Montserrat',sans-serif; ">Our Programs</h1>
+        <p style="font-family:'Montserrat',sans-serif; ">We offer a variety of programs designed to meet the diverse needs and interests of our students. From vocational training to college prep, our programs are designed to provide students with the skills and knowledge they need to succeed in their chosen field.</p>
+    </article>
+
+    <article class="feature-card" id="b">
+        <img src="../static/images_event/im3.webp" alt="Our Teachers" class="feature-image circular-image">
+        <h1 style="font-family:'Montserrat',sans-serif; ">Our Experts</h1>
+        <p style="font-family:'Montserrat',sans-serif; ">Our experienced and dedicated Experts are committed to helping students achieve their goals. They are passionate about teaching and are always looking for new and innovative ways to help students learn.</p>
+    </article>
+</section>
+
+<section class="event-section">
+    <div class="event-content">
+        <img src="../static/images_event/im4.webp" alt="Stay Ahead with AI Webinars" class="event-image">
+        <div class="event-text" id="c">
+            <h1 style="font-family:'Montserrat',sans-serif; " >Stay Ahead with AI – Join Our Live Webinars & Events</h1>
+            <p style="font-family:'Montserrat',sans-serif; ">Discover the latest AI trends, tools, and strategies from industry experts! Attend our live AI training sessions, expert panel discussions, and interactive workshops to gain hands-on AI knowledge.<br><br>
+                ✅ AI Webinars for Beginners & Experts<br>
+                ✅ Live AI Training & Masterclasses<br>
+                ✅ Expert-Led AI Discussions
+            </p>
+            <a href="{{url_for('event')}}" class="cta-button">Find Out More</a>
+        </div>
+    </div>
+</section>
+
+<header class="section-header">
+    <h1 style="font-family:'Montserrat',sans-serif; ">Upcoming Webinars & Events</h1>
+</header>
+
+<section class="webinar-grid">
+    <article class="webinar-card" id="d">
+        <h2 style="font-family:'Montserrat',sans-serif; ">AI LinkedIn Mastery</h2>
+        <img src="../static/images_event/im5.webp" alt="AI LinkedIn Mastery" class="webinar-image">
+        <p style="font-family:'Montserrat',sans-serif; ">Learn how to use AI for personal branding, networking, and career growth on LinkedIn.<br><br>
+            ✅ AI-Powered LinkedIn Profile Optimization – Craft a compelling profile using AI<br>
+            ✅ AI for Content Creation – Generate viral posts, articles, and thought leadership content<br>
+            ✅ AI Networking Strategies – Use AI to expand your professional connections<br>
+            ✅ AI-Driven Job Search – Leverage AI tools for personalized job recommendations<br>
+            ✅ Automating LinkedIn Outreach with AI – Build meaningful relationships effortlessly<br><br>
+            🎁 Bonus: Free access to our AI LinkedIn Optimization Checklist!<br><br>
+            Training Date to be announced soon
+        </p>
+    </article>
+
+    <article class="webinar-card" id="d">
+        <h2 style="font-family:'Montserrat',sans-serif; ">Generative AI for Leaders</h2>
+        <img src="../static/images_event/im6.webp" alt="Generative AI" class="webinar-image">
+        <p style="font-family:'Montserrat',sans-serif; ">Unlock the power of Generative AI & Agentic AI to drive business automation, innovation, and decision-making.<br><br>
+            ✅ Understanding Generative AI & Agentic AI – Key concepts, business applications & emerging trends<br>
+            ✅ AI-Powered Business Automation – Streamline operations with autonomous AI-driven agents<br>
+            ✅ AI for Decision-Making – Use Generative AI for predictive insights & strategic planning<br>
+            ✅ AI-Generated Content & Marketing – Automate content creation, branding & personalized outreach<br>
+            ✅ Integrating AI into Business Workflows – Practical implementation strategies for business leaders<br><br>
+            🎁 Bonus: Get access to an AI Business Strategy Guide & Exclusive AI Implementation Framework!<br><br>
+            Training Date to be announced soon
+        </p>
+    </article>
+
+    <article class="webinar-card" id="d">
+        <h2 style="font-family:'Montserrat',sans-serif; ">Master 30+ AI Tools</h2>
+        <img src="../static/images_event/im7.webp" alt="AI Tools Mastery" class="webinar-image">
+        <p style="font-family:'Montserrat',sans-serif; ">Unlock the power of 30+ AI tools to enhance productivity, automate tasks, and accelerate career and business success.<br><br>
+            ✅ AI for Productivity & Workflow Automation – Automate repetitive tasks and boost efficiency<br>
+            ✅ AI for Business Growth & Marketing – Leverage AI for content creation, social media, and branding<br>
+            ✅ AI for Data Analytics & Decision-Making – Extract insights and make data-driven decisions faster<br>
+            ✅ AI for Communication & Collaboration – Use AI-powered tools for emails, presentations, and team collaboration<br>
+            ✅ AI for Personal & Professional Growth – Enhance career opportunities, learning, and skill development<br><br>
+            🎁 Bonus: Get a Free AI Toolkit Guide with access to the best AI tools for professionals!<br><br>
+            Training Date to be announced soon
+        </p>
+    </article>
+
+    <article class="webinar-card" id="d">
+        <h2 style="font-family:'Montserrat',sans-serif; ">AI Interview Mastery</h2>
+        <img src="../static/images_event/im8.webp" alt="AI Interview Mastery" class="webinar-image">
+        <p style="font-family:'Montserrat',sans-serif; ">Master AI-powered strategies for interview success, resume optimization, and job search automation.<br><br>
+            ✅ AI-Powered Resume Optimization – Create ATS-friendly resumes tailored for your dream job<br>
+            ✅ AI for Job Search & Smart Applications – Find high-matching job opportunities using AI-powered platforms<br>
+            ✅ AI-Driven Interview Preparation – Leverage AI mock interviews with real-time feedback<br>
+            ✅ AI for Answering Behavioral & Technical Questions – Get AI insights to improve responses & confidence<br>
+            ✅ AI-Powered Networking & LinkedIn Growth – Use AI to expand professional connections & attract recruiters<br><br>
+            🎁 Bonus: Get a Free AI Interview Preparation Guide & Exclusive Access to AI-Powered Job Search Tools!<br><br>
+            Training Date to be announced soon
+        </p>
+    </article>
+</section>
+    <div class="social-icons">
+        <a href="https://www.facebook.com/DigidaraTechnologies/"><img src="../static/icons/5.png" alt="Facebook"></a>
+        <a href="https://www.instagram.com/digidaratechnologies/"><img src="../static/icons/insta.png" alt="Instagram"></a>
+        <a href="https://www.linkedin.com/company/104865843/admin/dashboard/"><img src="../static/icons/7.webp" alt="LinkedIn"></a>
+        <a href="https://x.com/digiDARA_Tech"><img src="../static/icons/8.png" alt="Twitter"></a>
+        <a href="https://www.youtube.com/@DigiDARATechnologies"><img src="../static/icons/9.png" alt="YouTube"></a>
+    </div>
+    <footer>
+        <h3>Copyright © 2025 DigiDARA Technologies Private Limited - All Rights Reserved.</h3>
+    </footer>
+
+<script>
+    document.getElementById('show-more-btn').addEventListener('click', function() {
+        var moreContent = document.getElementById('more-content');
+        if (moreContent.style.display === 'none') {
+            moreContent.style.display = 'inline';
+            this.textContent = '- Show Less';
+        } else {
+            moreContent.style.display = 'none';
+            this.textContent = '+ Show More';
+        }
+    });
+</script>
+
+</body>
+</html>
