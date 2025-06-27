@@ -19,7 +19,7 @@ The repository contains the following key files and directories (see screenshot 
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/Ranjeeth11/DigiDARA-web-chatbot.git
+   git clone https://github.com/DigiDARATechnologies/DigiDARA-web-chatbot
    cd DigiDARA-web-chatbot
    ```
 
